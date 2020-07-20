@@ -1,4 +1,4 @@
-import React, { Component, useState, createContext } from 'react';
+import React, { Component, useState, createContext,useContext } from 'react';
 const CountContext = createContext();
 function App() {
     const [count, setCount] = useState(0);
@@ -19,14 +19,13 @@ function App() {
     )
 }
 
-class Child extends Component {
-    render() {
-        return(
-            <CountContext.Consumer>
-                { count => <h1>count: { count }</h1> }
-            </CountContext.Consumer>
-        )
-    }
+
+
+function Child() {
+    const count = useContext(CountContext);
+    return(
+        <h1>count：{count}</h1>
+    )
 }
 export default App;
 
