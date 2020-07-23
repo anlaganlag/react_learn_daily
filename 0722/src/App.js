@@ -1,4 +1,4 @@
-import React, { useState  , useContext,createContext } from 'react';
+import React, { useState  , useContext,createContext, useReducer } from 'react';
  
 
 
@@ -6,8 +6,7 @@ import React, { useState  , useContext,createContext } from 'react';
 function App(){
     const [count, setCount] = useState(0)
     const [firstName, setFirstName] = useState("")
-
-    function handleReSet(){
+    const handleReSet=()=>{
       setCount(0)
       setFirstName("")
     }
@@ -25,7 +24,7 @@ function App(){
               setCount(e=>e+1)
             }}
           />
-          <button onClick={handleReSet}>Reset Count</button>
+          <button onClick={handleReSet}>Reset Count&Text</button>
         </div>
     );
 }
