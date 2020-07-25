@@ -4,7 +4,7 @@ function reducer(state, action) {
   switch (action.type) {
     case "add-todo":
       return {
-        todos: [...state.todos, { text: action.text, completed: false }],
+        todos: [...state.todos,{ text: action.text, completed: false }],
         todoCount: state.todoCount + 1
       };
     case "toggle-todo":
@@ -14,8 +14,7 @@ function reducer(state, action) {
         ),
         todoCount: state.todoCount
       };
-    default:
-      return state;
+
   }
 }
 
@@ -25,7 +24,6 @@ const App = () => {
     todoCount: 0
   });
   const [text, setText] = useState();
-
   return (
     <div>
       <form
@@ -35,13 +33,12 @@ const App = () => {
           setText("");
         }}
       >
-        <input value={text} onChange={e => setText(e.target.value)} />
+        <input  value={text} onChange={e => setText(e.target.value)} />
       </form>
       <div>number of todos: {todoCount}</div>
       {todos.map((t, idx) => (
         <div
-          key={t.text}
-          onClick={() => dispatch({ type: "toggle-todo", idx })}
+          key={t.text} onClick={() => dispatch({ type: "toggle-todo", idx })}
           style={{
             textDecoration: t.completed ? "line-through" : ""
           }}
