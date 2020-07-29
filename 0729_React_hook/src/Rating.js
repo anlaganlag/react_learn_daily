@@ -7,7 +7,7 @@ export default function Rating(props) {
     const [rating, setRating] = useState(props.rating)
     return (
       <div style={styles.starStyle}>
-        <h1> Rating:{rating} </h1>
+        <h5> Rating:{rating} </h5>
         {rating >= 1 ? (
           <IoIosStar onClick={() => setRating(1)}/>    
         ) : (         
