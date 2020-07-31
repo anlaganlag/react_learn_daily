@@ -21,7 +21,7 @@ const App = () => {
     },
   ];
   
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('React');
   
   const handleSearch = event => {
     setSearchTerm(event.target.value);
@@ -36,7 +36,7 @@ const App = () => {
     <div>
       <h1>My gal Stories</h1>
 
-      <Search onSearch={handleSearch} />
+      <Search search={searchTerm} onSearch={handleSearch} />
 
       <hr />
       <p>搜索的字段:"{searchTerm}"</p>
@@ -60,10 +60,10 @@ const List = props =>
   ));
 
 
-  const Search = props => (
-      <div>
+  const Search = ({ search, onSearch }) => ( 
+    <div>
         <label htmlFor="search">Search: </label>
-        <input id="search" type="text" onChange={props.onSearch} />
+        <input id="search" type="text" value={search} onChange={onSearch} />
     </div>
   );
 
