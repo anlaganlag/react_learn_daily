@@ -27,6 +27,11 @@ const App = () => {
     setSearchTerm(event.target.value);
   };
 
+  const searchedStories = stories.filter(story => (
+    story.title.includes(searchTerm)
+  ))
+
+
   return (
     <div>
       <h1>My gal Stories</h1>
@@ -34,9 +39,9 @@ const App = () => {
       <Search onSearch={handleSearch} />
 
       <hr />
-      <p>{searchTerm}</p>
+      <p>搜索的字段:"{searchTerm}"</p>
 
-      <List list={stories}/>
+      <List list={searchedStories}/>
 
     </div>
   );
