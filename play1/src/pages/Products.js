@@ -1,0 +1,57 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import MainNavigation from '../components/MainNavigation';
+import { addProductToCart } from '../store/actions';
+import './Products.css';
+
+class ProductsPage extends Component {
+    render() {
+        return (
+            <React.Fragment>
+                <MainNavigation cartItemNumber={this.props.cartItemCount} />
+                <main className="products">
+                    <ul>
+                        {this.props.products.map(product=>(
+                            <li key={product.id}>
+                                <div>
+                                    <strong>{product.title}</strong> - ${product.price}
+                                </div>
+                                <div>
+                                    <button
+                                        onClick = {this.props.addProductToCart.bind(
+                                            this,
+                                            product
+                                        )}I
+                                    >
+                                        添加到购物车
+                                    </button>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </main>
+            </React.Fragment>
+        );
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        products:state.products,
+        cartItemCount:state.cart.reduce((count,curItem)=>{
+            return count + curItem.quantity;
+        },0)
+    };
+};
+
+const mapDispathToProps = dispatch => {
+    return {
+        removeProductFromCart:product => dispatch(addProductToCart(product))
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispathToProps
+)(ProductsPage);
