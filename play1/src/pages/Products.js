@@ -28,7 +28,7 @@ class ProductsPage extends Component {
                                     </button>
                                 </div>
                             </li>
-                        ))}
+                        ))}..
                     </ul>
                 </main>
             </React.Fragment>
@@ -45,13 +45,20 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispathToProps = dispatch => {
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         addProductToCart:product => dispatch(addProductToCart(product))
+//     };
+// };
+const mapDispatchToProps = dispatch => {
     return {
-        removeProductFromCart:product => dispatch(addProductToCart(product))
+      addProductToCart: product => dispatch(addProductToCart(product))
     };
-};
+  };
+  
 
 export default connect(
     mapStateToProps,
-    mapDispathToProps
-)(ProductsPage);
+    mapDispatchToProps
+  )(ProductsPage);
+  
