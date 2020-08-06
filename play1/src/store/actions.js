@@ -10,12 +10,8 @@ export const addProductToCart = product =>
             () => dispatch({
                 type:ADD_PRODUCT_TO_CART,
                 payload:product
-            }) ,0)
-
-        
-
-
-
+            }) 
+        ,0)
 
 
 export const removeProductFromCart = productId =>
