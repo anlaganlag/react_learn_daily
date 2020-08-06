@@ -7,8 +7,13 @@ const initialState = {
     { id: 'p3', title: '廢棄塑料瓶', price: 0.99 },
     { id: 'p4', title: '快幹死盆栽', price: 2.99 }
   ],
-  cart: [],
-  cartSum: 0
+  cart: [
+    {id: "p2", title: "哈利波特 3", price: 9.99, quantity: 3},
+    {id: "p3", title: "廢棄塑料瓶", price: 0.99, quantity: 3},
+    {id: "p4", title: "快幹死盆栽", price: 2.99, quantity: 2},
+    {id: "p1", title: "遊戲鼠標", price: 29.99, quantity: 3}
+  ],
+  cartSum: 88
 };
 
 const shopReducer = (state = initialState, action) => {

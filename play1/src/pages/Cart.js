@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import MainNavigation from '../components/MainNavigation';
 import { removeProductFromCart } from '../store/actions';
 import './Cart.css';
-
 class CartPage extends Component {
   render() {
     return (
@@ -32,6 +31,13 @@ class CartPage extends Component {
               </li>
             ))}
           </ul>
+          <p>
+            <strong>總金額:</strong>
+            {this.props.cartItems.reduce((totalSum,curItem)=> 
+                totalSum+curItem.price*curItem.quantity
+            ,0)}
+          </p>
+
         </main>
       </React.Fragment>
     );
