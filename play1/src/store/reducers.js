@@ -1,4 +1,4 @@
-import { ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART } from './actions';
+import { ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART,REMOVE_ALL_PRODUCT_FROM_CART } from './actions';
 
 const initialState = {
   products: [
@@ -56,6 +56,10 @@ const shopReducer = (state = initialState, action) => {
       }
 
       return { ...state, cart: updatedCart };
+    case REMOVE_ALL_PRODUCT_FROM_CART:
+
+      return { ...state, cart: [] };
+      
     default:
       return state;
   }

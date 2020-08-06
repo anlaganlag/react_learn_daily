@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import MainNavigation from '../components/MainNavigation';
-import { removeProductFromCart } from '../store/actions';
+import { removeProductFromCart,removeAllProductFromCart } from '../store/actions';
 import './Cart.css';
 class CartPage extends Component {
   render() {
     return (
+
       <React.Fragment>
+        {console.log(this.props)}
         <MainNavigation cartItemNumber={this.props.cartItemCount} />
         <main className="cart">
           {this.props.cartItems.length <= 0 && <p>購物車已經清空!</p>}
@@ -37,7 +39,7 @@ class CartPage extends Component {
                 totalSum+curItem.price*curItem.quantity
             ,0)}
             </strong>
-            <button className="am"> 清空購物車</button>
+            <button className="am" onClick={this.props.removeAllProductFromCart.bind(this)}> 一鍵清空購物車</button>
           </p>
 
         </main>
@@ -58,7 +60,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    removeProductFromCart: id => dispatch(removeProductFromCart(id))
+    removeProductFromCart: id => dispatch(removeProductFromCart(id)),
+    removeAllProductFromCart: () => dispatch(removeAllProductFromCart())
   };
 };
 
