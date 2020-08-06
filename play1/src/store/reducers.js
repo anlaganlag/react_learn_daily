@@ -27,9 +27,12 @@ const shopReducer = (state = initialState, action) => {
         const updatedItem = {
           ...updatedCart[updatedItemIndex]
         };
+
+
         updatedItem.quantity++;
         updatedCart[updatedItemIndex] = updatedItem;
       }
+
       return { ...state, cart: updatedCart };
     case REMOVE_PRODUCT_FROM_CART:
       updatedCart = [...state.cart];
