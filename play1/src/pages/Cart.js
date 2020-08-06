@@ -15,8 +15,8 @@ class CartPage extends Component {
             {this.props.cartItems.map(cartItem => (
               <li key={cartItem.id}>
                 <div>
-                  <strong>{cartItem.title}</strong> - ${cartItem.price} (
-                  {cartItem.quantity})
+                  <strong>{cartItem.title}</strong> - RMB {cartItem.price} (
+                  {cartItem.quantity}件)
                 </div>
                 <div>
                   <button
@@ -32,10 +32,12 @@ class CartPage extends Component {
             ))}
           </ul>
           <p>
-            <strong>總金額:</strong>
+            <strong className="am">總金額:
             {this.props.cartItems.reduce((totalSum,curItem)=> 
                 totalSum+curItem.price*curItem.quantity
             ,0)}
+            </strong>
+            <button className="am"> 清空購物車</button>
           </p>
 
         </main>
