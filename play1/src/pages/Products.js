@@ -28,7 +28,7 @@ class ProductsPage extends Component {
                                     </button>
                                 </div>
                             </li>
-                        ))}..
+                        ))}
                     </ul>
                 </main>
             </React.Fragment>

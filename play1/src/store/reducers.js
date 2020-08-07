@@ -13,7 +13,7 @@ const initialState = {
     {id: "p4", title: "快幹死盆栽", price: 2.99, quantity: 2},
     {id: "p1", title: "遊戲鼠標", price: 29.99, quantity: 3}
   ],
-  cartSum: 88
+  cartSum: 0
 };
 
 const shopReducer = (state = initialState, action) => {
@@ -26,7 +26,7 @@ const shopReducer = (state = initialState, action) => {
         item => item.id === action.payload.id
       );
 
-      if (updatedItemIndex < 0) {
+      if (updatedItemIndex ===-1) {
         updatedCart.push({ ...action.payload, quantity: 1 });
       } else {
         const updatedItem = {
