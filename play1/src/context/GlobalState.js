@@ -10,22 +10,21 @@ const GlobalState = props => {
     { id: 'p3', title: 'Used plastic bottle', price: 0.99 },
     { id: 'p4', title: 'Half-dried plant', price: 2.99 }
   ];
-  // const [cart, setCart] = useState([]);
   const [cartState, dispatch] = useReducer(shopReducer, { cart: [] });
 
-  const addProductToCart = product => {
-    setTimeout(() => {
-      // setCart(updatedCart);
-      dispatch({ type: ADD_PRODUCT, product: product });
-    }, 700);
-  };
+  const addProductToCart = product => 
+    setTimeout(() => 
+      dispatch({ type: ADD_PRODUCT, product: product })
+      , 0
+    );
+  
 
-  const removeProductFromCart = productId => {
-    setTimeout(() => {
-      // setCart(updatedCart);
-      dispatch({ type: REMOVE_PRODUCT, productId: productId });
-    }, 700);
-  };
+  const removeProductFromCart = productId => 
+    setTimeout(() => 
+      dispatch({ type: REMOVE_PRODUCT, productId: productId })
+      ,0
+    );
+
 
   return (
     <ShopContext.Provider

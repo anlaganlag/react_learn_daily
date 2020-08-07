@@ -39,7 +39,7 @@ const CartPage = props => {
               </li>
             ))}
           </ul>
-          <p>
+          {/* <p>
             <strong className="am">總金額:
             {context.cart.reduce((totalSum,curItem)=> 
                 totalSum+curItem.price*curItem.quantity
@@ -48,7 +48,7 @@ const CartPage = props => {
             <button className="am" onClick={context.removeAllProductFromCart.bind(this)}> 一鍵清空購物車</button>
             
             <button  onClick={context.removeResetProductFromCart.bind(this)}> Reset</button>
-          </p>
+          </p> */}
 
         </main>
       </React.Fragment>
