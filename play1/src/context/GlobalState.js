@@ -5,10 +5,10 @@ import { shopReducer, ADD_PRODUCT, REMOVE_PRODUCT,REMOVE_ALL_PRODUCT,RESET_PRODU
 
 const GlobalState = props => {
   const products = [
-    { id: 'p1', title: 'Gaming Mouse', price: 29.99 },
-    { id: 'p2', title: 'Harry Potter 3', price: 9.99 },
-    { id: 'p3', title: 'Used plastic bottle', price: 0.99 },
-    { id: 'p4', title: 'Half-dried plant', price: 2.99 }
+    { id: 'p1', title: '電子競技鼠標', price: 29.99 },
+    { id: 'p2', title: '哈利波特 III', price: 9.99 },
+    { id: 'p3', title: '用過的塑料瓶', price: 0.99 },
+    { id: 'p4', title: '半死不活的植物', price: 2.99 }
   ];
   const [cartState, dispatch] = useReducer(shopReducer, { cart: [] });
 
