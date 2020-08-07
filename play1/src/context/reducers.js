@@ -1,5 +1,7 @@
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
+export const REMOVE_ALL_PRODUCT = 'REMOVE_ALL_PRODUCT';
+export const RESET_PRODUCT = 'RESET_PRODUCT';
 
 const addProductToCart = (product, state) => {
   const updatedCart = [...state.cart];
@@ -35,6 +37,13 @@ const removeProductFromCart = (productId, state) => {
   }
   return { ...state, cart: updatedCart };
 };
+const removeAllProductFromCart = (state) => {
+  return { ...state, cart: [] }
+};
+
+const resetProductFromCart = (state) => {
+    return { ...state, cart: state.cart }
+};
 
 export const shopReducer = (state, action) => {
   switch (action.type) {
@@ -42,6 +51,10 @@ export const shopReducer = (state, action) => {
       return addProductToCart(action.product, state);
     case REMOVE_PRODUCT:
       return removeProductFromCart(action.productId, state);
+    case REMOVE_ALL_PRODUCT:
+        return removeAllProductFromCart(state)
+    case RESET_PRODUCT:
+        return resetProductFromCart(state)
     default:
       return state;
   }

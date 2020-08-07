@@ -1,7 +1,7 @@
 import React, {  useReducer } from 'react';
 
 import ShopContext from './shop-context';
-import { shopReducer, ADD_PRODUCT, REMOVE_PRODUCT } from './reducers';
+import { shopReducer, ADD_PRODUCT, REMOVE_PRODUCT,REMOVE_ALL_PRODUCT,RESET_PRODUCT } from './reducers';
 
 const GlobalState = props => {
   const products = [
@@ -16,14 +16,26 @@ const GlobalState = props => {
     setTimeout(() => 
       dispatch({ type: ADD_PRODUCT, product: product })
       , 0
-    );
+    )
   
 
   const removeProductFromCart = productId => 
     setTimeout(() => 
       dispatch({ type: REMOVE_PRODUCT, productId: productId })
       ,0
-    );
+    )
+  
+  const removeAllProductFromCart = () =>
+    setTimeout(()=> 
+      dispatch({ type:REMOVE_ALL_PRODUCT })
+      ,0
+    )
+
+  const resetProductFromCart = () =>
+    setTimeout(()=> 
+      dispatch({ type:RESET_PRODUCT })
+      ,0
+    )
 
 
   return (
@@ -32,7 +44,9 @@ const GlobalState = props => {
         products: products,
         cart: cartState.cart,
         addProductToCart: addProductToCart,
-        removeProductFromCart: removeProductFromCart
+        removeProductFromCart: removeProductFromCart,
+        removeAllProductFromCart:removeAllProductFromCart,
+        resetProductFromCart:resetProductFromCart
       }}
     >
       {props.children}
