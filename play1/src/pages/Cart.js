@@ -48,7 +48,6 @@ const CartPage = props => {
        
             <button className="am" onClick={context.removeAllProductFromCart.bind(this)}> 一鍵清空購物車</button>
             
-            {/* <button  onClick={context.removeResetProductFromCart.bind(this)}> Reset</button> */}
           </p>
 
         </main>

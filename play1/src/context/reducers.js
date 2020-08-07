@@ -41,9 +41,7 @@ const removeAllProductFromCart = (state) => {
   return { ...state, cart: [] }
 };
 
-const resetProductFromCart = (state) => {
-    return { ...state, cart: state.cart }
-};
+
 
 export const shopReducer = (state, action) => {
   switch (action.type) {
@@ -53,8 +51,6 @@ export const shopReducer = (state, action) => {
       return removeProductFromCart(action.productId, state);
     case REMOVE_ALL_PRODUCT:
         return removeAllProductFromCart(state)
-    case RESET_PRODUCT:
-        return resetProductFromCart(state)
     default:
       return state;
   }
