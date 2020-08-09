@@ -85,12 +85,12 @@ class TemperatureInput extends React.Component {
 
 function BoilingVerdict(props) {
   if (props.celsius >= 100) {
-    return <p>{`${props.celsius}攝氏度，水已經開了 小心...`}</p>
+    return <p>{props.celsius}攝氏度，水已經開了 小心...</p>
   } else if (Number.isNaN(props.celsius)){
       return ''
     }
   
-return <p>{`${props.celsius}攝氏度,水還沒有開.`}</p>
+return <p>{props.celsius}攝氏度,水還沒有開.</p>
 }
 
 
