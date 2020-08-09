@@ -1,57 +1,25 @@
 import React from 'react';
- 
-const scaleNames = {
-    c: '攝氏',
-    f: '華氏',
-}
 
-function BoilingVerdict(props) {
-  if (props.celsius >= 100) {
-    return <p>水已經開了 小心燙...</p>
-  }
-  return <p>反正水還沒有開.</p>
+const scaleNames = {
+  c: '攝氏',
+  f: '華氏',
 }
 
 const toFahrenheit = celsius =>
-  (celsius*9/5)+32
+(celsius*9/5)+32
 
 const toCelsius = fahrenheit =>
-  (fahrenheit - 32)*5/9;
+(fahrenheit - 32)*5/9;
 
 const tryConvert=(temperature, convert) => {
-  const input = parseFloat(temperature)
-  if (Number.isNaN(input)){
-    return ''
-  }
-  const output = convert(input)
-  const rounded = Math.round(output*1000)/1000
-  return rounded.toString()
-} 
-
-
-class TemperatureInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-  }
-  handleChange(e){
-    this.props.onTemperatureChange(e.target.value)
-  }
-
-  render(){
-      const temperature = this.props.temperature
-      const scale = this.props.scale
-      return (
-        <fieldset>
-          <legend>輸入溫度 {scaleNames[scale]}:</legend>
-          <input value = {temperature}
-              onChange = {this.handleChange} />
-      </fieldset>
-    )
-  }
+const input = parseFloat(temperature)
+if (Number.isNaN(input)){
+  return ''
 }
-
-
+const output = convert(input)
+const rounded = Math.round(output*1000)/1000
+return rounded.toString()
+} 
 
 
 export default class Calculator extends React.Component {
@@ -91,3 +59,41 @@ export default class Calculator extends React.Component {
     )
   }
 }
+
+
+class TemperatureInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(e){
+    this.props.onTemperatureChange(e.target.value)
+  }
+  
+  render(){
+    const temperature = this.props.temperature
+    const scale = this.props.scale
+    return (
+      <fieldset>
+          <legend>輸入溫度 {scaleNames[scale]}:</legend>
+          <input value = {temperature}
+              onChange = {this.handleChange} />
+      </fieldset>
+    )
+  }
+}
+
+function BoilingVerdict(props) {
+  if (props.celsius >= 100) {
+    return <p>{`${props.celsius}攝氏度，水已經開了 小心...`}</p>
+  }
+  return <p>反正水還沒有開.</p>
+}
+
+
+
+
+
+
+
+
