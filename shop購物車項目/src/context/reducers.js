@@ -43,7 +43,7 @@ const removeAllProductFromCart = (state) => {
 
 
 
-export const shopReducer = (state, action) => {
+const shopReducer = (state, action) => {
   switch (action.type) {
     case ADD_PRODUCT:
       return addProductToCart(action.product, state);
@@ -55,3 +55,5 @@ export const shopReducer = (state, action) => {
       return state;
   }
 };
+
+export default shopReducer

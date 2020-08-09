@@ -1,7 +1,8 @@
 import React, {  useReducer } from 'react';
 
 import ShopContext from './shop-context';
-import { shopReducer, ADD_PRODUCT, REMOVE_PRODUCT,REMOVE_ALL_PRODUCT} from './reducers';
+import {ADD_PRODUCT, REMOVE_PRODUCT,REMOVE_ALL_PRODUCT} from './reducers';
+import shopReducer from './reducers';
 
 const GlobalState = props => {
   const products = [
