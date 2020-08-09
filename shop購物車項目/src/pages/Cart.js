@@ -7,12 +7,12 @@ const CartPage = props => {
   const context = useContext(ShopContext);
 
   useEffect(() => {
-    console.log(context)
+    console.log(k)
   })
 
     return (
       <React.Fragment>
-        <MainNavigation 
+        <MainNavigation i
           cartItemNumber={context.cart.reduce((count, curItem) => {
             return count + curItem.quantity;
           }, 0)}
