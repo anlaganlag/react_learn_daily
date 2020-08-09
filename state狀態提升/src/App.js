@@ -12,13 +12,13 @@ const toCelsius = fahrenheit =>
 (fahrenheit - 32)*5/9;
 
 const tryConvert=(temperature, convert) => {
-const input = parseFloat(temperature)
-if (Number.isNaN(input)){
-  return ''
-}
-const output = convert(input)
-const rounded = Math.round(output*1000)/1000
-return rounded.toString()
+  const input = parseFloat(temperature)
+  if (Number.isNaN(input)){
+    return ''
+  }
+  const output = convert(input)
+  const rounded = Math.round(output*100)/100
+  return rounded.toString()
 } 
 
 
@@ -86,8 +86,11 @@ class TemperatureInput extends React.Component {
 function BoilingVerdict(props) {
   if (props.celsius >= 100) {
     return <p>{`${props.celsius}攝氏度，水已經開了 小心...`}</p>
-  }
-  return <p>反正水還沒有開.</p>
+  } else if (Number.isNaN(props.celsius)){
+      return ''
+    }
+  
+return <p>{`${props.celsius}攝氏度,水還沒有開.`}</p>
 }
 
 
