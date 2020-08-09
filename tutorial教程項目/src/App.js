@@ -1,14 +1,11 @@
 import React from 'react'
 
-
-
 class ProductCategoryRow extends React.Component {
   render() {
-    const category = this.props.category;
     return (
       <tr>
         <th colSpan="2">
-          {category}
+          {this.props.category}
         </th>
       </tr>
     );
@@ -35,17 +32,17 @@ class ProductRow extends React.Component {
 
 class ProductTable extends React.Component {
   render() {
-    const filterText = this.props.filterText;
-    const inStockOnly = this.props.inStockOnly;
+    const searchText = this.props.searchText;
+    const isStockOnly = this.props.isStockOnly;
 
     const rows = [];
     let lastCategory = null;
 
     this.props.products.forEach((product) => {
-      if (product.name.indexOf(filterText) === -1) {
+      if (product.name.indexOf(searchText) === -1) {
         return;
       }
-      if (inStockOnly && !product.stocked) {
+      if (isStockOnly && !product.stocked) {
         return;
       }
       if (product.category !== lastCategory) {
@@ -68,8 +65,8 @@ class ProductTable extends React.Component {
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Price</th>
+            <th>商品名稱</th>
+            <th>當前價格</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
@@ -98,18 +95,17 @@ class SearchBar extends React.Component {
       <form>
         <input
           type="text"
-          placeholder="Search..."
-          value={this.props.filterText}
+          placeholder="搜索..."
+          value={this.props.searchText}
           onChange={this.handleFilterTextChange}
         />
         <p>
           <input
             type="checkbox"
-            checked={this.props.inStockOnly}
+            checked={this.props.isStockOnly}
             onChange={this.handleInStockChange}
           />
-          {' '}
-          Only show products in stock
+          只顯示有庫存商品
         </p>
       </form>
     );
@@ -120,53 +116,40 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      filterText: '',
-      inStockOnly: false
+      searchText: '',
+      isStockOnly: false
     };
     
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
     this.handleInStockChange = this.handleInStockChange.bind(this);
   }
 
-  handleFilterTextChange(filterText) {
-    this.setState({
-      filterText: filterText
-    });
+  handleFilterTextChange(searchText) {
+    this.setState({ searchText });
   }
   
-  handleInStockChange(inStockOnly) {
-    this.setState({
-      inStockOnly: inStockOnly
-    })
+  handleInStockChange(isStockOnly) {
+    this.setState({ isStockOnly })
   }
 
   render() {
     return (
       <div>
         <SearchBar
-          filterText={this.state.filterText}
-          inStockOnly={this.state.inStockOnly}
+          searchText={this.state.searchText}
+          isStockOnly={this.state.isStockOnly}
           onFilterTextChange={this.handleFilterTextChange}
           onInStockChange={this.handleInStockChange}
         />
         <ProductTable
           products={this.props.products}
-          filterText={this.state.filterText}
-          inStockOnly={this.state.inStockOnly}
+          searchText={this.state.searchText}
+          isStockOnly={this.state.isStockOnly}
         />
       </div>
     );
   }
 }
 
-
-const PRODUCTS = [
-  {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
-  {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
-  {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
-  {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
-  {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
-  {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
-];
 
 export default App
