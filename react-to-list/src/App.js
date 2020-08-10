@@ -30,8 +30,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY_RED, JSON.stringify(green));
-  }, [green]);
+    localStorage.setItem(LOCAL_STORAGE_KEY_RED, JSON.stringify(red));
+  }, [red]);
 
   function addGreen(todo) {
     setGreen([todo, ...green]);
