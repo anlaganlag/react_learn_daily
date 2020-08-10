@@ -8,7 +8,7 @@ function App() {
   const [green, setTodos] = useState([]);
   const [red, setRed] = useState([]);
 
-  function addTodo(todo) {
+  function addGreen(todo) {
     // adds new todo to beginning of green array
     setTodos([todo, ...green]);
   }
@@ -51,14 +51,14 @@ function App() {
   }
 
   function removeTodoRed(id) {
-    setTodos(red.filter(todo => todo.id !== id));
+    setRed(red.filter(todo => todo.id !== id));
   }
 
 
   return (
     <div className="App">
         React Todo
-      <TodoForm addTodo={addTodo} />
+      <TodoForm addTodo={addGreen} />
 
       <TodoList
         green={green}
