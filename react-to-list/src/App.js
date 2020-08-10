@@ -5,12 +5,12 @@ import TodoList from "./components/TodoList";
 
 
 function App() {
-  const [green, setTodos] = useState([]);
+  const [green, setGreen] = useState([]);
   const [red, setRed] = useState([]);
 
   function addGreen(todo) {
     // adds new todo to beginning of green array
-    setTodos([todo, ...green]);
+    setGreen([todo, ...green]);
   }
 
   function addRed(todo) {
@@ -20,7 +20,7 @@ function App() {
 
 
   function toggleComplete(id) {
-    setTodos(
+    setGreen(
       green.map(todo => {
         if (todo.id === id) {
           return {
@@ -47,7 +47,7 @@ function App() {
   }
 
   function removeTodo(id) {
-    setTodos(green.filter(todo => todo.id !== id));
+    setGreen(green.filter(todo => todo.id !== id));
   }
 
   function removeTodoRed(id) {
@@ -59,16 +59,15 @@ function App() {
     <div className="App">
         React Todo
       <TodoForm addTodo={addGreen} />
-
       <TodoList
-        green={green}
+        todos={green}
         removeTodo={removeTodo}
         toggleComplete={toggleComplete}
       />
       <TodoForm addTodo={addRed} />
 
       <TodoList
-        green={red}
+        todos={red}
         removeTodo={removeTodoRed}
         toggleComplete={toggleCompleteRed}
       />
