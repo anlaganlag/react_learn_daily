@@ -1,35 +1,40 @@
-import Typography from "@material-ui/core/Typography";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 
-const LOCAL_STORAGE_KEY = "react-todo-list-todos";
 
 function App() {
-  const [todos, setTodos] = useState([]);
-
-  useEffect(() => {
-    // fires when app component mounts to the DOM
-    const storageTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    if (storageTodos) {
-      setTodos(storageTodos);
-    }
-  }, []);
-
-  useEffect(() => {
-    // fires when todos array gets updated
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
-  }, [todos]);
+  const [green, setTodos] = useState([]);
+  const [red, setRed] = useState([]);
 
   function addTodo(todo) {
-    // adds new todo to beginning of todos array
-    setTodos([todo, ...todos]);
+    // adds new todo to beginning of green array
+    setTodos([todo, ...green]);
   }
+
+  function addRed(todo) {
+    // adds new todo to beginning of green array
+    setRed([todo, ...red]);
+  }
+
 
   function toggleComplete(id) {
     setTodos(
-      todos.map(todo => {
+      green.map(todo => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            completed: !todo.completed
+          };
+        }
+        return todo;
+      })
+    );
+  }
+  function toggleCompleteRed(id) {
+    setRed(
+      red.map(todo => {
         if (todo.id === id) {
           return {
             ...todo,
@@ -42,20 +47,32 @@ function App() {
   }
 
   function removeTodo(id) {
-    setTodos(todos.filter(todo => todo.id !== id));
+    setTodos(green.filter(todo => todo.id !== id));
   }
+
+  function removeTodoRed(id) {
+    setTodos(red.filter(todo => todo.id !== id));
+  }
+
 
   return (
     <div className="App">
-      <Typography style={{ padding: 16 }} variant="h1">
         React Todo
-      </Typography>
       <TodoForm addTodo={addTodo} />
+
       <TodoList
-        todos={todos}
+        green={green}
         removeTodo={removeTodo}
         toggleComplete={toggleComplete}
       />
+      <TodoForm addTodo={addRed} />
+
+      <TodoList
+        green={red}
+        removeTodo={removeTodoRed}
+        toggleComplete={toggleCompleteRed}
+      />
+
     </div>
   );
 }

@@ -23,7 +23,7 @@ function TodoForm({ addTodo }) {
       setTodo({ ...todo, task: "" });
     }
   }
-
+  console.log(todo)
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
       <TextField
