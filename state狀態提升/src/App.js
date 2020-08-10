@@ -25,8 +25,8 @@ const tryConvert=(temperature, convert) => {
 export default class Calculator extends React.Component {
   constructor(props){
     super(props)
-    this.handleCelsiusChange = this .handleCelsiusChange.bind(this)
-    this.handleFahrenheitChange = this .handleFahrenheitChange.bind(this)
+    this.handleCelsiusChange = this.handleCelsiusChange.bind(this)
+    this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this)
     this.state = {temperature:'',scale:'c'}
   }
     handleCelsiusChange(temperature) {
