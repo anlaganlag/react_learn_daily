@@ -1,20 +1,43 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import "./App.css";
 import TodoForm from "./components/TodoForm";
+import TodoFormRed from "./components/TodoFormRed";
 import TodoList from "./components/TodoList";
 
 
+const LOCAL_STORAGE_KEY_GREEN = "react-todo-list-todos-green";
+const LOCAL_STORAGE_KEY_RED = "react-todo-list-todos_red";
 function App() {
   const [green, setGreen] = useState([]);
   const [red, setRed] = useState([]);
 
+  useEffect(() => {
+    const storageTodosGreen = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_GREEN));
+    if (storageTodosGreen) {
+      setGreen(storageTodosGreen);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY_GREEN, JSON.stringify(green));
+  }, [green]);
+
+  useEffect(() => {
+    const storageTodosRed = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_RED));
+    if (storageTodosRed) {
+      setRed(storageTodosRed);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY_RED, JSON.stringify(green));
+  }, [green]);
+
   function addGreen(todo) {
-    // adds new todo to beginning of green array
     setGreen([todo, ...green]);
   }
 
   function addRed(todo) {
-    // adds new todo to beginning of green array
     setRed([todo, ...red]);
   }
 
@@ -57,14 +80,14 @@ function App() {
 
   return (
     <div className="App">
-        React Todo
+        <span>應做&&不應做</span>
       <TodoForm addTodo={addGreen} />
       <TodoList
         todos={green}
         removeTodo={removeTodo}
         toggleComplete={toggleComplete}
       />
-      <TodoForm addTodo={addRed} />
+      <TodoFormRed addTodo={addRed} />
 
       <TodoList
         todos={red}

@@ -2,7 +2,7 @@ import { Button, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import {v4 as uuid} from "uuid"; 
 
-function TodoForm({ addTodo }) {
+function TodoFormRed({ addTodo }) {
   const [todo, setTodo] = useState({
     id: "",
     task: "",
@@ -26,7 +26,7 @@ function TodoForm({ addTodo }) {
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
       <TextField
-        label="待辦事項"
+        label="不能做的事情"
         type="text"
         name="task"
         value={todo.task}
@@ -37,4 +37,4 @@ function TodoForm({ addTodo }) {
   );
 }
 
-export default TodoForm;
+export default TodoFormRed;

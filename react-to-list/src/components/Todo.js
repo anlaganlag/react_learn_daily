@@ -2,7 +2,7 @@ import { Checkbox, IconButton, ListItem} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import React from "react";
 
-function Todo({ todo, toggleComplete, removeTodo }) {
+function Todo({ todo, toggleComplete, removeTodo ,}) {
   function handleCheckboxClick() {
     toggleComplete(todo.id);
   }
