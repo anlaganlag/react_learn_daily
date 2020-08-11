@@ -3,6 +3,8 @@ import React from "react";
 import Todo from "./Todo";
 
 function TodoList({ todos, removeTodo, toggleComplete }) {
+  console.log(todos)
+
   return (
     <List>
       {todos.map(todo => (

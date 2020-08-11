@@ -1,3 +1,4 @@
+import Typography from "@material-ui/core/Typography";
 import React, { useState,useEffect} from "react";
 import "./App.css";
 import TodoForm from "./components/TodoForm";
@@ -77,16 +78,19 @@ function App() {
     setRed(red.filter(todo => todo.id !== id));
   }
 
-
+  console.log(localStorage)
   return (
     <div className="App">
-        <span>應做&&不應做</span>
+      <Typography style={{ padding: 16 }} variant="h1">
+        應做&&不應做列表..
+      </Typography>
       <TodoForm addTodo={addGreen} />
-      <TodoList
+      <TodoList 
         todos={green}
         removeTodo={removeTodo}
         toggleComplete={toggleComplete}
       />
+     
       <TodoFormRed addTodo={addRed} />
 
       <TodoList
