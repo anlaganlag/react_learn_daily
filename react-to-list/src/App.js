@@ -81,8 +81,8 @@ function App() {
   console.log(localStorage)
   return (
     <div className="App">
-      <Typography style={{ padding: 16 }} variant="h1">
-        應做&&不應做列表..
+      <Typography style={{ padding: 16 ,color:"orange"}} variant="h1">
+        <span style={{color:'green'}}>要做</span>&<span style={{color:'red'}}>不要做</span>
       </Typography>
       <TodoForm addTodo={addGreen} />
       <TodoList 

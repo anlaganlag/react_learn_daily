@@ -6,7 +6,8 @@ function TodoForm({ addTodo }) {
   const [todo, setTodo] = useState({
     id: "",
     task: "",
-    completed: false
+    completed: false,
+    green:true
   });
 
   function handleTaskInputChange(e) {
@@ -26,13 +27,14 @@ function TodoForm({ addTodo }) {
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
       <TextField
-        label="待辦事項"
+        label="待辦事項.."
         type="text"
         name="task"
         value={todo.task}
         onChange={handleTaskInputChange}
+        
       />
-      <Button type="submit">提交</Button>
+      <Button type="submit" style={{color: 'green'}}>提交</Button>
     </form>
   );
 }

@@ -12,10 +12,12 @@ function Todo({ todo, toggleComplete, removeTodo ,}) {
   }
 
   return (
-    <ListItem style={{ display: "flex" }}>
+    <ListItem style={{ display: "flex"}}>
       <Checkbox checked={todo.completed} onClick={handleCheckboxClick} />
       <p style={{
-          textDecoration: todo.completed ? "line-through" : null
+          textDecoration: todo.completed ? "line-through" : null,
+          
+          color:todo.completed ? "orange":todo.green ? "green":"red",
         }}
       >
         {todo.task}
