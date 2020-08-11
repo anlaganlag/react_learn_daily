@@ -82,7 +82,7 @@ function App() {
   return (
     <div className="App">
       <Typography style={{ padding: 16 ,color:"orange"}} variant="h1">
-        <span style={{color:'green'}}>要做</span>&<span style={{color:'red'}}>不要做</span>
+        <span style={{color:'green'}}>要做</span>&&<span style={{color:'red'}}>不要做</span>
       </Typography>
       <TodoForm addTodo={addGreen} />
       <TodoList 

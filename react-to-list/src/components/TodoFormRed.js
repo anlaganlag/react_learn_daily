@@ -27,7 +27,7 @@ function TodoFormRed({ addTodo }) {
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
       <TextField 
-        label="不能做的事項.."
+        label="請輸入不應做事項.."
         type="text"
         name="task"
         value={todo.task}

@@ -27,7 +27,7 @@ function TodoForm({ addTodo }) {
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
       <TextField
-        label="待辦事項.."
+        label="請輸入待辦事項.."
         type="text"
         name="task"
         value={todo.task}
