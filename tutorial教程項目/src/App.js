@@ -65,8 +65,8 @@ class ProductTable extends React.Component {
       <table>
         <thead>
           <tr>
-            <th>商品名稱</th>
-            <th>當前價格</th>
+            <th>商品</th>
+            <th>價格</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
@@ -95,7 +95,7 @@ class SearchBar extends React.Component {
       <form>
         <input
           type="text"
-          placeholder="搜索..."
+          placeholder="搜索商品..."
           value={this.props.searchText}
           onChange={this.handleFilterTextChange}
         />

@@ -6,9 +6,6 @@ import './Cart.css';
 const CartPage = props => {
   const context = useContext(ShopContext);
 
-  useEffect(() => {
-    console.log(k)
-  })
 
     return (
       <React.Fragment>
@@ -41,9 +38,10 @@ const CartPage = props => {
           </ul>
             <p>
             <strong className="am">總金額:
-            {context.cart.reduce((totalSum,curItem)=> 
+            {Math.round(context.cart.reduce((totalSum,curItem)=> 
                 totalSum+curItem.price*curItem.quantity
-            ,0)}
+            ,0)*100)/100
+            }
             </strong>
        
             <button className="am" onClick={context.removeAllProductFromCart.bind(this)}> 一鍵清空購物車</button>

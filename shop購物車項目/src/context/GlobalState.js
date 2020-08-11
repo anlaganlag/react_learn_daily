@@ -13,12 +13,7 @@ const GlobalState = props => {
   ];
   const [cartState, dispatch] = useReducer(
     shopReducer, 
-    { cart: [
-      {id: "p2", title: "哈利波特 3", price: 9.99, quantity: 3},
-      {id: "p3", title: "廢棄塑料瓶", price: 0.99, quantity: 3},
-      {id: "p4", title: "快幹死盆栽", price: 2.99, quantity: 2},
-      {id: "p1", title: "遊戲鼠標", price: 29.99, quantity: 3}
-    ]}
+    { cart: []}
   );
 
   const addProductToCart = product => 
