@@ -34,7 +34,7 @@ function TodoForm({ addTodo }) {
         onChange={handleTaskInputChange}
         
       />
-      <Button type="submit" style={{color: 'green'}}>提交</Button>
+      <Button type="submit" >提交</Button>
     </form>
   );
 }

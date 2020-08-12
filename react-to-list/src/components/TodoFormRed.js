@@ -28,12 +28,12 @@ function TodoFormRed({ addTodo }) {
     <form className="todo-form" onSubmit={handleSubmit}>
       <TextField 
         label="請輸入不應做事項.."
-        type="text"
+        type="text" 
         name="task"
         value={todo.task}
         onChange={handleTaskInputChange}
       />
-      <Button type="submit" style={{color: 'red'}}>提交</Button>
+      <Button type="submit">提交</Button>
     </form>
   );
 }

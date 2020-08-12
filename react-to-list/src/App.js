@@ -78,7 +78,6 @@ function App() {
     setRed(red.filter(todo => todo.id !== id));
   }
 
-  console.log(localStorage)
   return (
     <div className="App">
       <Typography style={{ padding: 16 ,color:"orange"}} variant="h1">
