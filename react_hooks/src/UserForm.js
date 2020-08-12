@@ -69,7 +69,10 @@ function UserForm() {
                 <Button variant="primary" type="submit">
                     提交
                 </Button>
-            </Form>  
+            </Form>
+            Email entered: {email}
+            <br />
+            Password entered: {password}      
         </div>
     );
 }
