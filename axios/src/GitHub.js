@@ -1,5 +1,5 @@
-import React, { useState,useEffect } from 'react';
-import axios from 'axios'; // npm install axios
+import React, { useState } from 'react';
+import axios from 'axios'; 
 import ReactLoading from 'react-loading';
 import { Media } from 'react-bootstrap';
 
@@ -12,23 +12,19 @@ export default function GitHub() {
   const [isLoading, setIsLoading] = useState(false);
 
 
-  useEffect(() =>{
-    getData()
-  },[])
 
 
-  const getData = () => {
-    axios.get(`https://api.github.com/search/users?q=${searchTerm}`)
-      .then(res => {                                               
+  const getData = async() => {
+        const res = await axios.get(`https://api.github.com/search/users?q=${searchTerm}`);                
         setData(res.data.items)
         setIsLoading(false);
-    });
   }
   const handleSubmit = event => {
     event.preventDefault();
     setIsLoading(true);
     getData();
   }
+  
 
 
   const listUsers = data.map((user) =>            
