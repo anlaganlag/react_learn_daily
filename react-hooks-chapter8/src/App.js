@@ -1,6 +1,6 @@
 import React, { useReducer} from 'react';
 import ToDoList from './ToDoList'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 const todosInitialState = { 
   todos:[{ id:1, text: "finishing writing hooks chapter"},
@@ -24,7 +24,7 @@ function App (){
 function todosReducer(state, action){ 
   switch(action.type){     
     case 'add':
-      const newToDo = {id: uuidv4(), text: action.payload}
+      const newToDo = {id: uuid(), text: action.payload}
       const addedToDos = [...state.todos,newToDo]
       return {...state,todos:addedToDos}
     case 'delete':
