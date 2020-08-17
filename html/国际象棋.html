@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画布</title>
+</head>
+<body>
+    <h1>画布</h1>
+
+    <canvas id='canvas' width="400" height="400"></canvas>    
+    <script>
+        const canv = document.getElementById('canvas')
+        const ctx = canv.getContext("2d")
+        for(let j = 0; j<4; j++ ){
+            for(let i = 0 ;i<4;i++){
+                ctx.fillRect(i*100,j*100,50,50)
+                ctx.fillRect(i*100+50,j*100+50,50,50)
+                ctx.strokeRect(i*100+50,j*100,50,50)
+                ctx.strokeRect(i*100,j*100+50,50,50)
+            }
+       }
+        
+    </script>
+</body>
+</html>
