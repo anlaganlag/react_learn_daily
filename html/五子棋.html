@@ -9,6 +9,9 @@
     <script>
         const canv = document.getElementById('canvas')
         const ctx = canv.getContext("2d")
+        let blorwh= 0
+        let piecesColor = "White"
+        let mtxPosX,mtxPosY
         // ctx.beginPath();
         for(let i=0;i<19;i++)
         {
@@ -21,20 +24,26 @@
         ctx.stroke();
         $("#canvas").click(function(event) {
             console.log(event.offsetX);
+            blorwh = !blorwh
             let arcPosX,arcPosY
             for (let x = 0;x<19;x++) {
                 if ((Math.abs(event.offsetX-(10+x*20)))<10)
                 {
                     arcPosX = 10+x*20;
+                    mtxPosX = x
                 }
                 if ((Math.abs(event.offsetY-(10+x*20)))<10)
                 {
                     arcPosY = 10+x*20;
+                    mtxPosY = 
                 }
             }
         
             ctx.beginPath();
+            blorwh ? piecesColor = "White":piecesColor="blue"
+            ctx.fillStyle = piecesColor
             ctx.arc(arcPosX,arcPosY,10,0,Math.PI*2,false);
+            ctx.stroke()
             ctx.fill();
         })
     </script>
