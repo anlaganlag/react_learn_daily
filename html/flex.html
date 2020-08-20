@@ -3,47 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>flex</title>
+    <title>CSS GRID</title>
     <style>
        *{
            margin: 0;
            padding: 0;
+           box-sizing: border-box;
        }
-       .container{
-           width: 100%;
-           height: 500px;
-           background-color: #ccc;
-
-           display: flex;
-           /* flex-wrap: wrap;
-           flex-direction: row; */
-           flex-flow: row wrap;
-           justify-content: center;
+       section{
+           height: 100vh;
+           display: grid;
+           grid-template-columns: 1fr  1fr;
+           grid-template-rows: 1fr  1fr;
        }
-
+       .div1{
+           background-color: lightcoral;
+       }
+       .div2{
+        background-color: lightblue;
+       }
+       .div3{
+           background-color: lightgreen;
+       }
     </style>
 </head>
 <body>
 
     <section class="container">
-        <div class="item">
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, veritatis? </p>
-        </div>
-        <div class="item">
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, veritatis? </p>
-        </div>
-        <div class="item">
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, veritatis? </p>
-        </div>
-        <div class="item">
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, veritatis? </p>
-        </div>
-        <div class="item">
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, veritatis? </p>
-        </div>
-        <div class="item">
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, veritatis? </p>
-        </div>
+        <div class="div1">div1</div>
+        <div class="div2">div2</div>
+        <div class="div3">div3</div>
     </section>    
 </body>
 </html>
