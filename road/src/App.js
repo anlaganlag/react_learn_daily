@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 
 // const List = ({ list }) =>
 //   list.map(({ objectID, ...item}) =>
@@ -17,7 +17,7 @@ import React, { useState } from "react";
 
 const List = ({ list }) =>
   list.map((item) => <Item key={item.objectID} item={item} />);
-  
+
 const Item = ({ item }) => (
   <div>
     <span>
@@ -29,12 +29,30 @@ const Item = ({ item }) => (
   </div>
 );
 
-const Search = ({ searchTerm, handleSearch }) => (
-  <div>
-    <label htmlFor="search">Search: </label>
-    <input id="search" type="text" value={searchTerm} onChange={handleSearch} />
-  </div>
+const InputwithLabel = ({ id, label,value,type='text',onInputChange }) => (
+  <>
+    <label htmlFor={id}>{label}</label>
+    &nbsp;
+    <input 
+      id={id} 
+      type={type}
+      value={value} 
+      onChange={onInputChange} 
+    />
+  </>
 );
+
+
+const useSemiPersistentState = (key,initialState) => {
+    const [value, setValue] = useState(
+      localStorage.getItem(key) || initialState
+    );
+
+    useEffect(() => {
+      localStorage.setItem(key,value);
+    }, [value,key]);
+  return [value,setValue];
+}
 
 const App = () => {
   const list = [
@@ -62,9 +80,16 @@ const App = () => {
       points: 10,
       objectID: 2,
     },
+    {
+      title: "BestPro",
+      url: "https://galfond.js.org/",
+      author: "Best builder",
+      num_comments: 7,
+      points: 13,
+      objectID: 3,
+    },
   ];
-
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm,setSearchTerm] = useSemiPersistentState('search','React');
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -77,7 +102,13 @@ const App = () => {
     <>
       <h1>My Hacker Stories</h1>
 
-      <Search handleSearch={handleSearch} searchTerm={searchTerm} />
+      <InputwithLabel 
+        id="search"
+        label="Search"
+        value={searchTerm}
+        onInputChange={handleSearch}
+      />
+      
       <p>
         {" "}
         Searching for <strong>{searchTerm}</strong>{" "}
