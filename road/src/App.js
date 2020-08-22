@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 
 const List = props =>
-  props.list.map((item) => (
+  props.lists.map((item) => (
     <div key={item.objectID}>
       <span>
         <a href={item.url}>{item.title}</a>
@@ -30,7 +30,7 @@ const Search = props => {
 };
 
 const App = () => {
-  const list = [
+  const lists = [
     {
     title: 'React',
     url: 'https://reactjs.org/',
@@ -59,11 +59,14 @@ const App = () => {
 
   const [searchTerm, setSearchTerm] = useState('')
 
-
   const handleSearch = event => {
     setSearchTerm(event.target.value);
     
   }
+
+  const searchedLists = lists.filter(list=>
+    list.title.includes(searchTerm)
+  )
   return (
     <>
       <h1>My Hacker Stories</h1>
@@ -74,7 +77,7 @@ const App = () => {
       
       <hr />
 
-      <List list={list}/>
+      <List lists={searchedLists}/>
     </>
   );
 };
