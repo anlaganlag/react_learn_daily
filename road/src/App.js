@@ -29,9 +29,16 @@ const Item = ({ item }) => (
   </div>
 );
 
-const InputwithLabel = ({ id, label,value,type='text',onInputChange }) => (
+const InputwithLabel = ({ 
+  id, 
+  label,
+  value,
+  type='text',
+  onInputChange,
+  children,
+}) => (
   <>
-    <label htmlFor={id}>{label}</label>
+    <label htmlFor={id}>{children}</label>
     &nbsp;
     <input 
       id={id} 
@@ -100,18 +107,22 @@ const App = () => {
   );
   return (
     <>
-      <h1>My Hacker Stories</h1>
+      <h1>GalFond 的項目</h1>
 
-      <InputwithLabel 
+      <InputwithLabel
         id="search"
-        label="Search"
+        label="搜索框"
         value={searchTerm}
         onInputChange={handleSearch}
-      />
+      >
+      <strong style={{color:"orangered"}}>
+      搜一搜
+      </strong>
+      </InputwithLabel>
       
       <p>
         {" "}
-        Searching for <strong>{searchTerm}</strong>{" "}
+        正在搜索: <strong>{searchTerm}</strong>{" "}
       </p>
 
       <hr />
