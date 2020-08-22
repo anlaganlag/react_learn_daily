@@ -50,3 +50,20 @@ function endPointHandler(request,response){
         }
     })
 }
+
+function endPointHandler2(request,response){
+    User.findById(request.userId)
+        .then(function(user){
+            return Task.findById(user.taskId);
+        })
+        .then(function(task){
+            tasks.completed = true;
+            return tasks.save();
+        })
+        .then(function(){
+            response.send('y');
+        })
+        .catch(function(console.error(){
+            ..
+        };))
+}

@@ -39,13 +39,6 @@ function VisitAlienHouse(){
     </>
   )
 }
-
-
-
-
-
-
-
 function App(){
     return (
         <>
