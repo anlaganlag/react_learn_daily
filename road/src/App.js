@@ -12,22 +12,15 @@ const List = props =>
     </div>
   ));
 
-const Search = props => {
-
-  // const handleChange = (event) => {
-  //   setSearchTerm(event.target.value);
-  //   props.onSearch(event)
-  // };
-
-  return (
+const Search = ({ searchTerm,handleSearch})=> 
     <div>
       <label htmlFor="search">Search: </label>
-      <input id="search" type="text" onChange={props.onSearch} />
-
-
+      <input id="search" 
+             type="text" 
+             value={searchTerm}
+             onChange={handleSearch} 
+      />
     </div>
-  );
-};
 
 const App = () => {
   const lists = [
@@ -57,7 +50,7 @@ const App = () => {
       },
   ]
 
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState('python')
 
   const handleSearch = event => {
     setSearchTerm(event.target.value);
@@ -65,13 +58,13 @@ const App = () => {
   }
 
   const searchedLists = lists.filter(list=>
-    list.title.includes(searchTerm)
-  )
+    list.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
     <>
       <h1>My Hacker Stories</h1>
 
-      <Search onSearch={handleSearch}/>
+      <Search handleSearch={handleSearch} searchTerm={searchTerm}/>
       <p> Searching for <strong>{searchTerm}</strong> </p>
 
       
