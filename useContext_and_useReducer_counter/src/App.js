@@ -1,4 +1,4 @@
-import React, { Component, useState, createContext,useContext } from 'react';
+import React, {  useState, createContext,useContext } from 'react';
 const CountContext = createContext();
 function App() {
     const [count, setCount] = useState(0);
