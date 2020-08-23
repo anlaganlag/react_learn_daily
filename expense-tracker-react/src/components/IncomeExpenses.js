@@ -21,15 +21,15 @@ export const IncomeExpenses = () => {
     <div className="inc-exp-container">
       <div>
         <h4>總盈餘</h4>
-        <p className={total<0?'money minus':'money plus'}>${total.toLocaleString()}</p>
+        <p className={total<0?'money minus':'money plus'}>￥{total.toLocaleString()}</p>
       </div>
       <div>
         <h4>收入</h4>
-        <p className="money plus">${income}</p>
+        <p className="money plus">￥{income}</p>
       </div>
       <div>
         <h4>開支</h4>
-        <p className="money minus">${expense}</p>
+        <p className="money minus">￥{expense}</p>
       </div>
 
     </div>

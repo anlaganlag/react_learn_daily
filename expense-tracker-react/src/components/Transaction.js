@@ -10,8 +10,10 @@ export const Transaction = ({ transaction }) => {
   return (
     <li className={signName}>
     {transaction.text} 
-    <span>{sign}${Math.abs(transaction.amount.toLocalString)}</span>
-    <button onClick={() => deleteTransaction(transaction.id)} className="delete-btn">刪除</button>
+    <span>{sign}￥{Math.abs(transaction.amount).toLocaleString()}</span>
+    <button onClick={() => deleteTransaction(transaction.id)} className="delete-btn"
+    style={{ backgroundColor:transaction.amount < 0 ? 'green' : 'red'}}
+    >刪除</button>
   </li>
   )
 }
