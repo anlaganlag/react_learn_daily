@@ -1,15 +1,15 @@
 import React from "react";
 import { MdEdit, MdDelete } from "react-icons/md";
-const ExpenseItem = ({
-  expense: { id, charge, amount },
+const SpendItem = ({
+  spend: { id, charge, amount },
   handleDelete,
   handleEdit
 }) => {
   return (
     <li className="item">
       <div className="info">
-        <span className="expense">{charge}</span>
-        <span className="amount">￥{amount}</span>
+        <span className="spend">{charge}</span>
+        <span className="amount">￥{amount.toLocaleString()}</span>
       </div>
       <div>
         <button
@@ -31,4 +31,4 @@ const ExpenseItem = ({
   );
 };
 
-export default ExpenseItem;
+export default SpendItem;

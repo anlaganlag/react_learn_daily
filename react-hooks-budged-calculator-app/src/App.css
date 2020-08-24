@@ -112,7 +112,7 @@ label {
   display: flex;
   justify-content: space-between;
 }
-.expense {
+.spend {
   margin-right: 2rem;
   text-transform: capitalize;
 }
@@ -145,7 +145,7 @@ label {
   border-radius: 2px;
   padding: 2px 5px;
 }
-.alert {
+.notice {
   padding: 0.75rem 1.25rem;
   color: var(--mainWhite);
   text-align: center;
@@ -155,16 +155,16 @@ label {
   border-radius: 2px;
   text-transform: capitalize;
 }
-.alert-danger {
+.notice-danger {
   background: var(--mainRed);
 }
-.alert-success {
+.notice-success {
   background: var(--mainGreen);
 }
 @media screen and (min-width: 601px) {
   .App,
   .list,
-  .alert {
+  .notice {
     width: 85%;
   }
 
@@ -175,7 +175,7 @@ label {
 @media screen and (min-width: 993px) {
   .App,
   .list,
-  .alert {
+  .notice {
     width: 70%;
   }
   .list {

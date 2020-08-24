@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import ExpenseForm from "./components/ExpenseForm";
-import ExpenseList from "./components/ExpenseList";
-import Alert from "./components/Alert";
-import uuid from "uuid/v4";
-const initialExpenses = localStorage.getItem("expenses")
-  ? JSON.parse(localStorage.getItem("expenses"))
+import SpendForm from "./components/SpendForm";
+import SpendList from "./components/SpendList";
+import Notice from "./components/Notice";
+import uuid  from 'uuid/v4';
+const initialSpends = localStorage.getItem("spends")
+  ? JSON.parse(localStorage.getItem("spends"))
   : [];
 function App() {
   //消费
-  const [expenses, setExpenses] = useState(initialExpenses);
+  const [spends, setSpends] = useState(initialSpends);
   //一笔消费
   const [charge, setCharge] = useState("");
   //一笔消费金额
   const [amount, setAmount] = useState("");
   // 警告
-  const [alert, setAlert] = useState({ show: false });
+  const [notice, setNotice] = useState({ show: false });
   // 编辑状态
   const [edit, setEdit] = useState(false);
   // 项目id
   const [id, setId] = useState(0);
   useEffect(() => {
-    console.log("开始调用useEffect");
+    console.log("调用useEffect(首次调用或spends发生变化)");
 
-    localStorage.setItem("expenses", JSON.stringify(expenses));
-  }, [expenses]);
+    localStorage.setItem("spends", JSON.stringify(spends));
+  }, [spends]);
   //添加一笔消费
   const handleCharge = e => {
     setCharge(e.target.value);
@@ -36,53 +36,52 @@ function App() {
      
   };
 
-  // handle alert
-  const handleAlert = ({ type, text }) => {
-    setAlert({ show: true, type, text });
+  // 提示消息包括类型和文本
+  const handleNotice = ({ type, text }) => {
+    setNotice({ show: true, type, text });
     setTimeout(() => {
-      setAlert({ show: false });
-    }, 7000);
+      setNotice({ show: false });
+    }, 7000);//只出现七秒
   };
-  // handle submit
+  // 提交消费
   const handleSubmit = e => {
     e.preventDefault();
-    if (charge !== "" && amount > 0) {
+    if (charge && amount > 0) {
       if (edit) {
-        let tempExpenses = expenses.map(item => {
+        let newSpend = spends.map(item => {
           return item.id === id ? { ...item, charge, amount } : item;
         });
-        setExpenses(tempExpenses);
+        setSpends(newSpend);
         setEdit(false);
       } else {
-        const singleExpense = { id: uuid(), charge, amount };
-        setExpenses([...expenses, singleExpense]);
-        handleAlert({ type: "success", text: "消费项目已添加" });
+        const newCharge = { id: uuid(), charge, amount };
+        setSpends([...spends, newCharge]);
+        handleNotice({ type: "success", text: "新的消费项目已添加" });
       }
       // 消费项目清空
       setCharge("");
       // 消费项目归零
       setAmount("");
     } else {
-      handleAlert({
+      handleNotice({
         type: "danger",
         text: `消费项目不能为空且金额需要大于0`
       });
     }
   };
-  // handle delete
+  // 删除项目
   const handleDelete = id => {
-    let tempExpenses = expenses.filter(item => item.id !== id);
-    setExpenses(tempExpenses);
-    handleAlert({ type: "danger", text: "消费项目已经移除" });
+    let newSpend = spends.filter(item => item.id !== id);
+    setSpends(newSpend);
+    handleNotice({ type: "danger", text: "消费项目已经移除" });
   };
-  //clear all items
+  //清楚所有的项目
   const clearItems = () => {
-    setExpenses([]);
+    setSpends([]);
   };
-  // handle edit
+  // 编辑项目
   const handleEdit = id => {
-    let expense = expenses.find(item => item.id === id);
-    let { charge, amount } = expense;
+    let  { charge, amount } = spends.find(item => item.id === id);
     setCharge(charge);
     setAmount(amount);
     setEdit(true);
@@ -91,10 +90,10 @@ function App() {
 
   return (
     <>
-      {alert.show && <Alert type={alert.type} text={alert.text} />}
+      {notice.show && <Notice type={notice.type} text={notice.text} />}
       <h1>账单计算器</h1>
       <main className="App">
-        <ExpenseForm
+        <SpendForm
           handleSubmit={handleSubmit}
           charge={charge}
           handleCharge={handleCharge}
@@ -102,8 +101,8 @@ function App() {
           handleAmount={handleAmount}
           edit={edit}
         />
-        <ExpenseList
-          expenses={expenses}
+        <SpendList
+          spends={spends}
           handleDelete={handleDelete}
           handleEdit={handleEdit}
           clearItems={clearItems}
@@ -113,9 +112,9 @@ function App() {
         总消费金额 :
         <span className="total">
           ￥
-          {expenses.reduce((acc, curr) => {
-            return (acc += curr.amount);
-          }, 0)}
+          {spends.reduce((total, cur) => {
+            return (total += cur.amount);
+          }, 0).toLocaleString()}
         </span>
       </h1>
     </>

@@ -1,7 +1,7 @@
 import React from "react";
 import { MdSend } from "react-icons/md";
-const ExpenseForm = ({
-  charge,
+const SpendForm = ({
+  charge,//消费项目
   amount,
   handleCharge,
   handleAmount,
@@ -12,7 +12,7 @@ const ExpenseForm = ({
     <form onSubmit={handleSubmit}>
       <div className="form-center">
         <div className="form-group">
-          <label htmlFor="expense">消费项目</label>
+          <label htmlFor="charge">消费项目</label>
           <input
             type="text"
             className="form-control"
@@ -38,11 +38,10 @@ const ExpenseForm = ({
       </div>
       <button type="submit" className="btn">
         {edit ? "编辑" : "提交"}
-        {/* submit  */}
         <MdSend className="btn-icon" />
       </button>
     </form>
   );
 };
 
-export default ExpenseForm;
+export default SpendForm;
