@@ -6,7 +6,8 @@ const SpendForm = ({
   handleCharge,
   handleAmount,
   handleSubmit,
-  edit
+  edit,
+  refCharge
 }) => {
   return (
     <form onSubmit={handleSubmit}>
@@ -21,6 +22,7 @@ const SpendForm = ({
             placeholder="比如 房租.."
             value={charge}
             onChange={handleCharge}
+            ref = {refCharge}
           />
         </div>
         <div className="form-group">

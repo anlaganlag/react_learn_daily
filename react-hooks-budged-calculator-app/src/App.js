@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef} from "react";
 import "./App.css";
 import SpendForm from "./components/SpendForm";
 import SpendList from "./components/SpendList";
@@ -20,6 +20,7 @@ function App() {
   const [edit, setEdit] = useState(false);
   // 项目id
   const [id, setId] = useState(0);
+  const refCharge = useRef(null)
   useEffect(() => {
     console.log("调用useEffect(首次调用或spends发生变化)");
 
@@ -62,6 +63,7 @@ function App() {
       setCharge("");
       // 消费项目归零
       setAmount("");
+      refCharge.current.focus();
     } else {
       handleNotice({
         type: "danger",
@@ -100,6 +102,8 @@ function App() {
           amount={amount}
           handleAmount={handleAmount}
           edit={edit}
+          refCharge = {refCharge}
+
         />
         <SpendList
           spends={spends}
