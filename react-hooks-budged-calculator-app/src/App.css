@@ -14,12 +14,11 @@
 body {
   background: var(--mainGrey);
   color: var(--mainBlack);
-  font-family: "Roboto", sans-serif;
 }
 h1 {
   text-align: center;
   text-transform: capitalize;
-  margin: 2rem 0;
+  margin: 1rem 0;
   color: var(--mainWhite);
   letter-spacing: 5px;
 }
@@ -33,7 +32,7 @@ h1 {
 }
 .form-center {
   display: flex;
-  padding: 0 1rem;
+  padding: 1rem 1rem;
 }
 .form-group {
   padding: 1rem 0.75rem;
@@ -43,7 +42,6 @@ label {
   display: block;
   color: var(--mainGrey);
   font-size: 1rem;
-  text-transform: capitalize;
 }
 
 .form-control {
