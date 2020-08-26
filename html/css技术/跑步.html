@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .wrap{
+        background-color: #fafafa;
+      }
+      .title {
+        padding: 0.5rem;
+      }
+      .content {
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(48%, 1fr));
+      }
+      /*   先行后列 */
+
+      div {
+         margin:0.5rem;
+         height: 150px;
+      }
+      .header {
+        background: lightpink;
+      }
+      .second {
+        background: lightblue;
+      }
+      .main {
+        background: coral;
+      }
+
+      .footer {
+        background: wheat;
+      }
+      img{
+        float: left;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+
+    <div class="title">
+      <h2> Runng tips </h2>
+    </div>
+    <div class="content">
+      <div class="header">
+        <img src="./run.jpg">
+        <h4>
+          Strength
+        </h4>
+         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit corrupti autem consectetur quaerat sapiente! Culpa.</p>
+      </div class="header">
+      <div class="second">
+        <img src="./shoe.jpg">
+        <h4> Cadence </h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, repudiandae.</p>
+      </div>
+      <div class="main">
+        <img src="./shoe.jpg"
+        <h4> Change it up </h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa consectetur aspernatur ad.</p>
+      </div>
+      <div class='footer'>
+        <img src="./run.jpg">
+        <h4> Focus on form </h4>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam, alias numquam?</p>
+      </div>
+    </div>
+    <div>
+
+  </body>
+</html>

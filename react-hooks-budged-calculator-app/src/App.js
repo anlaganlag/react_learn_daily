@@ -8,19 +8,20 @@ const initialSpends = localStorage.getItem("spends")
   ? JSON.parse(localStorage.getItem("spends"))
   : [];
 function App() {
-  //消费
+  //消费列表
   const [spends, setSpends] = useState(initialSpends);
   //一笔消费
   const [charge, setCharge] = useState("");
   //一笔消费金额
   const [amount, setAmount] = useState("");
-  // 警告
+  // 通知
   const [notice, setNotice] = useState({ show: false });
-  // 编辑状态
+  // 编辑状态bool
   const [edit, setEdit] = useState(false);
-  // 项目id
+  // 项目id用uuid自動生成
   const [id, setId] = useState(0);
-  const refCharge = useRef(null)
+  //創建ref容器..後續放入消費項目input元素,實現自動聚焦
+  const refCharge = useRef()
   useEffect(() => {
     console.log("调用useEffect(首次调用或spends发生变化)");
 
@@ -33,8 +34,7 @@ function App() {
   // 添加一笔消费金额
   const handleAmount = e => {
     let amount = e.target.value;
-    amount === "" ? setAmount(amount): setAmount(parseInt(amount));
-     
+    amount === "" ? setAmount(0): setAmount(parseInt(amount));
   };
 
   // 提示消息包括类型和文本
@@ -49,9 +49,9 @@ function App() {
     e.preventDefault();
     if (charge && amount > 0) {
       if (edit) {
-        let newSpend = spends.map(item => {
-          return item.id === id ? { ...item, charge, amount } : item;
-        });
+        let newSpend = spends.map(item => 
+          item.id === id ? { ...item, charge, amount } : item
+        );
         setSpends(newSpend);
         setEdit(false);
       } else {
@@ -73,8 +73,7 @@ function App() {
   };
   // 删除项目
   const handleDelete = id => {
-    let newSpend = spends.filter(item => item.id !== id);
-    setSpends(newSpend);
+    setSpends(spends.filter(item => item.id !== id))
     handleNotice({ type: "danger", text: "消费项目已经移除" });
   };
   //清楚所有的项目

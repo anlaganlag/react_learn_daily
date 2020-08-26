@@ -32,7 +32,7 @@ const SpendForm = ({
             className="form-control"
             id="amount"
             name="amount"
-            placeholder="比如 1000.."
+            placeholder="比如 10000.."
             value={amount}
             onChange={handleAmount}
           />

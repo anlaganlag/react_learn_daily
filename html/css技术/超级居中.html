@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+body {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  grid-template-rows:repeat(auto-fit,minmax(150px,1fr))
+}
+  /*   先行后列 */
+
+header {
+  background: lightpink;
+}
+.left-sidebar {
+  background: lightblue;
+}
+main {
+  background: coral;
+}
+.right-sidebar {
+  background: yellow;
+}
+footer {
+  background: wheat;
+
+}
+
+
+
+.left-sidebar,
+.right-sidebar {
+  padding: 1rem;
+}
+    </style>
+  </head>
+  <body>
+    <header></header>
+    <div class="left-sidebar" contenteditable> </div>
+    <main contenteditable></main>
+    <div class="right-sidebar" contenteditable> </div>
+    <footer contenteditable></footer>
+  </body>
+</html>

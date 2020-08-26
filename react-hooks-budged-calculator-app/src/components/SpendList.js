@@ -13,7 +13,7 @@ const SpendList = ({ spends, handleDelete, handleEdit, clearItems }) =>
             />
           )}
       </ul>
-      {spends.length>0&& (
+      {spends.length>0 && (
         <button className="btn" onClick={clearItems}>
           清空消费项目
           <MdDelete className="btn-icon" />
