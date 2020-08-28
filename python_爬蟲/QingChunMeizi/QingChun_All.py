@@ -26,7 +26,7 @@ class BundleHandler(object):
         next_link = self.html.select(".pagenavi a span") # [<span>«上一组</span>, <span>2</span>, <span>3</span>, <span>4</span>, <span>54</span>, <span>下一页»</span>]
         
         self.all_num = [i.get_text() for i in next_link][4]
-        print(f"本文件共有{all_num}張圖片")
+        print(f"本文件共有{self.all_num}張圖片")
     def find_jpg(self):
         temp_img = self.html.select("p a img")
         img_src = [i.get("src") for i in temp_img]
