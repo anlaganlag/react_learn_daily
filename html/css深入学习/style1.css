@@ -1,0 +1,29 @@
+:root {
+    box-sizing: border-box;
+    
+}
+
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+/* 上面 全局都設定爲box-sizing */
+
+
+body {
+    background-color: #709b90;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body * + * {
+    margin-top: 1.5em;
+}
+
+/* 全局margin設定 */
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+/* 即利用雙盒子設計可以讓內容居中 */
+/* 我理解是container是裏面的盒子 上下爲0 左右爲居中 */
