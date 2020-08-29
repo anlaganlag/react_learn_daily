@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="style1.css" />
   </head>
   <body>
-    <div class="container"> <!-- mainb container incluer 1.h 2.nav 3.flex -->
+    <div class="container">
+      <!-- mainb container incluer 1.h 2.nav 3.flex -->
       <header>
         <h1>Ink</h1>
       </header>
@@ -30,6 +31,22 @@
             Thousands of teams from all over the world turn to <b>Ink</b> to
             communicate and get things done.
           </p>
+          <h1>Changing the flex direction</h1>
+          <p>
+            TWhat you need is for the two columns to grow if necessary to fill
+            the container’s height. To do this, turn the right column (the
+            column-sidebar ) into a flex con- tainer with a flex-direction:
+            column . Then, apply a non-zero flex-grow value to both tiles
+            within.
+          </p>
+          <h1>Styling the login form</h1>
+          <p>
+            You’ve now applied the overall layout to the entire page. All that
+            remains is styling the smaller elements in the two tiles on the
+            right: the login form and the signup link. You don’t need flexbox
+            for the login form, but for the sake of completeness, I’ll walk you
+            through it briefly.
+          </p>
         </div>
 
         <div class="column-sidebar">
@@ -38,7 +55,7 @@
               <h3>Login</h3>
               <p>
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username/">
+                <input type="text" id="username" name="username/" />
               </p>
               <p>
                 <label for="password">Password</label>
@@ -57,8 +74,11 @@
             </div>
             <a href="/pricing" class="cta-button"> Sign up </a>
           </div>
-        </div> <!-- thrid tile -->
-      </main> <!-- main flex box -->
-    </div> <!-- main contianer -->
+        </div>
+        <!-- thrid tile -->
+      </main>
+      <!-- main flex box -->
+    </div>
+    <!-- main contianer -->
   </body>
 </html>
