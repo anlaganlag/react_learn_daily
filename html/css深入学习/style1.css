@@ -16,6 +16,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* 相當於將邊界,即第一個的元素排除在外 這是由於第一個不是在其他元素的後面 */
 body * + * {
     margin-top: 1.5em;
 }
@@ -27,3 +28,33 @@ body * + * {
 }
 /* 即利用雙盒子設計可以讓內容居中 */
 /* 我理解是container是裏面的盒子 上下爲0 左右爲居中 */
+
+.site-nav {
+    display: flex;
+    padding: .5em;
+    background-color: #5f4b44;
+    list-style-type: none;
+    border-radius: .2em;
+}
+
+.site-nav > li {
+    margin-top: 0;
+}
+
+.site-nav>li>a{
+    display: block;
+    padding: 0.5em 1em;
+    background-color: #cc6b5a;
+    color: white;
+    text-decoration: none;
+}
+
+/* 目標所有的li在其他li後面,即不包括第一個 */
+
+.site-nav > li +li {
+    margin-left: 1.5em;
+}
+
+.site-nav > .nav-right {
+    margin-left: auto;
+}
