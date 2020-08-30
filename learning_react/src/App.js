@@ -6,7 +6,7 @@ const CountContext = createContext()
 
 function Counter(){
   const count = useContext(CountContext)
-  return (<h2>{count}</h2>)
+  return (<div className="bg-white-200 border_b text-center text-lg p-3">{count}</div>)
 }
 
 function App(){

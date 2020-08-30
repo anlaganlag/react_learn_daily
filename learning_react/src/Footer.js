@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
     return (
-        <footer className="rounded-sm font-bold p-3">
+        <footer className="bg-gray-200 text-left text-xs p-1 absolute bottom-0 w-full border-t">
             &copy;Galfond 
         </footer>
     )
