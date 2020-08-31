@@ -1,4 +1,6 @@
-*, *::after, *::before {
+*,
+*::after, 
+*::before {
     box-sizing: border-box;
   }
   
@@ -6,7 +8,7 @@
     background: linear-gradient(to right, hsl(200, 100%, 50%), hsl(175, 100%, 50%));
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
     overflow: hidden;
   }
