@@ -5,33 +5,28 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class BundleHandler(object):
+class BundleHandler(object):#套圖處理程序
     def __init__(self, url):
-        self.url = url
-        self.title = ""
-        self.html = ""
-        self.path = ""
-        self.get_html = get_html
-        self.header = headers
+        self.url = url#url
+        self.title = ""#標題
+        self.html = ""#解析的html信息
+        self.path = ""#保存的本地地址
+        self.get_html = get_html#將全局的獲取html函數導入
+        self.header = headers#爬蟲用的headers信息..
     def getAllUrl(self):
-        return [ self.url+f"/{i+1}" for i in range(int(self.all_num))]
+        return [ self.url+f"/{i+1}" for i in range(int(self.all_num))]#將url拼接數字從1開始
     def get_title(self):
-        self.title = self.html.find("h2").get_text()
+        self.title = self.html.find("h2").get_text()#h2是標題,獲取文本...
         print(f"标题 {self.title}")
-        self.path = os.path.join( "絕密", self.title[:8])
-        if not os.path.exists(self.path):
+        self.path = os.path.join( "絕密", self.title[:8])#保存地址拼接
+        if not os.path.exists(self.path):#文件夾不存在就創建
             os.makedirs(self.path)
     def get_all_num(self): # 通过第一页链接获取总的页数
         self.html = self.get_html(self.url)
-        next_link = self.html.select(".pagenavi a span") # [<span>«上一组</span>, <span>2</span>, <span>3</span>, <span>4</span>, <span>54</span>, <span>下一页»</span>]
-        
-        self.all_num = [i.get_text() for i in next_link][4]
+        # next_link = self.html.select(".pagenavi a span") # [<span>«上一组</span>, <span>2</span>, <span>3</span>, <span>4</span>, <span>54</span>, <span>下一页»</span>]
+        self.all_num = [i.get_text() for i in self.html.select(".pagenavi a span")][4]
         print(f"本文件共有{self.all_num}張圖片")
-    def find_jpg(self):
-        temp_img = self.html.select("p a img")
-        img_src = [i.get("src") for i in temp_img]
-        if img_src:
-            return img_src[0]
+
     def find_jpgs(self):
         allUrl = self.getAllUrl()
         all_imgs = []
@@ -41,7 +36,7 @@ class BundleHandler(object):
             all_imgs.append([i.get("src") for i in temp_img][0]) #該圖片url https://cdn.jsdelivr.net/gh/zmzt/202008/c57845c39ddec92221c3c65115af54cb.jpg
             print(f"正在添加{i}的圖片")
         return all_imgs
-    def down_jpg(self, nameint, img_url):
+    def down_jpgs(self, nameint, img_url):
         # 开始下载图片
         name = str("%02d"%nameint) + ".jpg"
         print(f"开始下载图片{name}-------->")
@@ -58,7 +53,7 @@ class BundleHandler(object):
         all_imgs = self.find_jpgs()
         print(all_imgs)
         for num, jpglink in enumerate(all_imgs,start=1):
-            self.down_jpg(num, jpglink)
+            self.down_jpgs(num, jpglink)
             time.sleep(2)
 
 
