@@ -12,15 +12,19 @@ function Job({ job }) {
           <div>
             <Card.Title>崗位: {job.title}</Card.Title>
             <Card.Subtitle className="text-muted mb-2">
-              {job.company}公司 {new Date(job.created_at).toLocaleDateString()}
+              {job.company} {new Date(job.created_at).toLocaleDateString()}
               發布
             </Card.Subtitle>
             <Badge variant="secondary" className="mr-2">
               類型:{job.type}
             </Badge>
             <Badge variant="secondary">地點:{job.location}</Badge>
-            <div style={{ wordBreak: "break-all" }}>
-              <ReactMarkdown source={job.how_to_apply} />
+
+            <div  style={{wordBreak:"break-all"}}> 
+              <div style={{textAlign:"center"}}><em>現在申請:</em></div>
+              <ReactMarkdown source={job.how_to_apply}  className="apply"
+              style={{textIndent: "5em"}}
+              />
             </div>
           </div>
           <img

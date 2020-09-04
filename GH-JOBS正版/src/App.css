@@ -1,0 +1,13 @@
+/* 
+.apply::before {
+
+    content: "申請方式:";
+} */
+
+.apply::before{
+    /* float: left; */
+    /* display: inline-block; */
+    /* content:"申請:";
+    text-align: right; */
+
+}

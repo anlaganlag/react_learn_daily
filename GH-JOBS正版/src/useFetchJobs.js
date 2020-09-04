@@ -23,7 +23,7 @@ function reducer(state, action) {
       return state
   }
 }
-export default function useFetchJobs(params, page) {
+function useFetchJobs(params, page) {
   const [state, dispatch] = useReducer(reducer, { jobs: [], loading: true })
   useEffect(() => {
     const cancelToken1 = axios.CancelToken.source()
@@ -56,3 +56,5 @@ export default function useFetchJobs(params, page) {
   }, [params, page])
   return state
 }
+
+export default useFetchJobs
