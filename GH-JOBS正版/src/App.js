@@ -22,7 +22,7 @@ function App() {
 
   return (
     <Container className="my-4">
-      <h1 className="mb-4">GitHub上的招聘信息</h1>
+      <h1 className="mb-4" style={{textAlign:"center"}}>GitHub上實時招聘信息</h1>
       <SearchForm params={params} onParamChange={handleParamChange} />
       <JobsPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
       {loading && <h1>載入中...</h1>}

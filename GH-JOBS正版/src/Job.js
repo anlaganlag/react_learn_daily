@@ -10,7 +10,7 @@ function Job({ job }) {
       <Card.Body>
         <div className="d-flex justify-content-between">
           <div>
-            <Card.Title>崗位: {job.title}</Card.Title>
+            <Card.Title> {job.title}</Card.Title>
             <Card.Subtitle className="text-muted mb-2">
               {job.company} {new Date(job.created_at).toLocaleDateString()}
               發布
@@ -21,7 +21,7 @@ function Job({ job }) {
             <Badge variant="secondary">地點:{job.location}</Badge>
 
             <div  style={{wordBreak:"break-all"}}> 
-              <div style={{textAlign:"center"}}><em>現在申請:</em></div>
+              <div style={{textAlign:"center"}}><em>申請面試:</em></div>
               <ReactMarkdown source={job.how_to_apply}  className="apply"
               style={{textIndent: "5em"}}
               />
@@ -34,12 +34,15 @@ function Job({ job }) {
             src={job.company_logo}
           />
         </div>
-        <Card.Text>
+        <Card.Text 
+            style={{textAlign:"center"}}
+        
+        >
           <Button
             onClick={() => setOpen((prevOpen) => !prevOpen)}
-            variant="primary"
+            variant="primary" 
           >
-            {open ? "Hide Details" : "View Details"}
+            {open ? "隱藏介紹" : "職位介紹"}
           </Button>
         </Card.Text>
         <Collapse in={open}>
