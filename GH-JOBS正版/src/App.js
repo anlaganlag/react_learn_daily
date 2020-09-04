@@ -9,6 +9,7 @@ import "./App.css"
 function App() {
   const [params, setParams] = useState({})
   const [page, setPage] = useState(1)
+  console.log("parmas",params)
   const { jobs, loading, error, hasNextPage } = useFetchJobs(params, page)
 
   function handleParamChange(e) {
@@ -20,7 +21,7 @@ function App() {
       return { ...prevParams, [param]: value }
     })
   }
-    console.log(params)
+    console.log("jobs",jobs)
 
 
   return (
