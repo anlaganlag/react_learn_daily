@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    
+    , initial-scale=1.0">
+    <title>Document</title>
+    <script defer>
+        function Export(){   //基础表导出
+		 var  obj = document.getElementsByName("baseTable");
+		 var baseTable=[];
+		 for(var i in obj){
+			 if(obj[i].checked){
+				 baseTable.push(obj[i].value);
+			 }
+		 }
+		 alert(baseTable);
+ }
+    </script>
+</head>
+<body>
+
+
+
+
+    
+    <input type="checkbox" checked="checked" name="baseTable" value="product"/><span>product</span>
+    <input type="checkbox" checked="checked" name="baseTable" value="cmmprocess"/> <span>cmmprocess </span>
+    <input type="checkbox" checked="checked" name="baseTable" value="productparam"/> <span>productparam </span>
+    <div class="col-sm-4"><input type="checkbox" checked="checked" name="baseTable" value="app_user"/> <span>app_user </span>
+    <input type="checkbox" checked="checked" name="baseTable" value="equipinputaccount"/> <span>equipinputaccount </span>
+    
+    
+    <button type="button" class="btn btn-primary" onclick="Export()" style="margin-left:10px"> <i class="fa fa-download" aria-hidden="true"></i>&nbsp;&nbsp;数据导出
+     </button>
+    
+</body>
+</html>

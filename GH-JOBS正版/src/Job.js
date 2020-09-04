@@ -12,35 +12,32 @@ function Job({ job }) {
           <div>
             <Card.Title> {job.title}</Card.Title>
             <Card.Subtitle className="text-muted mb-2">
-              {job.company} {new Date(job.created_at).toLocaleDateString()}
-              發布
+              {job.company}
+              {new Date(job.created_at).toLocaleDateString()} 發布
             </Card.Subtitle>
             <Badge variant="secondary" className="mr-2">
               類型:{job.type}
             </Badge>
             <Badge variant="secondary">地點:{job.location}</Badge>
 
-            <div  style={{wordBreak:"break-all"}}> 
-              <div style={{textAlign:"center"}}><em>申請面試:</em></div>
-              <ReactMarkdown source={job.how_to_apply}  className="apply"
-              style={{textIndent: "5em"}}
-              />
+            <div style={{ wordBreak: "break-all" }}>
+              <div style={{ textAlign: "center" }}>
+                <em>申請面試:</em>
+              </div>
+              <ReactMarkdown source={job.how_to_apply} />
             </div>
           </div>
           <img
             className="d-none d-md-block"
-            height="50"
+            height="70"
             alt={job.company}
             src={job.company_logo}
           />
         </div>
-        <Card.Text 
-            style={{textAlign:"center"}}
-        
-        >
+        <Card.Text style={{ textAlign: "center" }}>
           <Button
             onClick={() => setOpen((prevOpen) => !prevOpen)}
-            variant="primary" 
+            variant="primary"
           >
             {open ? "隱藏介紹" : "職位介紹"}
           </Button>
