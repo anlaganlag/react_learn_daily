@@ -9,7 +9,8 @@ import "./App.css"
 function App() {
   const [params, setParams] = useState({})
   const [page, setPage] = useState(1)
-  console.log("parmas",params)
+  // console.log("parmas",params)
+  // console.log("page",page)
   const { jobs, loading, error, hasNextPage } = useFetchJobs(params, page)
 
   function handleParamChange(e) {
@@ -21,18 +22,18 @@ function App() {
       return { ...prevParams, [param]: value }
     })
   }
-    console.log("jobs",jobs)
+    // console.log("jobs",jobs)
 
 
   return (
     <Container className="my-4">
-      <h1 className="mb-4" style={{textAlign:"center"}}>GitHub實時招聘信息</h1>
+      <h1 className="mb-4">GitHub招聘信息(實時更新)</h1>
       <SearchForm params={params} onParamChange={handleParamChange} />
       <JobsPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
       {loading && <h1>載入中...</h1>}
       {error && <h1>出大事了. 請重新刷新.</h1>}
-      {jobs.map(job => {
-        return <Job key={job.id} job={job} />
+      {jobs.map((job,idx) => {
+        return <Job key={job.id} job={job} idx={idx}/>
       })}
       <JobsPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
     </Container>

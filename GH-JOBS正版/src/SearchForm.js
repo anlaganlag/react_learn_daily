@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Col } from "react-bootstrap";
 
 function SearchForm({ params, onParamChange }) {
+  // console.log("from search",params)
   return (
     <Form className="mb-4">
       <Form.Row className="align-items-end">
@@ -25,37 +26,18 @@ function SearchForm({ params, onParamChange }) {
           />
         </Form.Group>
 
+
         <Form.Group as={Col} xs="auto" className="ml-2">
           <Form.Check
             onChange={onParamChange}
-            value="Full Time"
-            // value= "Part Time"
-            name="type"
-            id="full-time"
+            value="on"
+            name="full_time"
+            // id="full-time"
             label="全職"
-            type="radio"
+            type="checkbox"
             className="mb-2"
           />
 
-          <Form.Check
-            onChange={onParamChange}
-            value="Part Time"
-            name="type"
-            id="part-time"
-            label="兼職"
-            type="radio"
-            className="mb-2"
-          />
-
-          <Form.Check
-            onChange={onParamChange}
-            value="Contarct"
-            name="type"
-            id="contract"
-            label="合同"
-            type="radio"
-            className="mb-2"
-          />
         </Form.Group>
       </Form.Row>
     </Form>

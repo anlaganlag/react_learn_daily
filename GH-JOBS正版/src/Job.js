@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, Badge, Button, Collapse } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 
-function Job({ job }) {
+function Job({ job,idx }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -10,9 +10,9 @@ function Job({ job }) {
       <Card.Body>
         <div className="d-flex justify-content-between">
           <div>
-            <Card.Title> {job.title}</Card.Title>
+            <Card.Title> {idx+1}.{job.title}</Card.Title>
             <Card.Subtitle className="text-muted mb-2">
-              {job.company}
+              {job.company} 
               {new Date(job.created_at).toLocaleDateString()} 發布
             </Card.Subtitle>
             <Badge variant="secondary" className="mr-2">
@@ -21,8 +21,8 @@ function Job({ job }) {
             <Badge variant="secondary">地點:{job.location}</Badge>
 
             <div style={{ wordBreak: "break-all" }}>
-              <div style={{ textAlign: "center" }}>
-                <em>申請面試:</em>
+              <div >
+                <strong>申請方式:</strong>
               </div>
               <ReactMarkdown source={job.how_to_apply} />
             </div>
@@ -34,19 +34,30 @@ function Job({ job }) {
             src={job.company_logo}
           />
         </div>
-        <Card.Text style={{ textAlign: "center" }}>
+        <Card.Text >
           <Button
             onClick={() => setOpen((prevOpen) => !prevOpen)}
             variant="primary"
           >
-            {open ? "隱藏介紹" : "職位介紹"}
+            {open ? "隱藏" : "詳細"}
           </Button>
+
         </Card.Text>
         <Collapse in={open}>
           <div className="mt-4">
             <ReactMarkdown source={job.description} />
           </div>
         </Collapse>
+        {
+          open ? 
+          <Button
+            onClick={() => setOpen((prevOpen) => !prevOpen)}
+            variant="primary"
+          >
+           隱藏
+          </Button>:""
+}
+
       </Card.Body>
     </Card>
   );
