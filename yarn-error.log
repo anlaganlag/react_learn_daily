@@ -1,0 +1,36 @@
+Arguments: 
+  /home/gal/miniconda3/bin/node /home/gal/miniconda3/bin/yarn add -gatsby-background-image
+
+PATH: 
+  /home/gal/miniconda3/bin:/home/gal/miniconda3/condabin:~/.soft:/home/gal/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  14.5.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/-b: Not found
+      at Request.params.callback [as _callback] (/home/gal/miniconda3/lib/node_modules/yarn/lib/cli.js:66987:18)
+      at Request.self.callback (/home/gal/miniconda3/lib/node_modules/yarn/lib/cli.js:140748:22)
+      at Request.emit (events.js:314:20)
+      at Request.<anonymous> (/home/gal/miniconda3/lib/node_modules/yarn/lib/cli.js:141720:10)
+      at Request.emit (events.js:314:20)
+      at IncomingMessage.<anonymous> (/home/gal/miniconda3/lib/node_modules/yarn/lib/cli.js:141642:12)
+      at Object.onceWrapper (events.js:420:28)
+      at IncomingMessage.emit (events.js:326:22)
+      at endReadableNT (_stream_readable.js:1226:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
