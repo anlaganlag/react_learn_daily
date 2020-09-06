@@ -2,16 +2,25 @@
 .apply::before {
 
     content: "申請方式:";
+
+/* .apply::before{
+    float: left; 
+    display: inline-block;
+    content:"申請:";
+    text-align: right;
+
 } */
-
-.apply::before{
-    /* float: left; */
-    /* display: inline-block; */
-    /* content:"申請:";
-    text-align: right; */
-
-}
 
 h1{
     text-align: center;
+}
+
+.apply{
+    font-size: 0.4em;
+    background-color: #eee; 
+}
+.apply p:first-child::before{
+    content: "申請方式:";
+    padding: 1em;
+
 }

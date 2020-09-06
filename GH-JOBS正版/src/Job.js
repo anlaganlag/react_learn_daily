@@ -20,11 +20,9 @@ function Job({ job,idx }) {
             </Badge>
             <Badge variant="secondary">地點:{job.location}</Badge>
 
-            <div style={{ wordBreak: "break-all" }}>
-              <div >
-                <strong>申請方式:</strong>
-              </div>
-              <ReactMarkdown source={job.how_to_apply} />
+            <div className="pack" style={{ wordBreak: "break-all" }}>
+                {/* <strong className="add">申請方式:</strong> */}
+              <ReactMarkdown className="apply" source={job.how_to_apply} />
             </div>
           </div>
           <img
