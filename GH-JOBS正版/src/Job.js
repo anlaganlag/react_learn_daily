@@ -12,7 +12,7 @@ function Job({ job,idx }) {
           <div>
             <Card.Title> {idx+1}.{job.title}</Card.Title>
             <Card.Subtitle className="text-muted mb-2">
-              {job.company} 
+              {job.company}  -
               {new Date(job.created_at).toLocaleDateString()} 發布
             </Card.Subtitle>
             <Badge variant="secondary" className="mr-2">

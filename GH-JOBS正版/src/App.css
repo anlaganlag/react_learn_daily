@@ -1,15 +1,4 @@
-/* 
-.apply::before {
-
-    content: "申請方式:";
-
-/* .apply::before{
-    float: left; 
-    display: inline-block;
-    content:"申請:";
-    text-align: right;
-
-} */
+/*  */
 
 h1{
     text-align: center;
@@ -21,6 +10,7 @@ h1{
 }
 .apply p:first-child::before{
     content: "申請方式:";
-    padding: 1em;
+    padding-left: 2em;
+    padding-right: 1em;
 
 }

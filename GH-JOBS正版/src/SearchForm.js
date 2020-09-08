@@ -2,7 +2,6 @@ import React from "react";
 import { Form, Col } from "react-bootstrap";
 
 function SearchForm({ params, onParamChange }) {
-  // console.log("from search",params)
   return (
     <Form className="mb-4">
       <Form.Row className="align-items-end">
@@ -17,7 +16,7 @@ function SearchForm({ params, onParamChange }) {
         </Form.Group>
 
         <Form.Group as={Col}>
-          <Form.Label>職位</Form.Label>
+          <Form.Label>職位描述</Form.Label>
           <Form.Control
             onChange={onParamChange}
             value={params.description}
@@ -32,7 +31,6 @@ function SearchForm({ params, onParamChange }) {
             onChange={onParamChange}
             value="on"
             name="full_time"
-            // id="full-time"
             label="全職"
             type="checkbox"
             className="mb-2"
@@ -44,6 +42,7 @@ function SearchForm({ params, onParamChange }) {
   );
 }
 
+//job的json數據
 // [{
 // 	"id": "15a4d84d-d856-4bab-a079-f2fe407ae494",
 // 	"type": "Full Time",

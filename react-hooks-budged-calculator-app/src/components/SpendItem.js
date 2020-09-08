@@ -14,14 +14,12 @@ const SpendItem = ({
       <div>
         <button
           className="edit-btn"
-          aria-label="edit button"
           onClick={() => handleEdit(id)}
         >
           <MdEdit />
         </button>
         <button
           className="clear-btn"
-          aria-label="delete button"
           onClick={() => handleDelete(id)}
         >
           <MdDelete />

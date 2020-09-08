@@ -9,8 +9,6 @@ import "./App.css"
 function App() {
   const [params, setParams] = useState({})
   const [page, setPage] = useState(1)
-  // console.log("parmas",params)
-  // console.log("page",page)
   const { jobs, loading, error, hasNextPage } = useFetchJobs(params, page)
 
   function handleParamChange(e) {
@@ -27,7 +25,7 @@ function App() {
 
   return (
     <Container className="my-4">
-      <h1 className="mb-4">GitHub招聘信息(實時更新)</h1>
+      <h1 className="mb-4">招聘信息(GitHub平臺)</h1>
       <SearchForm params={params} onParamChange={handleParamChange} />
       <JobsPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
       {loading && <h1>載入中...</h1>}
