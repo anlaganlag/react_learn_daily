@@ -1,0 +1,26 @@
+.box {
+  display: flex;
+  border: 1px solid #000;
+  width: 80%;
+  margin: auto;
+}
+div div {
+  border: 1px solid #000;
+  flex-basis: 100%;
+  flex-grow: 1;
+}
+.push {
+  flex-grow: 1;
+  background-color: lightblue;
+}
+.last {
+  flex-grow: 3;
+  background-color: #bfa;
+}
+
+/* 
+align-items: flex-start flex 项目的开始端的对齐
+align-items: flex-end flex 项目的结束端对齐
+align-items: center flex 项目居中对齐
+align-items: stretch flex 项目撑满 flex 容器
+align-items: baseline flex 项目的基线对齐 */

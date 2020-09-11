@@ -1,9 +1,14 @@
-var arr = [1, 3, 5, 7, 9];
-var str = "13579"
-// var a = arr.shift()
-const a = arr.reduce( (arr) {
-    i =0
-    return  x * arr[1];
-},arr[0]; // 13579
+var o = {
+    a:2,
+    m:function(){
+        return this.a+1;
+    }
+}
+console.log(o.m())
 
-console.log(a,arr)
+
+var p = Object.create(o)
+
+p.a = 4
+
+console.log(p.m())
