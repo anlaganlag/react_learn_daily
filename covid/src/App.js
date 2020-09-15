@@ -78,14 +78,14 @@ const App = () => {
     <div className="app">
       <div className="app__left">
         <div className="app__header">
-          <h1>COVID-19 Tracker</h1>
+          <h1>COVID-19({new Date().toLocaleDateString()}) </h1>
           <FormControl className="app__dropdown">
             <Select
               variant="outlined"
               value={country}
               onChange={onCountryChange}
             >
-              <MenuItem value="worldwide">Worldwide</MenuItem>
+              <MenuItem value="worldwide">全球</MenuItem>
               {countries.map((country) => (
                 <MenuItem value={country.value}>{country.name}</MenuItem>
               ))}
@@ -98,7 +98,7 @@ const App = () => {
               setCasesType("cases");
               setChineseType("感染");
             }}
-            title="Coronavirus Cases"
+            title="感染"
             isRed
             active={casesType === "cases"}
             cases={prettyPrintStat(countryInfo.todayCases)}
@@ -109,7 +109,7 @@ const App = () => {
               setCasesType("recovered");
               setChineseType("恢復")
             }}
-            title="Recovered"
+            title="恢復"
             active={casesType === "recovered"}
             cases={prettyPrintStat(countryInfo.todayRecovered)}
             total={numeral(countryInfo.recovered).format("0.0a")}
@@ -119,7 +119,7 @@ const App = () => {
               setCasesType("deaths");
               setChineseType("死亡");
             }}
-            title="Deaths"
+            title="死亡"
             isRed
             active={casesType === "deaths"}
             cases={prettyPrintStat(countryInfo.todayDeaths)}
@@ -136,9 +136,9 @@ const App = () => {
       <Card className="app__right">
         <CardContent>
           <div className="app__information">
-            <h3>Live Cases by Country</h3>
+            <h3>國家(地區)實時案例</h3>
             <Table countries={tableData} />
-            <h3> 世界範圍新增{chineseType}</h3>
+            <h3> 全球新增:{chineseType}案例</h3>
             <LineGraph casesType={casesType} />
           </div>
         </CardContent>
