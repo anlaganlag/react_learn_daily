@@ -1,0 +1,46 @@
+.container {
+  margin-top: 2%;
+  overflow: scroll;
+  height: 80%;
+  width: 100%;
+  padding: 1%;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  border-bottom: 1px solid darkslategray;
+  color: darkslategray;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.Table {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+/* .Sno {
+  flex-shrink: 1;
+}*/
+
+.Date {
+  padding: 0 10px 0 0;
+}
+
+/* .Action {
+  flex-shrink: 1;
+}  */
+
+.Task {
+  flex-grow: 2;
+}
+
+@media(max-width:320px){
+  .Sno, .Task, .Date, .Action{
+    font-size: 0.9rem;
+  }
+
+}

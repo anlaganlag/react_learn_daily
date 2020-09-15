@@ -1,0 +1,27 @@
+.ButtonItem {
+  padding: 2px;
+}
+button {
+  border: none;
+}
+
+@media (max-width: 320px) {
+  .ButtonContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 375px) {
+  .ButtonContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 425px) {
+  .ButtonContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}

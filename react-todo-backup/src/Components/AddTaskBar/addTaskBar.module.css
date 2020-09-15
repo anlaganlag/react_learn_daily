@@ -1,0 +1,87 @@
+.Container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+.InputBox {
+  width: 60%;
+  border: 1px solid transparent;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  outline: none;
+}
+
+.AddTaskBtn {
+  width: 20%;
+  border: 1px solid transparent;
+  padding: 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #00cccd;
+  color: white;
+  font-weight: 900;
+  font-size: 0.85em;
+  outline: none;
+  cursor: pointer;
+}
+
+.AddTaskBtn:hover {
+  background-color: rgb(19, 216, 216);
+}
+@media (max-width: 320px) {
+  .Container {
+    flex-direction: column;
+    height: 20vh;
+  }
+
+  .AddTaskBtn {
+    width: 90%;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+
+  .InputBox {
+    width: 90%;
+    border-radius: 5px;
+  }
+}
+@media (max-width: 375px) {
+  .Container {
+    flex-direction: column;
+    height: 20vh;
+  }
+
+  .AddTaskBtn {
+    width: 90%;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+
+  .InputBox {
+    width: 90%;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 425px) {
+  .Container {
+    flex-direction: column;
+    height: 20vh;
+  }
+
+  .AddTaskBtn {
+    width: 90%;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+
+  .InputBox {
+    width: 90%;
+    border-radius: 5px;
+  }
+}

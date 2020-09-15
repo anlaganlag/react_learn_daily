@@ -1,17 +1,41 @@
-def foo(i):
-    if i<=3:
-        return i>1
-    elif i %2 ==0:
-        return "False 2" 
-    elif i %3 ==0:
-        return"False 3"
-    j = 5
-    while j**2 <=i:
-        if i%j==0:
-            return f"False 前者 {j}"
-        elif i%(j+2)==0:
-            f"False 后者 {j+2}"
-        j+=6
-    return True
+# coding=utf-8
+import numpy as np
 
-print(foo(49))
+grid = [[5,3,0,0,7,0,0,0,0],
+        [6,0,0,1,9,5,0,0,0],
+        [0,9,8,0,0,0,0,6,0],
+        [8,0,0,0,6,0,0,0,3],
+        [4,0,0,8,0,3,0,0,1],
+        [7,0,0,0,2,0,0,0,6],
+        [0,6,0,0,0,0,2,8,0],
+        [0,0,0,4,1,9,0,0,5],
+        [0,0,0,0,8,0,0,7,9]]
+def possible(y,x,n):
+    global grid
+    for i in range(9):
+        if grid[y][i] == n:
+            return 
+    for i in range(9):
+        if grid[i][x] == n:
+            return 
+    x0 = x//3*3
+    y0 = y//3*3
+    for i in range(3):
+        for j in range(3):
+            if grid[y0+i][x0+j] ==n:
+                return 
+    return True
+def solve():
+    global grid
+    for y in range(9):
+        for x in range(9):
+            if grid[y][x]==0:
+                for n in range(1,10):
+                    if possible(y,x,n):
+                        grid[y][x] = n
+                      #由於已經縮減的問題,簡化了問題,再調用就是.調用一次,添上一空格
+                        solve()
+                        grid[y][x] = 0
+                    print(grid)
+                return 
+solve()

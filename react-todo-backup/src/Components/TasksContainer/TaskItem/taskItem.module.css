@@ -1,0 +1,95 @@
+.Table {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2%;
+  width: 100%;
+  padding: 2% 1% 2% 1%;
+  background-color: #f0f0f0;
+  border-left: 3px solid #00cccd;
+  border-radius: 3px;
+}
+
+td {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* .Sno {
+  flex-shrink: 1;
+}
+.Action {
+  flex-shrink: 1;
+} */
+
+.Date {
+  padding: 0 10px 0 0;
+}
+
+.Task {
+  flex-grow: 2;
+  overflow: auto;
+  width: 20px;
+}
+
+@media(max-width:320px){
+.Task{
+  overflow: scroll;
+  width: 20px;
+  margin: 5px;
+  /* font-size: 0.6rem; */
+}
+.Sno{
+  margin-right:2px ;
+  font-size: 0.6rem;
+}
+.Date{
+  font-size: 0.7rem;
+}
+}
+
+@media(max-width:375px){
+  .Task{
+    overflow: scroll;
+    width: 20px;
+    margin: 5px;
+  }
+  .Sno{
+    margin-right:2px ;
+    font-size: 0.6rem;
+  }
+  .Date{
+    font-size: 0.7rem;
+  }
+  }
+
+  @media(max-width:425px){
+    .Task{
+      overflow: scroll;
+      width: 20px;
+      margin: 5px;
+    }
+    .Sno{
+      margin-right:2px ;
+      font-size: 0.6rem;
+    }
+    .Date{
+      font-size: 0.7rem;
+    }
+    }
+
+    
+  @media(max-width:768px){
+    .Task{
+      overflow: scroll;
+      width: 20px;
+      margin: 5px;
+    }
+    .Sno{
+      margin-right:2px ;
+      font-size: 0.6rem;
+    }
+    .Date{
+      font-size: 0.7rem;
+    }
+    }
