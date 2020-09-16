@@ -82,15 +82,16 @@ export default class App extends Component {
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
-      const desc1 = move
+      console.log(step,move)
+      const desc = move
         ? move % 2 === 0
-          ? `第${move}步 (X的回合)`
-          : `第${move}步 (O的回合)`
+          ? `第${move}步 (O的行動)`
+          : `第${move}步 (X的行動)`
         : "遊戲開始";
 
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc1}</button>
+          <button onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
       );
     });
@@ -103,15 +104,15 @@ export default class App extends Component {
 
     return (
       <div className="game">
-        <div>{status}</div>
         <div className="game-board">
+          <div>{status}</div>
           <Board
             squares={current.squares}
             onClick={(i) => this.handleClick(i)}
-          />
-        </div>
+            />
         <div className="game-info">
           <ol>{moves}</ol>
+        </div>
         </div>
       </div>
     );
