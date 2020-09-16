@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import numeral from "numeral";
 
+
 const options = {
   legend: {
     display: false,
@@ -39,7 +40,8 @@ const options = {
         ticks: {
           // Include a dollar sign in the ticks
           callback: function (value, index, values) {
-            return numeral(value).format("0a");
+            // return (value).format("0a");
+            return (value)
           },
         },
       },

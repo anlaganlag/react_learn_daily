@@ -12,9 +12,12 @@ import LineGraph from "./LineGraph";
 import Table from "./Table";
 import { sortData, prettyPrintStat } from "./util";
 import numeral from "numeral";
+import "numeral/locales/chs";
 import Map from "./Map";
 import "leaflet/dist/leaflet.css";
 
+
+numeral.locale('chs');
 const App = () => {
   const [country, setInputCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
