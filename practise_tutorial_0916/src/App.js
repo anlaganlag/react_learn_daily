@@ -52,6 +52,7 @@ export default class App extends Component {
       ],
       stepNumber: 0,
       xIsNext: true,
+      mark:"",
     };
   }
   handleClick(i) {
@@ -67,6 +68,7 @@ export default class App extends Component {
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
       history: history.concat([{ squares }]),
+      mark:squares[i]
     });
   }
 
@@ -80,14 +82,14 @@ export default class App extends Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
+    const currPlayerMark = this.state.mark 
 
     const moves = history.map((step, move) => {
-      console.log(step,move)
       const desc = move
         ? move % 2 === 0
           ? `第${move}步 (O的行動)`
           : `第${move}步 (X的行動)`
-        : "遊戲開始";
+        : `${currPlayerMark}開始行動`;
 
       return (
         <li key={move}>
@@ -105,12 +107,12 @@ export default class App extends Component {
     return (
       <div className="game">
         <div className="game-board">
-          <div>{status}</div>
           <Board
             squares={current.squares}
             onClick={(i) => this.handleClick(i)}
             />
         <div className="game-info">
+            <div>{status}</div>
           <ol>{moves}</ol>
         </div>
         </div>

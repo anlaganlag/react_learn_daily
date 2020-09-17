@@ -2,11 +2,11 @@
 
 .square {
   float: left;
-  font-size: 100px;
+  font-size: 150px;
   font-weight: bold;
-  line-height: 100px;
-  height: 100px;
-  width: 100px;
+  line-height: 150px;
+  height: 150px;
+  width: 150px;
 
 }
 
