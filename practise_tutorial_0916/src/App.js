@@ -52,7 +52,7 @@ export default class App extends Component {
       ],
       stepNumber: 0,
       xIsNext: true,
-      mark:"",
+      mark:"X",
     };
   }
   handleClick(i) {
@@ -87,9 +87,9 @@ export default class App extends Component {
     const moves = history.map((step, move) => {
       const desc = move
         ? move % 2 === 0
-          ? `第${move}步 (O的行動)`
-          : `第${move}步 (X的行動)`
-        : `${currPlayerMark}開始行動`;
+          ? `第${move}步 (O)`
+          : `第${move}步 (X)`
+        : `${currPlayerMark}的回合`;
 
       return (
         <li key={move}>
@@ -101,7 +101,7 @@ export default class App extends Component {
     if (winner) {
       status = "Winner: " + winner;
     } else {
-      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+      status = `接下來是 ${this.state.xIsNext ? "X" : "O"}下子`;
     }
 
     return (
