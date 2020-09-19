@@ -11,7 +11,7 @@ const buttonStyle = {
 const Button = ({callback}) => (
     <button style={buttonStyle} onClick={callback}>
         {console.log("button重新渲染")}
-         點擊!
+         点击!
     </button>
 )
 

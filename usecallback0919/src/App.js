@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "./Button";
 
 function App() {
-  const [appText, setAppText] = useState(20);
+  const [appText, setAppText] = useState("");
 
   const appStyle = {
     background: "white",
@@ -12,11 +12,11 @@ function App() {
   };
   const btnCallback = (e) => {
     console.log("點擊");
-    setAppText(Math.floor(Math.random() * 100));
+    setAppText(50+Math.floor(Math.random() * 60));
   };
   return (
     <div style={appStyle}>
-      <div>隨機數是:{appText}</div>
+      <div>预测你的寿命是:{appText}</div>
       <Button callback={btnCallback} />
     </div>
   );
