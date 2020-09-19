@@ -8,11 +8,11 @@ const buttonStyle = {
     fontsize:"20px",
     margin:"40px"
 }
-const Button = ({callback}) => (
+const Button = React.memo(({callback}) => (
     <button style={buttonStyle} onClick={callback}>
         {console.log("button重新渲染")}
          点击!
     </button>
-)
+))
 
 export default Button
