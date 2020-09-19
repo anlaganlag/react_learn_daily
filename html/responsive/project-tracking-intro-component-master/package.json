@@ -1,0 +1,14 @@
+{
+  "name": "gal",
+  "version": "1.0.0",
+  "description": "响应式html_css项目",
+  "main": "index.js",
+  "author": "Gal_Fond",
+  "license": "MIT",
+  "scripts": {
+    "dev":"parcel index.html"
+  },
+  "dependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
