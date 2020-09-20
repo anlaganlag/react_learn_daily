@@ -81,7 +81,15 @@ const App = () => {
     <div className="app">
       <div className="app__left">
         <div className="app__header">
-          <h1>COVID-19({new Date().toLocaleDateString()}) </h1>
+          <h1>
+              <a href='https://disease.sh/'>
+                 新冠肺炎
+              {new Date().toLocaleDateString()} 
+              <div>
+                数据来源disease.sh
+              </div>
+              </a>
+          </h1>
           <FormControl className="app__dropdown">
             <Select
               variant="outlined"
@@ -139,9 +147,9 @@ const App = () => {
       <Card className="app__right">
         <CardContent>
           <div className="app__information">
-            <h3>國家(地區)實時案例</h3>
+            <h3>國家(地區)感染数</h3>
             <Table countries={tableData} />
-            <h3> 全球新增:{chineseType}案例</h3>
+            <h3> 全球每日新增:{chineseType}</h3>
             <LineGraph casesType={casesType} />
           </div>
         </CardContent>
