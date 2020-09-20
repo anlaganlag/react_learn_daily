@@ -108,6 +108,10 @@ const App = () => {
             onClick={(e) =>{ 
               setCasesType("cases");
               setChineseType("感染");
+              // let sortedData = sortData(data,type="cases");
+
+              // setTableData(sortedData);
+
             }}
             title="感染"
             isRed
