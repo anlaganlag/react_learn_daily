@@ -24,16 +24,16 @@ body {
   justify-content: space-between;
 }
 
-.app__header  a {
+.app__header  h1 {
   color: #fc3c3c;
   font-size: 2rem;
-  text-decoration: none;
 }
-.app__header div {
+.app__header a {
   font-size: 1rem;
   margin-top: .5rem;
   margin-left: 3rem;
   color:purple;
+  text-decoration: none;
 }
 
 .app__stats {

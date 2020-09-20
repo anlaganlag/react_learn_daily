@@ -58,7 +58,6 @@ const App = () => {
     getCountriesData();
   }, []);
 
-  console.log(casesType);
 
   const onCountryChange = async (e) => {
     const countryCode = e.target.value;
@@ -76,19 +75,20 @@ const App = () => {
         setMapZoom(4);
       });
   };
+  console.log("yyyyyyyyyy",mapCountries,tableData,mapCountries==tableData)
 
   return (
     <div className="app">
       <div className="app__left">
         <div className="app__header">
           <h1>
-              <a href='https://disease.sh/'>
                  新冠肺炎
               {new Date().toLocaleDateString()} 
               <div>
+              <a href='https://disease.sh/'>
                 数据来源disease.sh
-              </div>
               </a>
+              </div>
           </h1>
           <FormControl className="app__dropdown">
             <Select
@@ -118,9 +118,9 @@ const App = () => {
           <InfoBox
             onClick={(e) => {
               setCasesType("recovered");
-              setChineseType("恢復")
+              setChineseType("痊愈")
             }}
-            title="恢復"
+            title="痊愈"
             active={casesType === "recovered"}
             cases={prettyPrintStat(countryInfo.todayRecovered)}
             total={numeral(countryInfo.recovered).format("0.0a")}
@@ -147,8 +147,8 @@ const App = () => {
       <Card className="app__right">
         <CardContent>
           <div className="app__information">
-            <h3>國家(地區)感染数</h3>
-            <Table countries={tableData} />
+            <h3>國家(地區):{chineseType}</h3>
+            <Table countries={tableData} casesType={casesType} />
             <h3> 全球每日新增:{chineseType}</h3>
             <LineGraph casesType={casesType} />
           </div>

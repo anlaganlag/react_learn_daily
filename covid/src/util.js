@@ -24,16 +24,37 @@ const casesTypeColors = {
   },
 };
 
-export const sortData = (data) => {
+export const sortData = (data, type) => {
   let sortedData = [...data];
-  sortedData.sort((a, b) => {
-    if (a.cases > b.cases) {
-      return -1;
-    } else {
-      return 1;
-    }
-  });
-  return sortedData;
+  switch (type) {
+    case "recovered":
+      sortedData.sort((a, b) => {
+        if (a.recovered > b.recovered) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+      return sortedData;
+    case "deaths":
+      sortedData.sort((a, b) => {
+        if (a.deaths > b.deaths) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+      return sortedData;
+    default:
+      sortedData.sort((a, b) => {
+        if (a.cases > b.cases) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+      return sortedData;
+  }
 };
 
 export const prettyPrintStat = (stat) =>
@@ -61,7 +82,7 @@ export const showDataOnMap = (data, casesType = "cases") =>
             Cases: {numeral(country.cases).format("0,0")}
           </div>
           <div className="info-recovered">
-            Recovered: {numeral(country.recovered).format("0,0")}
+            recovered: {numeral(country.recovered).format("0,0")}
           </div>
           <div className="info-deaths">
             Deaths: {numeral(country.deaths).format("0,0")}
