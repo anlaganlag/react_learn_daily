@@ -29,7 +29,7 @@ const App = () => {
   // const [chineseType, setR] = useState("感染");
   // const [chineseType, setD] = useState("感染");
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
-  const [mapZoom, setMapZoom] = useState(3);
+  const [mapZoom, setMapZoom] = useState(2);
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -72,10 +72,10 @@ const App = () => {
         setInputCountry(countryCode);
         setCountryInfo(data);
         setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-        setMapZoom(4);
+        setMapZoom(6);
       });
   };
-  console.log("yyyyyyyyyy",mapCountries,tableData,mapCountries==tableData)
+  console.log("yyyyyyyyyy",mapCountries,tableData,mapCountries===tableData)
 
   return (
     <div className="app">
@@ -84,11 +84,11 @@ const App = () => {
           <h1>
                  新冠肺炎
               {new Date().toLocaleDateString()} 
-              <div>
+              <span>
               <a href='https://disease.sh/'>
-                数据来源disease.sh
+                数据来源:disease.sh
               </a>
-              </div>
+              </span>
           </h1>
           <FormControl className="app__dropdown">
             <Select

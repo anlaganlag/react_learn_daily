@@ -26,7 +26,6 @@ const casesTypeColors = {
 
 export const sortData = (data, type="cases") => {
   let sortedData = [...data];//就是[{},{}的i形式]
-  // console.log("sssssssssss",sortedData)
   switch (type) {
     case "recovered":
       sortedData.sort((a, b) => {
@@ -46,15 +45,15 @@ export const sortData = (data, type="cases") => {
         }
       });
       return sortedData;
-    default:
-      sortedData.sort((a, b) => {
-        if (a.cases > b.cases) {
-          return -1;
-        } else {
-          return 1;
-        }
-      });
-      return sortedData;
+      default:
+        sortedData.sort((a, b) => {
+          if (a.cases > b.cases) {
+            return -1;
+          } else {
+            return 1;
+          }
+        });
+        return sortedData;
   }
 };
 
