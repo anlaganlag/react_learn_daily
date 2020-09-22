@@ -1,102 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const scaleNames = {
-  c: '攝氏',
-  f: '華氏',
+//摄氏温度转为华氏温度
+function toFahrenheit(celsius) {
+  return (celsius * 9) / 5 + 32;
 }
 
-const toFahrenheit = celsius =>
-(celsius*9/5)+32
-
-const toCelsius = fahrenheit =>
-(fahrenheit - 32)*5/9;
-
-const tryConvert=(temperature, convert) => {
-  const input = parseFloat(temperature)
-  if (Number.isNaN(input)){
-    return ''
-  }
-  const output = convert(input)
-  const rounded = Math.round(output*100)/100
-  return rounded.toString()
-} 
-
-
-export default class Calculator extends React.Component {
-  constructor(props){
-    super(props)
-    this.handleCelsiusChange = this.handleCelsiusChange.bind(this)
-    this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this)
-    this.state = {temperature:'',scale:'c'}
-  }
-    handleCelsiusChange(temperature) {
-      this.setState({scale: 'c', temperature});
-    }
-
-    handleFahrenheitChange(temperature) {
-      this.setState({scale: 'f', temperature});
-    }
-
-  render(){
-    const scale = this.state.scale;
-    const temperature = this.state.temperature;
-    const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
-    const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
-
-    return (
-      <div>
-        <TemperatureInput
-          scale="c"
-          temperature={celsius}
-          onTemperatureChange={this.handleCelsiusChange} />
-        <TemperatureInput
-          scale="f"
-          temperature={fahrenheit}
-          onTemperatureChange={this.handleFahrenheitChange} />
-        <BoilingVerdict
-          celsius={parseFloat(celsius)} />
-      </div>
-    )
-  }
+function toCelsius(fahrenheit) {
+	return ((fahrenheit -32) *5)/9;
 }
 
 
-class TemperatureInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
+// 温度输入框组件
+function TemperatureCelsiusInput(props) {
+  return (
+    <div>
+      <p>请在此处输入摄氏温度</p>
+      <input value={props.celsius} onChange={props.onCelsiusChange} />
+    </div>
+  );
+}
+function TemperatureFahrenheitInput(props) {
+	return (
+	  <div>
+		<p>请在此处输入華氏溫度</p>
+		<input value={props.fahrenheit} onChange={props.onFahrenheitChange} />
+	  </div>
+	);
   }
-  handleChange(e){
-    this.props.onTemperatureChange(e.target.value)
-  }
-  
-  render(){
-    const temperature = this.props.temperature
-    const scale = this.props.scale
-    return (
-      <fieldset>
-          <legend>輸入溫度 {scaleNames[scale]}:</legend>
-          <input value = {temperature}
-              onChange = {this.handleChange} />
-      </fieldset>
-    )
-  }
+//华氏温度展示组件
+function FahrenheitComponent(props) {
+  return <div>此时的华氏温度为:{props.fahrenheit}</div>;
 }
 
-function BoilingVerdict(props) {
-  if (props.celsius >= 100) {
-    return <p>{props.celsius}攝氏度，水已經開了 小心...</p>
-  } else if (Number.isNaN(props.celsius)){
-      return ''
-    }
-  
-return <p>{props.celsius}攝氏度,水還沒有開.</p>
+function CelsiusComponent(props) {
+	return <div>此时的攝氏温度为:{props.celsius}</div>;
+  }
+//父组件
+function Parent() {
+  const [celsius, setCelsius] = useState('');
+  const [fahrenheit, setFahrenheit] = useState('');
+  // const [cv, setCv] = useState('')
+
+  // 监听子组件值的改变，从而改变celsius值
+  const onCelsiusChange = (event) => {
+    setCelsius(event.target.value);
+  }
+  const onFahrenheitChange = (event) => {
+    setFahrenheit(event.target.value);
+  };
+  const cv = toCelsius(fahrenheit)
+  const fv = toFahrenheit(celsius)
+  return (
+    <>
+      <TemperatureCelsiusInput celsius={celsius} onCelsiusChange={onCelsiusChange} />
+      <FahrenheitComponent fahrenheit={fv} />
+	  <TemperatureFahrenheitInput fahrenheit={fahrenheit} onFahrenheitChange={onFahrenheitChange} />
+      <CelsiusComponent celsius={cv} />
+    </>
+  );
 }
 
-
-
-
-
-
-
-
+export default Parent
