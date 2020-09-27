@@ -17,7 +17,7 @@ function toCelsius(fahrenheit) {
 
 function tryConvert(temperature, convert) {
 const input = parseFloat(temperature);
-if (Number.isNaN(input)) {
+if (isNaN(input)) {
   return '';
 }
 const output = convert(input);

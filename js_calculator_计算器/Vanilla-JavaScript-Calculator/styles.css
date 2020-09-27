@@ -21,9 +21,8 @@ body {
 
 .calculator-grid > button {
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border: 1px solid white;
-  outline: none;
   background-color: rgba(255, 255, 255, .75);
 }
 
@@ -40,7 +39,6 @@ body {
   background-color: rgba(0, 0, 0, .75);
   display: flex;
   align-items: flex-end;
-  justify-content: space-around;
   flex-direction: column;
   padding: 10px;
   word-wrap: break-word;
@@ -49,10 +47,10 @@ body {
 
 .output .previous-operand {
   color: rgba(255, 255, 255, .75);
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .output .current-operand {
   color: white;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }

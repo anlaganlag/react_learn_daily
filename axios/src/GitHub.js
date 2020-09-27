@@ -2,18 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios'; 
 import ReactLoading from 'react-loading';
 import { Media } from 'react-bootstrap';
-
-
-
-
 export default function GitHub() {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('')
   const [isLoading, setIsLoading] = useState(false);
-
-
-
-
   const getData = async() => {
         const res = await axios.get(`https://api.github.com/search/users?q=${searchTerm}`);                
         setData(res.data.items)
@@ -24,9 +16,6 @@ export default function GitHub() {
     setIsLoading(true);
     getData();
   }
-  
-
-
   const listUsers = data.map((user) =>            
     <Media key={user.id}>
       <a href={user.html_url}>   
