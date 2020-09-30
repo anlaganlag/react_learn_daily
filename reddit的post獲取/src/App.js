@@ -8,7 +8,7 @@ function App() {
       .then((res) => res.json())
       .then((json) =>
         // Save the posts into state
-        setPosts(json.data.children.map((c) => c.data))
+        setPosts(json.data.children.map(c => c.data))
       );
   }); // <-- we didn't pass the 2nd arg. what will happen?
   // Render as usual
