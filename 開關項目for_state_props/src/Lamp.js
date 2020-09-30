@@ -5,7 +5,7 @@ const Wrapper = styled.div`
     position:absolute;
     left:${props=>(props.pos === 'left'?'20px':'380px')};
     top:20px;
-    background:${props=> (props.lampOn?'orange':'green')};
+    background:${props=> (props.lampOn?'orange':'blue')};
     width:100px;
     height:100px;
     border-radius:50%;
@@ -13,9 +13,7 @@ const Wrapper = styled.div`
 
 const Lamp = ({ lampOn,pos}) => (
 
-    <Wrapper lampOn={lampOn} pos={pos}>
-        <div />
-    </Wrapper>
+    <Wrapper lampOn={lampOn} pos={pos}/>
 )
 
 export default Lamp
