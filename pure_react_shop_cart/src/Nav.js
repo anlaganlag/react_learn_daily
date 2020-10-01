@@ -12,10 +12,13 @@ const Nav = ({ activeTab, onTabChange ,total,value}) => {
           <button onClick={() => onTabChange("items")}>產品</button>
         </li>
         <li className={itemClass("cart")}>
-          <button onClick={() => onTabChange("cart")}>{`購物車 (${total}) ${value} `}</button>
+          <button  onClick={() => onTabChange("cart")}>購物車 </button>
+          {value && <span role="img" aria-label="购物车" className="cartInfo" >  🛒{`${total} 件 (${value}) `}</span>}
         </li>
       </ul>
     </nav>
   );
 };
 export default Nav;
+
+// 

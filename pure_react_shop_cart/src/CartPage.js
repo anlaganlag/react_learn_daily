@@ -34,7 +34,10 @@ export default function CartPage({ items, onAddOne, onRemoveOne ,value}) {
         </li>
       ))}
     </ul>
-      {value && <p style={{textAlign:"right",color:"red"}} >{`總金額:$${value}`}</p>}
+      {value 
+        ?<p style={{textAlign:"right",color:"red"}} >{`總金額:$${value}`}</p>
+        :<p>购物车为空</p>
+      }
     </>
   );
 }
