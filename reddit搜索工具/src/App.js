@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import moment from "moment";
+import "./App.css"
 
 function Reddit({ searchTerms }) {
   const [posts, setPosts] = useState([]);
@@ -14,10 +16,12 @@ function Reddit({ searchTerms }) {
   return (
     <ul>
       {posts.map((post) => (
-        <li key={post.id}><a href={post.url}>{post.title}</a> </li>
-
-
-
+        <li key={post.id}>
+          <a href={post.url}>{post.title}</a>
+          <span className="time" >
+            {"update "}{moment(post.created * 1000).fromNow()}
+          </span>
+        </li>
       ))}
     </ul>
   );
@@ -28,7 +32,8 @@ export default function App() {
   // 2 pieces of state: one to hold the input value,
   // another to hold the current searchTerms.
   const [inputValue, setInputValue] = useState("");
-  const [searchTerms, setSearchTerms] = useState("reactjs");
+  const [searchTerms, setSearchTerms] = useState("cscareerquestions");
+  //coding technology software
   // Update the searchTerms when the user presses enter
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,8 +43,12 @@ export default function App() {
     <>
       <h1>Reddit贴吧(去广告版)</h1>
       <form onSubmit={handleSubmit}>
-        <label for="searchTerm" >🔎 </label>
-        <input id="searchTerm" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+        <label for="searchTerm">🔎 </label>
+        <input
+          id="searchTerm"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
         <p>当前搜索关键词:{searchTerms}</p>
       </form>
       <Reddit searchTerms={searchTerms} />

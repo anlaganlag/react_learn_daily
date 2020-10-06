@@ -1,33 +1,36 @@
 // var numeral = require('numeral');
 const axios = require("axios");
+const {v4} = require("uuid");
+
 const URL = `http://www.reddit.com/r/reactjs.json`;
+console.log(v4(),"v1")
 
-console.log("测试axios");
+// console.log("测试axios");
 
-axios
-  .get(URL)
-  .then((res) => {
-    const data = res.data.data.children.map((obj) => obj.data.title);
-    // const fd = data.filter(itme=>itme.length<20)
-    const fd = data.filter((itme) => itme.includes("r"));
-    console.log(fd);
-  })
-  .catch((e) => console.log(e));
+// axios
+//   .get(URL)
+//   .then((res) => {
+//     const data = res.data.data.children.map((obj) => obj.data.title);
+//     // const fd = data.filter(itme=>itme.length<20)
+//     const fd = data.filter((itme) => itme.includes("r"));
+//     console.log(fd);
+//   })
+//   .catch((e) => console.log(e));
 
-fetch(`http://www.reddit.com/r/reactjs.json`)
-  .then((response) => {
-    if (response.ok) {
-      return response.json();
-    }
-    throw new Error("Request failed");
-  })
-  .then((json) => {
-    const posts = res.data.data.children.map((obj) => obj.data);
-    console.log(posts);
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+// fetch(`http://www.reddit.com/r/reactjs.json`)
+//   .then((response) => {
+//     if (response.ok) {
+//       return response.json();
+//     }
+//     throw new Error("Request failed");
+//   })
+//   .then((json) => {
+//     const posts = res.data.data.children.map((obj) => obj.data);
+//     console.log(posts);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
 
 // var myNumeral = numeral(1000);
 // var myNumeral2 = numeral('1,000');
