@@ -35,3 +35,6 @@ export default function GlobalProvider({ children }) {
     </ColorContext.Provider>
   );
 }
+
+
+export const useColors  = () => useContext(ColorContext)

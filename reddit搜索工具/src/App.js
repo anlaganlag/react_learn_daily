@@ -32,8 +32,8 @@ export default function App() {
   // 2 pieces of state: one to hold the input value,
   // another to hold the current searchTerms.
   const [inputValue, setInputValue] = useState("");
-  const [searchTerms, setSearchTerms] = useState("cscareerquestions");
-  //coding technology software
+  const [searchTerms, setSearchTerms] = useState("reactjs");
+  //coding technology software cscareerquestions
   // Update the searchTerms when the user presses enter
   const handleSubmit = (e) => {
     e.preventDefault();
