@@ -17,7 +17,7 @@ export default function ColorInputForm() {
   const { handleAddColor } = useColors(); //应用端口只用add..
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault();``
     handleAddColor(title.value, color.value);
     resetTitle();
     resetColor();
