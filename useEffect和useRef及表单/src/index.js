@@ -15,8 +15,13 @@ function App() {
 
   useEffect(() => {
     console.log(`输入"${val}"`);
+  },[val]);
+
+
+  useEffect(() => {
     console.log(`保存的名言: "${phrase}"`);
-  });
+  },[phrase]);
+
 
   return (
     <>

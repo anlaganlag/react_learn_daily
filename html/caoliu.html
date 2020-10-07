@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>邀请码转换</title>
+    <meta name="Generator" content="EditPlus">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        #main{
+            width: 500px;
+            height: auto;
+            border:  1px solid blue;
+            float: left;
+        }
+ 
+        #yaoqingma{
+            width: 400px;
+            height: 30px;
+            font-size: 16pt;
+        }
+        #zhuanhuan{
+            height: 30px;
+            font-size: 16pt;
+        }
+        showCode{
+            padding: 0;
+            margin: 0;
+        }
+        p{
+            padding: 0;
+            margin: 0;
+            height: 20px;
+        }
+        span{
+            color:red;
+        }
+        #document{
+            width: 400px;
+            border:  1px solid blue;
+            margin: 0 0 0 5px;
+            float: left;
+            background-color: #A9A9A9;
+        }
+    </style>
+</head>
+ 
+<body>
+<div id="main" class="main">
+    <input id="yaoqingma" type="text" name="yaoqingma" value="">
+    <input id="zhuanhuan" type="button" value="转 换" onclick="zhuanhuan()">
+    <div id="showCode" class="showCode">
+    </div>
+</div>
+ 
+<div id="document" class="">
+    使用说明：<br/>
+    第一步:复制某榴的邀请码到左边的文本框，点击"转 换"按钮，前 10 条显示是隐藏数字的邀请码，后 6 位是隐藏字母的邀请码。
+    <br/>例子：<br/>
+    如果图中隐藏或者删除一个字母或数字，注:某榴的邀请码是16位的的字符串,下图第一个码发码者删除了最后的一个字母。我们可以用 * 号补齐 16位。可以用任何符号补齐。例如 f11134615e6e3cb* ,复制该码到文本框，点击"转 换"按钮，后 6 条显示的就是正的邀请码。<br/>
+    <img src="image/ma.jpg" width="325" height="190" border="0" alt="">
+    <br/>第二步:双击生成的邀请码，反击鼠标，选择复制，去开始你的注册之路吧。
+</div>
+</body>
+<script type="text/javascript">
+    let showCode=document.getElementById("showCode"),charCode=[];
+    for(let i=48;i<=57; i++){
+        charCode.push(i)
+    }
+    for(let b=97;b<=102; b++){
+        charCode.push(b)
+    }
+    function zhuanhuan(){
+        //判断用户输入的邀请码是否为 16位
+        let doc=document.getElementById("yaoqingma").value;
+        if(doc.length !== 16){
+            return alert("请输入正确的16位邀请码");
+        }
+        showCode.innerHTML="";
+        replaceCode(doc)
+    }
+    function replaceCode(oldValue){
+        if(/[^a-f0-9]/.test(oldValue)){
+            for(let b = 0; b < charCode.length; b++){
+                let newValue = oldValue.replace(/[^a-f0-9]/, String.fromCharCode(charCode[b]));
+                if(/[^a-f0-9]/.test(newValue)){
+                    replaceCode(newValue)
+                } else {
+                    let P = document.createElement("p");
+                    P.innerText = newValue;
+                    showCode.appendChild(P)
+                }
+            }
+        }
+    }
+</script>
+</html>
