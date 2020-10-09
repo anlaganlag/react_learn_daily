@@ -4,6 +4,8 @@ import { useMutation } from '@apollo/client';
 import ButtonAsLink from './ButtonAsLink';
 import { TOGGLE_FAVORITE } from '../gql/mutation';
 import { GET_MY_FAVORITES } from '../gql/query';
+import { hi } from 'date-fns/locale';
+
 
 const FavoriteNote = props => {
   // store the note's favorite count as state
