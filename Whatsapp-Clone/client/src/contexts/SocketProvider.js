@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState,createContext } from 'react'
 import io from 'socket.io-client'
 
 const SocketContext = createContext()
-
 export const useSocket = () => useContext(SocketContext)
 
 //套接字需要id..
@@ -16,7 +15,7 @@ export function SocketProvider({ id, children }) {
       { query: { id } }
     )
     setSocket(newSocket)
-
+    //用完即关闭io..
     return () => newSocket.close()
   }, [id])
 

@@ -27,7 +27,7 @@ export default function Sidebar({ id }) {
           <Nav.Item>
             <Nav.Link eventKey={CONTACTS_KEY}>联系人</Nav.Link>
           </Nav.Item>
-        </Nav>
+        </Nav> 
         <Tab.Content className="border-right overflow-auto flex-grow-1">
           <Tab.Pane eventKey={CONVERSATIONS_KEY}>
             <Conversations />
@@ -37,7 +37,7 @@ export default function Sidebar({ id }) {
           </Tab.Pane>
         </Tab.Content>
         <div className="p-2 border-top border-right small">
-          你的微信号: <span className="text-muted">{id}</span>
+          你的微信号ID: <span className="text-muted">{id}</span>
         </div>
         <Button onClick={() => setModalOpen(true)} className="rounded-0">
           新建 {conversationsOpen ? '聊天记录' : '联系人'}

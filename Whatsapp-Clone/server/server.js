@@ -5,6 +5,8 @@ io.on('connection', socket => {
   socket.join(id)
 
   socket.on('send-message', ({ recipients, text }) => {
+    //相当于把本人从recipient中去除
+    //
     recipients.forEach(recipient => {
       const newRecipients = recipients.filter(r => r !== recipient)
       newRecipients.push(id)

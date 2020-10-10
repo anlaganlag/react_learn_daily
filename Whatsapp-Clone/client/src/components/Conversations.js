@@ -6,6 +6,8 @@ import { useConversations } from '../contexts/ConversationsProvider';
 //useConversation有点类似自选使用...
 export default function Conversations() {
   const { conversations, selectConversationIndex } = useConversations()
+  // console.log(conversations,"cccccccccc");
+
 
   return (
     <ListGroup variant="flush">

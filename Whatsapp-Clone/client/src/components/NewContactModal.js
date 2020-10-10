@@ -3,8 +3,11 @@ import { Modal, Form, Button } from 'react-bootstrap'
 import { useContacts } from '../contexts/ContactsProvider'
 
 export default function NewContactModal({ closeModal }) {
+  //vx号和姓名
   const idRef = useRef()
   const nameRef = useRef()
+
+  //导入了创建联系人的函数.. 
   const { createContact } = useContacts()
 
   function handleSubmit(e) {
@@ -20,7 +23,7 @@ export default function NewContactModal({ closeModal }) {
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group>
-            <Form.Label>微信号</Form.Label>
+            <Form.Label>微信号ID</Form.Label>
             <Form.Control type="text" ref={idRef} required />
           </Form.Group>
           <Form.Group>

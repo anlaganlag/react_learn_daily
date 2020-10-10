@@ -3,6 +3,8 @@ import useLocalStorage from "../hooks/useLocalStorage";
 
 const ContactsContext = createContext();
 export const useContacts = () => useContext(ContactsContext);
+
+
 export function ContactsProvider({ children }) {
   const [contacts, setContacts] = useLocalStorage("contacts", []);
   //这种直接就设定的也是常见pattern..

@@ -1,3 +1,4 @@
+//state和Effect是最常见的hook..
 import { useEffect, useState } from 'react'
 
 const PREFIX = 'whatsapp-clone-'
@@ -12,7 +13,8 @@ export default function useLocalStorage(key, initialValue) {
     //ls,fn()或init...
   const [value, setValue] = useState(() => {
     const jsonValue = localStorage.getItem(prefixedKey)
-    if (jsonValue != null) return JSON.parse(jsonValue)
+    if (jsonValue) return JSON.parse(jsonValue)
+    // 这里判断传入的初始值是不是函数,因为typeof会返回function等
     if (typeof initialValue === 'function') {
       return initialValue()
     } else {
