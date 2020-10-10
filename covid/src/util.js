@@ -24,36 +24,15 @@ const casesTypeColors = {
   },
 };
 
-export const sortData = (data, type="cases") => {
-  let sortedData = [...data];//就是[{},{}的i形式]
+export const sortData = (data, type = "cases") => {
+  let sortedData = [...data]; //就是[{},{}的i形式]
   switch (type) {
     case "recovered":
-      sortedData.sort((a, b) => {
-        if (a.recovered > b.recovered) {
-          return -1;
-        } else {
-          return 1;
-        }
-      });
-      return sortedData;
+      return sortedData.sort((a, b) => b.recovered - a.recovered);
     case "deaths":
-      sortedData.sort((a, b) => {
-        if (a.deaths > b.deaths) {
-          return -1;
-        } else {
-          return 1;
-        }
-      });
-      return sortedData;
-      default:
-        sortedData.sort((a, b) => {
-          if (a.cases > b.cases) {
-            return -1;
-          } else {
-            return 1;
-          }
-        });
-        return sortedData;
+      return sortedData.sort((a, b) => b.deaths - a.deaths);
+    default:
+      return sortedData.sort((a, b) =>b.cases-a.cases) 
   }
 };
 

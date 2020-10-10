@@ -2,8 +2,16 @@
 const axios = require("axios");
 const {v4} = require("uuid");
 
-const URL = `http://www.reddit.com/r/reactjs.json`;
-console.log(v4(),"v1")
+const l = [321,3,4,1,3,]
+console.log(l.sort(
+    (a,b)=>(b-a)
+));
+console.log(l.sort(
+    (a,b)=>(b-a)
+));
+
+// const URL = `http://www.reddit.com/r/reactjs.json`;
+// console.log(v4(),"v1")
 
 // console.log("测试axios");
 
