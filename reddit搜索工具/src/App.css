@@ -7,3 +7,26 @@ ul li span{
   font-size: 0.4em;
 }
 
+
+button{
+  color:orangered;
+  font-weight: bolder;
+  border-radius: 1em;
+  margin: 3em;
+}
+button:nth-child(n+4){
+  color: lightyellow;
+  font-weight: lighter;
+  opacity: 20%;
+  margin: 1em;
+}
+
+button:nth-child(n+11){
+  color:beige;
+  border-radius: 0px;
+  margin-left: 1em;
+  margin: 0;
+
+
+}
+

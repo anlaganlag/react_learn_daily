@@ -1,6 +1,31 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import "./App.css"
+import "./App.css";
+
+let v = [
+  "learnjavascript",
+  "reactJS",
+  "javascript",
+  "vueJS",
+  "techsupport",
+  "CodingHelp",
+  "Careerguidance",
+  "learnprogramming",
+  "cscareerquestions",
+  "computerscience",
+  "technews",
+  "jobs",
+  "Interviews",
+  "economy",
+  "economics",
+  "finance",
+  "usnews",
+  "politics",
+  "worldnews",
+  "geopolitics",
+  "longreads",
+];
+const KEY = "lsRedditKey";
 
 function Reddit({ searchTerms }) {
   const [posts, setPosts] = useState([]);
@@ -13,13 +38,15 @@ function Reddit({ searchTerms }) {
         setPosts(json.data.children.map((c) => c.data))
       );
   }, [searchTerms, setPosts]);
+
   return (
     <ul>
-      {posts.map((post) => (
-        <li key={post.id}>
-          <a href={post.url}>{post.title}</a>
-          <span className="time" >
-            {"update "}{moment(post.created * 1000).fromNow()}
+      {posts.map((word) => (
+        <li key={word.id}>
+          <a href={word.url}>{word.title}</a>
+          <span className="time">
+            {"update "}
+            {moment(word.created * 1000).fromNow()}
           </span>
         </li>
       ))}
@@ -33,11 +60,42 @@ export default function App() {
   // another to hold the current searchTerms.
   const [inputValue, setInputValue] = useState("");
   const [searchTerms, setSearchTerms] = useState("reactjs");
+  const [history, setHistory] = useState(v);
   //coding technology software cscareerquestions
   // Update the searchTerms when the user presses enter
+  useEffect(() => {
+    const keyWordJson = localStorage.getItem(KEY);
+    if (keyWordJson) {
+      const obj = JSON.parse(keyWordJson);
+      setHistory(obj);
+    }
+  }, []);
+
+  useEffect(
+    () => localStorage.setItem(KEY, JSON.stringify(history)),
+
+    [history]
+  );
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (inputValue === ""){
+      return
+    }
+    if (history.includes(inputValue)) {
+      alert("搜索值已经存在");
+      return
+    }
     setSearchTerms(inputValue);
+
+    setHistory([...history, inputValue]);
+  };
+  console.log(history)
+  const handleWord = (e) => {
+    // console.log(e.target.textContent);
+    setSearchTerms(e.target.textContent);
+
+
   };
   return (
     <>
@@ -49,6 +107,13 @@ export default function App() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
+        <p>
+          关键词:
+          {history.map((word) => (
+            <button onClick={handleWord}>{word} </button>
+          ))}
+        </p>
+
         <p>当前搜索关键词:{searchTerms}</p>
       </form>
       <Reddit searchTerms={searchTerms} />
