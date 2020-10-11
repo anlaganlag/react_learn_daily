@@ -6,11 +6,10 @@ function App() {
   const [Presidents, setPresidents] = React.useState(initialChoices);
   const [list, setList] = React.useState([]);
 
-  const choosePresident = (candidate) => {
+  const choosePresident = ((candidate) => {
     setPresidents((allCandidates) => allCandidates.filter((c) => c !== candidate));
     setList([...list, candidate]);
-  };
-  console.log(list);
+  })
   return (
     <>
       <h1> 总统甜心排序</h1>
