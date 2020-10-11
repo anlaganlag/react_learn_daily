@@ -18,11 +18,11 @@ export default function Sidebar({ id }) {
   }
 
   return (
-    <div style={{ width: '250px' }} className="d-flex flex-column">
+    <div style={{ width: '25%' }} className="d-flex flex-column">
       <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
         <Nav variant="tabs" className="justify-content-center">
           <Nav.Item>
-            <Nav.Link eventKey={CONVERSATIONS_KEY}>当前聊天记录</Nav.Link>
+            <Nav.Link eventKey={CONVERSATIONS_KEY}>聊天记录</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link eventKey={CONTACTS_KEY}>联系人</Nav.Link>

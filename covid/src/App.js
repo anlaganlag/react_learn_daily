@@ -18,19 +18,23 @@ import "leaflet/dist/leaflet.css";
 
 
 numeral.locale('chs');
+const mapZoom =2
+
+
 const App = () => {
+  //全球和所有的国家代码
   const [country, setInputCountry] = useState("worldwide");
+  //整体信息
   const [countryInfo, setCountryInfo] = useState({});
+  
   const [countries, setCountries] = useState([]);
   const [mapCountries, setMapCountries] = useState([]);
   const [tableData, setTableData] = useState([]);
   const [casesType, setCasesType] = useState("cases");
   const [chineseType, setChineseType] = useState("感染");
-  // const [chineseType, setR] = useState("感染");
-  // const [chineseType, setD] = useState("感染");
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
-  const [mapZoom, setMapZoom] = useState(2);
 
+  //获取一次总数据..
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
       .then((response) => response.json())
@@ -39,22 +43,26 @@ const App = () => {
       });
   }, []);
 
+  //获取国家的信息
   useEffect(() => {
     const getCountriesData = async () => {
       fetch("https://disease.sh/v3/covid-19/countries")
         .then((response) => response.json())
         .then((data) => {
           const countries = data.map((country) => ({
+            //国家的名字和代码
             name: country.country,
             value: country.countryInfo.iso2,
           }));
           let sortedData = sortData(data);
+          //简易版的数据..
           setCountries(countries);
+          //获取的数据直接作为地图的数据..
           setMapCountries(data);
           setTableData(sortedData);
         });
     };
-
+//完成获取数据这个操作..
     getCountriesData();
   }, []);
 
@@ -71,8 +79,11 @@ const App = () => {
       .then((data) => {
         setInputCountry(countryCode);
         setCountryInfo(data);
-        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-        setMapZoom(6);
+        countryCode === "worldwide"
+        // ? setMapCenter([34.80746, -40.4796 ])
+        ? setMapCenter( Array.from(mapCenter))
+        // ?setMapCenter([Object.values(mapCenter)])
+        : setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
       });
   };
   console.log("yyyyyyyyyy",mapCountries,tableData,mapCountries===tableData)
@@ -151,10 +162,8 @@ const App = () => {
       <Card className="app__right">
         <CardContent>
           <div className="app__information">
-            <h3>國家(地區):{chineseType}</h3>
-            <Table countries={tableData} casesType={casesType} />
-            <h3> 全球每日新增:{chineseType}</h3>
-            <LineGraph casesType={casesType} />
+            <Table countries={tableData} casesType={casesType} chineseType={chineseType}/>
+            <LineGraph casesType={casesType} chineseType={chineseType}/>
           </div>
         </CardContent>
       </Card>

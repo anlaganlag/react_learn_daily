@@ -37,6 +37,8 @@ export const sortData = (data, type = "cases") => {
 };
 
 export const prettyPrintStat = (stat) =>
+//a就是近似的意思
+//1230974	'0.0a'	1.2m
   stat ? `+${numeral(stat).format("0.0a")}` : "+0";
 
 export const showDataOnMap = (data, casesType = "cases") =>

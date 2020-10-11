@@ -85,17 +85,13 @@ export function ConversationsProvider({ id, children }) {
   //简单来说接收这当前只有id,想增强到有名字..
   const formattedConversations = conversations.map((conversation, index) => {
     const recipients = conversation.recipients.map((recipient) => {
-      const contact = contacts.find((contact) => {
-        return contact.id === recipient;
-      });
+      const contact = contacts.find(contact => contact.id === recipient );
       const name = contact?.name ?? recipient;
       //每次return都是敲定了list中的一项...
-      return { id: recipient, name };
+      return {  id:recipient, name };
     });
     const messages = conversation.messages.map((message) => {
-      const contact = contacts.find((contact) => {
-        return contact.id === message.sender;
-      });
+      const contact = contacts.find(contact => contact.id === message.sender)
       const name = contact?.name ?? message.sender;
       const fromMe = id === message.sender;
       return { ...message, senderName: name, fromMe };

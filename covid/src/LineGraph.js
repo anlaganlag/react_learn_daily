@@ -65,7 +65,7 @@ const buildChartData = (data, casesType) => {
   return chartData;
 };
 
-function LineGraph({ casesType }) {
+function LineGraph({ casesType,chineseType }) {
   const [data, setData] = useState({});
 
   useEffect(() => {
@@ -86,6 +86,8 @@ function LineGraph({ casesType }) {
   }, [casesType]);
 
   return (
+    <>
+    <h3> 全球每日新增:{chineseType}</h3>
     <div>
       {data?.length > 0 && (
         <Line
@@ -102,6 +104,7 @@ function LineGraph({ casesType }) {
         />
       )}
     </div>
+    </>
   );
 }
 

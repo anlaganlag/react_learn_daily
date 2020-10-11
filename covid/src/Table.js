@@ -22,9 +22,11 @@ const buildTableData = (countries, casesType) => {
 };
 
 
-function Table({ countries,casesType }) {
+function Table({ countries,casesType,chineseType }) {
   let tableData = buildTableData(countries, casesType);
   return (
+    <>
+            <h3>國家(地區):{chineseType}</h3>
     <div className="table">
       {tableData.map((country) => (
         <tr>
@@ -35,6 +37,7 @@ function Table({ countries,casesType }) {
         </tr>
       ))}
     </div>
+    </>
   );
 }
 

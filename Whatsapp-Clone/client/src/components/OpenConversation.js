@@ -26,11 +26,11 @@ export default function OpenConversation() {
       <div className="flex-grow-1 overflow-auto">
         <div className="d-flex flex-column align-items-start justify-content-start px-3">
           {selectedConversation.messages.map((message, index) => {
-            const lastMessage =
+            const isLastMessage =
               selectedConversation.messages.length - 1 === index;
             return (
               <div
-                ref={lastMessage ? setRef : null}
+                ref={isLastMessage ? setRef : null}
                 key={index}
                 className={`my-1 d-flex flex-column ${
                   message.fromMe
