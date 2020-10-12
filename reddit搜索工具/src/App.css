@@ -1,7 +1,7 @@
 
 
 body {
-  background-color: #lightyellow;
+  background-color: lightyellow;
 }
 
 ul li span{
@@ -18,9 +18,10 @@ button{
   margin-left:40vw ;
 }
 button:nth-child(n+4){
-  color: lightyellow;
-  font-weight: lighter;
-  opacity: 20%;
+  /* color: lightyellow; */
+  /* font-weight: lighter; */
+  /* opacity: 20%; */
+  /* display: none; */
   margin: 1em;
   display: inline-block;
 }
@@ -70,4 +71,12 @@ button.BackgroundToggle{
   color:lightgray;
   background-color: #444;
   font-weight: bolder;
+}
+
+button.toTop{
+  margin: auto;
+  display: block;
+  color:black;
+  opacity: 100%;
+  
 }

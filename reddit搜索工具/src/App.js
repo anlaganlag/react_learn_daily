@@ -20,7 +20,6 @@ let v = [
   "economics",
   "finance",
   "usnews",
-  "politics",
   "worldnews",
   "geopolitics",
   "longreads",
@@ -37,7 +36,7 @@ function Reddit({ searchTerms }) {
         // Save the posts into state
         setPosts(json.data.children.map((c) => c.data))
       )
-      .catch((e) => console.log(e));
+      .catch((e) => alert(e));
   }, [searchTerms, setPosts]);
 
   return (
@@ -64,6 +63,7 @@ export default function App() {
   const [history, setHistory] = useState(v);
   const [isDark, setisDark] = useState(true);
   const [editState, setEditState] = useState(false);
+  const [onTop, setonTop] = useState(false);
   //coding technology software cscareerquestions
   // Update the searchTerms when the user presses enter
   useEffect(() => {
@@ -92,13 +92,23 @@ export default function App() {
     setSearchTerms(inputValue);
 
     setHistory([...history, inputValue]);
-    setInputValue("")
+    setInputValue("");
   };
   const handleWord = (word, e) => {
     //删除该按钮
     if (editState) {
       setHistory((history) => history.filter((h) => h !== word));
-      return
+      setEditState(() => !editState);
+      return;
+    }
+    else if (onTop){
+      const topItem = e.target.textContent.trim()
+      setHistory([
+        topItem,
+        ...history.filter((item)=>item!=topItem),
+      ]);
+      setonTop(()=>!onTop)
+
     }
     setSearchTerms(e.target.textContent.trim());
   };
@@ -126,19 +136,26 @@ export default function App() {
             </button>
           ))}
           <div>
-
-          <button onClick={() => setEditState(() => !editState)}>
-            {editState ? "清除标签模式" : "搜索模式"}
-          </button>
+            <button onClick={() => setEditState(() => !editState)}>
+              {editState ? "清除标签模式" : "搜索模式"}
+            </button>
           </div>
         </p>
+        <button className="toTop" onClick={()=>setonTop(!onTop)}>
+          {onTop ? "关闭置顶" : "开启置顶"}
+        </button>
         <button onClick={handleBackground} className="BackgroundToggle">
-          背景切换
+          {isDark ? "隐藏次要标签" : "显示次要标签"}
         </button>
 
         <p>当前搜索关键词:{searchTerms}</p>
       </form>
       <Reddit searchTerms={searchTerms} />
+      <button className="toTop">
+        <a href="#top" title="回到顶部">
+          回到顶部
+        </a>
+      </button>
     </>
   );
 }
