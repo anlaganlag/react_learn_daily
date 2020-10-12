@@ -36,7 +36,8 @@ function Reddit({ searchTerms }) {
       .then((json) =>
         // Save the posts into state
         setPosts(json.data.children.map((c) => c.data))
-      );
+      )
+      .catch((e) => console.log(e));
   }, [searchTerms, setPosts]);
 
   return (
@@ -61,6 +62,8 @@ export default function App() {
   const [inputValue, setInputValue] = useState("");
   const [searchTerms, setSearchTerms] = useState("reactjs");
   const [history, setHistory] = useState(v);
+  const [isDark, setisDark] = useState(true);
+  const [editState, setEditState] = useState(false);
   //coding technology software cscareerquestions
   // Update the searchTerms when the user presses enter
   useEffect(() => {
@@ -79,24 +82,32 @@ export default function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputValue === ""){
-      return
+    if (inputValue === "") {
+      return;
     }
     if (history.includes(inputValue)) {
       alert("搜索值已经存在");
-      return
+      return;
     }
     setSearchTerms(inputValue);
 
     setHistory([...history, inputValue]);
+    setInputValue("")
   };
-  console.log(history)
-  const handleWord = (e) => {
-    // console.log(e.target.textContent);
-    setSearchTerms(e.target.textContent);
-
-
+  const handleWord = (word, e) => {
+    //删除该按钮
+    if (editState) {
+      setHistory((history) => history.filter((h) => h !== word));
+      return
+    }
+    setSearchTerms(e.target.textContent.trim());
   };
+  const handleBackground = () => {
+    setisDark(() => !isDark);
+  };
+  console.log(history);
+  console.log(isDark);
+
   return (
     <>
       <h1>Reddit贴吧(去广告版)</h1>
@@ -107,12 +118,23 @@ export default function App() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
-        <p>
+        <p className={isDark ? "green" : ""}>
           关键词:
           {history.map((word) => (
-            <button onClick={handleWord}>{word} </button>
+            <button onClick={(e) => handleWord(word, e)} title={word}>
+              {word}{" "}
+            </button>
           ))}
+          <div>
+
+          <button onClick={() => setEditState(() => !editState)}>
+            {editState ? "清除标签模式" : "搜索模式"}
+          </button>
+          </div>
         </p>
+        <button onClick={handleBackground} className="BackgroundToggle">
+          背景切换
+        </button>
 
         <p>当前搜索关键词:{searchTerms}</p>
       </form>
