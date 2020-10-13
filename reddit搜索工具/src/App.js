@@ -129,7 +129,7 @@ export default function App() {
         <button className="toTop" onClick={() => setonTop(!onTop)}>
           {onTop ? "关闭置顶" : "置顶标签"}
         </button>
-        <p className={isDark ? "green" : ""}>
+        <p className={isDark ? "secondTags" : ""}>
           {history.map((word) => (
             <button onClick={(e) => handleWord(word, e)} title={word}>
               {word}{" "}
@@ -140,12 +140,13 @@ export default function App() {
         {/* <button className="toTop" onClick={() => setonTop(!onTop)}>
           {onTop ? "关闭置顶" : "开启置顶"}
         </button> */}
+          
         <button onClick={handleBackground} className="BackgroundToggle">
           {isDark ? "更多" : "隐藏"}
         </button>
 <div>
 
-        <p>当前搜索关键词:{searchTerms}</p>
+        <p className="searchResultLabel">当前搜索关键词:{searchTerms}</p>
 </div>
       </form>
       <Reddit searchTerms={searchTerms} />

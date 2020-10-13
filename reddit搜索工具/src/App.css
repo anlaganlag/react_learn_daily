@@ -7,27 +7,13 @@ ul li span{
   font-size: 0.4em;
 }
 form input {
-  width: 50vw;
+  width: 25vw;
 }
 form input~button{
   font-size: .4em;
-  display: inline-block;
   margin: 0 0 .5em .5em;
 }
 
-form button+p{
-  padding: 0;
-  margin: 0;
-}
-
-form p {
-  display: flex;
-  flex-flow: row,wrap;
-  align-items: center;
-}
-div.button{
-  display:inline-block ;
-}
 
 p button{
   color:orangered;
@@ -35,15 +21,12 @@ p button{
   border-radius: 50%;
 }
 
-p button:nth-child(4){
-  display: inline-block;
-}
+
 
 /* 5是因为前面有1个置顶和3个主搜索词按钮 css是从1开始计数 */
-p button:nth-child(n+5){
+p button:nth-child(n+4){
   color: blue;
   opacity: 25%;
-  margin-right: 1em;
   display: inline;
   font-size: .6em;
   border-radius: .5em;
@@ -53,28 +36,20 @@ p button:nth-child(n+5){
 p button:nth-child(n+15){
   color: green;
   border-radius: 0px;
-  margin: 0;
-  font-size: .5em;
-
-
-
 }
 
 
-p button:nth-child(n+22){
-  color:blue;
-  border-radius: 0px;
-  margin-left: 1em;
-  margin: 0;
-
-
-}
-
-p.green button:nth-child(n+5){
+p.secondTags button:nth-child(n+4){
   color: green;
   font-weight: bolder;
   display: none;
 }
+p button:nth-child(3){
+  display: inline-block;
+  margin-right:80%;
+}
+
+
 p div button{
   border-radius: 70%;
   float: left;
@@ -86,8 +61,9 @@ p div button{
   margin-top: 1em;
 }
 
-div button+p{
+.searchResultLabel{
   display: block;
+  margin: auto;
 }
 
 
@@ -95,7 +71,6 @@ div button+p{
 button.BackgroundToggle{
   border-radius: 100%;
   opacity: 1;
-  float: left;
   margin: auto;
   color:lightgray;
   background-color: #444;
