@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import "./App.css";
 
-let v = [
+let initialKeyWordList = [
   "learnjavascript",
   "reactJS",
   "javascript",
@@ -60,7 +60,7 @@ export default function App() {
   // another to hold the current searchTerms.
   const [inputValue, setInputValue] = useState("");
   const [searchTerms, setSearchTerms] = useState("reactjs");
-  const [history, setHistory] = useState(v);
+  const [history, setHistory] = useState(initialKeyWordList);
   const [isDark, setisDark] = useState(true);
   const [editState, setEditState] = useState(false);
   const [onTop, setonTop] = useState(false);
@@ -98,17 +98,12 @@ export default function App() {
     //删除该按钮
     if (editState) {
       setHistory((history) => history.filter((h) => h !== word));
-      setEditState(() => !editState);
+      // setEditState(() => !editState);
       return;
-    }
-    else if (onTop){
-      const topItem = e.target.textContent.trim()
-      setHistory([
-        topItem,
-        ...history.filter((item)=>item!=topItem),
-      ]);
-      setonTop(()=>!onTop)
-
+    } else if (onTop) {
+      const topItem = e.target.textContent.trim();
+      setHistory([topItem, ...history.filter((item) => item !== topItem)]);
+      // setonTop(() => !onTop);
     }
     setSearchTerms(e.target.textContent.trim());
   };
@@ -128,27 +123,30 @@ export default function App() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
+        <button onClick={() => setEditState(() => !editState)}>
+              {editState ? "删除模式" : "搜索模式"}
+        </button>
+        <button className="toTop" onClick={() => setonTop(!onTop)}>
+          {onTop ? "关闭置顶" : "置顶标签"}
+        </button>
         <p className={isDark ? "green" : ""}>
-          关键词:
           {history.map((word) => (
             <button onClick={(e) => handleWord(word, e)} title={word}>
               {word}{" "}
             </button>
           ))}
-          <div>
-            <button onClick={() => setEditState(() => !editState)}>
-              {editState ? "清除标签模式" : "搜索模式"}
-            </button>
-          </div>
         </p>
-        <button className="toTop" onClick={()=>setonTop(!onTop)}>
+ 
+        {/* <button className="toTop" onClick={() => setonTop(!onTop)}>
           {onTop ? "关闭置顶" : "开启置顶"}
-        </button>
+        </button> */}
         <button onClick={handleBackground} className="BackgroundToggle">
-          {isDark ? "隐藏次要标签" : "显示次要标签"}
+          {isDark ? "更多" : "隐藏"}
         </button>
+<div>
 
         <p>当前搜索关键词:{searchTerms}</p>
+</div>
       </form>
       <Reddit searchTerms={searchTerms} />
       <button className="toTop">
