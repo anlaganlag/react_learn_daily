@@ -5,13 +5,12 @@ import Contacts from './Contacts'
 import NewContactModal from './NewContactModal'
 import NewConversationModal from './NewConversationModal'
 
-const CONVERSATIONS_KEY = 'conversations'
-const CONTACTS_KEY = 'contacts'
+
 
 export default function Sidebar({ id }) {
-  const [activeKey, setActiveKey] = useState(CONVERSATIONS_KEY)
+  const [activeKey, setActiveKey] = useState('conversations')
   const [modalOpen, setModalOpen] = useState(false)
-  const conversationsOpen = activeKey === CONVERSATIONS_KEY
+  const conversationsOpen = activeKey === 'conversations'
   
   function closeModal() {
     setModalOpen(false)
@@ -22,17 +21,17 @@ export default function Sidebar({ id }) {
       <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
         <Nav variant="tabs" className="justify-content-center">
           <Nav.Item>
-            <Nav.Link eventKey={CONVERSATIONS_KEY}>聊天记录</Nav.Link>
+            <Nav.Link eventKey={'conversations'}>聊天记录</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey={CONTACTS_KEY}>联系人</Nav.Link>
+            <Nav.Link eventKey={'contacts'}>联系人</Nav.Link>
           </Nav.Item>
         </Nav> 
         <Tab.Content className="border-right overflow-auto flex-grow-1">
-          <Tab.Pane eventKey={CONVERSATIONS_KEY}>
+          <Tab.Pane eventKey={'conversations'}>
             <Conversations />
           </Tab.Pane>
-          <Tab.Pane eventKey={CONTACTS_KEY}>
+          <Tab.Pane eventKey={'contacts'}>
             <Contacts />
           </Tab.Pane>
         </Tab.Content>
