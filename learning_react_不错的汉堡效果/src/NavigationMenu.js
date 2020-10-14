@@ -14,7 +14,7 @@ function NavigationMenu({closeMenu}) {
             className="text-blue-500 py-3 border-t border-b block"
             onClick={closeMenu}
           >
-            Home
+            主页
           </Link>
         </li>
         <li>
@@ -24,7 +24,15 @@ function NavigationMenu({closeMenu}) {
             onClick={closeMenu}
 
           >
-            About
+            关于
+          </Link>
+          <Link
+            to="/content"
+            className="text-blue-500 py-3  border-b block"
+            onClick={closeMenu}
+
+          >
+            内容
           </Link>
         </li>
       </ul>

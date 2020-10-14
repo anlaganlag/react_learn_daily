@@ -44,9 +44,8 @@ p.secondTags button:nth-child(n+4){
   font-weight: bolder;
   display: none;
 }
-p button:nth-child(3){
+p button:nth-child(4){
   display: inline-block;
-  margin-right:80%;
 }
 
 

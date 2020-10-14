@@ -1,15 +1,29 @@
-// var numeral = require('numeral');
-const axios = require("axios");
-const {v4} = require("uuid");
+// // var numeral = require('numeral');
+// const axios = require("axios");
+// const {v4} = require("uuid");
 
-const l = [321,3,4,1,3,]
-console.log(l.sort(
-    (a,b)=>(b-a)
-));
-console.log(l.sort(
-    (a,b)=>(b-a)
-));
+// const l = [321,3,4,1,3,]
+// console.log(l.sort(
+//     (a,b)=>(b-a)
+// ));
+// console.log(l.sort(
+//     (a,b)=>(b-a)
+// ));
 
+// const _ = require("lodash")
+
+// console.log((_.union([1,3,4],[2,3,4])));
+function cb(){
+    console.log("first");
+}
+setTimeout(cb,300)
+
+console.log("last");
+
+// function callback() {
+//     ​console.log("I am the first")
+// }
+// ​​setTimeout(callback, 300);
 // const URL = `http://www.reddit.com/r/reactjs.json`;
 // console.log(v4(),"v1")
 
