@@ -2,6 +2,15 @@ body {
   background-color: lightyellow;
 }
 /* 更新时间 */
+ul li {
+  margin-top: .5em;
+  /* list-style: none; */
+}
+li a {
+  text-decoration:none;
+  color: green;
+  font-weight: bolder;
+}
 ul li span{
   margin-left: 1em;
   font-size: 0.4em;
