@@ -25,6 +25,10 @@ let initialKeyWordList = [
   "longreads",
 ];
 const KEY = "lsRedditKey";
+export function htmlDecode(input) {
+  var doc = new DOMParser().parseFromString(input, "text/html");
+  return doc.documentElement.textContent;
+}
 
 function Reddit({ searchTerms }) {
   const [posts, setPosts] = useState([]);
@@ -43,7 +47,7 @@ function Reddit({ searchTerms }) {
     <ul>
       {posts.map((word) => (
         <li key={word.id}>
-          <a href={word.url}>{word.title}</a>
+          <a href={word.url}>{htmlDecode(word.title)}</a>
           <span className="time">
             {"update "}
             {moment(word.created * 1000).fromNow()}

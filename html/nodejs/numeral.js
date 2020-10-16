@@ -13,13 +13,33 @@
 // const _ = require("lodash")
 
 // console.log((_.union([1,3,4],[2,3,4])));
-function cb(){
-    console.log("first");
-}
-setTimeout(cb,300)
+// function cb(){
+//     console.log("first");
+// }
+// setTimeout(cb,300)
 
-console.log("last");
+// console.log("last");
 
+const { categorize } = require("categorize");
+
+const animals = [
+  { name: "Bechbech", type: "Cat" },
+  { name: "Machmouch", type: "Cat" },
+  { name: "Spencer", type: "Dog" },
+  { name: "Tyzon", type: "Dog" },
+  { name: "Pablo", type: "Dog" },
+  { name: "Luna", type: "Dog" },
+];
+const categories = [
+  { name: "cats", filter: (animal) => animal.type === "Cat" },
+  { name: "dogs", filter: ({ type }) => type === "Dog" },
+  {
+    name: "Spencer",
+    filter: ({ type, name }) => type === "Dog" && name === "Spencer",
+  },
+];
+const animalsCategorized = categorize(animals, categories);
+console.log(animalsCategorized);
 // function callback() {
 //     ​console.log("I am the first")
 // }

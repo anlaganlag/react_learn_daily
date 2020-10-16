@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+categorize@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/categorize/-/categorize-2.0.0.tgz#5fa0746f291faf674dda08f10a6a94174344de8a"
+  integrity sha512-CmzfHJ9gsriK2jv2NAIIltPwIoq+cas4/9gSmGkoDQv50vyDuECt7e3NmC+MiiIT3M4XInbQwbOVke7UZbtmqw==
+
 lodash@^4.17.20:
   version "4.17.20"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
