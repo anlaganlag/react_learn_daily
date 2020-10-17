@@ -89,13 +89,11 @@ export default function App() {
     if (inputValue === "") {
       return;
     }
-    if (history.includes(inputValue)) {
-      alert("搜索值已经存在");
-      return;
-    }
     setSearchTerms(inputValue);
+    if (!history.includes(inputValue)){
+      setHistory([...history, inputValue]);
+    }
 
-    setHistory([...history, inputValue]);
     setInputValue("");
   };
   const handleWord = (word, e) => {
@@ -128,7 +126,7 @@ export default function App() {
           onChange={(e) => setInputValue(e.target.value)}
         />
         <button onClick={() => setEditState(() => !editState)}>
-              {editState ? "删除模式" : "搜索模式"}
+          {editState ? "删除模式" : "搜索模式"}
         </button>
         <button className="toTop" onClick={() => setonTop(!onTop)}>
           {onTop ? "关闭置顶" : "置顶标签"}
@@ -140,18 +138,17 @@ export default function App() {
             </button>
           ))}
         </p>
- 
+
         {/* <button className="toTop" onClick={() => setonTop(!onTop)}>
           {onTop ? "关闭置顶" : "开启置顶"}
         </button> */}
-          
+
         <button onClick={handleBackground} className="BackgroundToggle">
           {isDark ? "更多" : "隐藏"}
         </button>
-<div>
-
-        <p className="searchResultLabel">当前搜索关键词:{searchTerms}</p>
-</div>
+        <div>
+          <p className="searchResultLabel">当前搜索关键词:{searchTerms}</p>
+        </div>
       </form>
       <Reddit searchTerms={searchTerms} />
       <button className="toTop">
