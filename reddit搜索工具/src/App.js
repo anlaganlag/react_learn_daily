@@ -131,7 +131,7 @@ export default function App() {
         <button className="toTop" onClick={() => setonTop(!onTop)}>
           {onTop ? "关闭置顶" : "置顶标签"}
         </button>
-        <p className={isDark ? "secondTags" : ""}>
+        <p className={isDark ? "lessImportantTag" : ""}>
           {history.map((word) => (
             <button onClick={(e) => handleWord(word, e)} title={word}>
               {word}{" "}

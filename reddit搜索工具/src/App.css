@@ -48,7 +48,7 @@ p button:nth-child(n+15){
 }
 
 
-p.secondTags button:nth-child(n+4){
+p.lessImportantTag button:nth-child(n+4){
   color: green;
   font-weight: bolder;
   display: none;
