@@ -1,10 +1,8 @@
 body {
   background-color: lightyellow;
 }
-/* 更新时间 */
 ul li {
-  margin-top: .5em;
-  /* list-style: none; */
+  margin-top: .3em;
 }
 li a {
   text-decoration:none;
@@ -36,7 +34,6 @@ p button{
 p button:nth-child(n+4){
   color: blue;
   opacity: 25%;
-  display: inline;
   font-size: .6em;
   border-radius: .5em;
 
@@ -53,26 +50,9 @@ p.lessImportantTag button:nth-child(n+4){
   font-weight: bolder;
   display: none;
 }
-p button:nth-child(4){
-  display: inline-block;
-}
 
 
-p div button{
-  border-radius: 70%;
-  float: left;
-  margin: auto;
-  width: 10vw;
-  color:black;
-  opacity: 100%;
-  font-weight: bolder;
-  margin-top: 1em;
-}
 
-.searchResultLabel{
-  display: block;
-  margin: auto;
-}
 
 
 

@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  margin-bottom: .5rem;
+}
+
+.input {
+  border: 1px solid #333;
+  border-radius: .3em;
+  padding: .7rem;
+  border-radius: .8em;
+
+  width: 11em;
+}
+
+select {
+  font-size:100%;
+  background-color: #fafafa;
+  padding-left: 1rem;
+  height: 40px;
+  width: 50%;
+  border-radius: .8em;
+
+
+}
+
+.equals {
+  font-weight: bold;
+  font-size: 1rem;
+}

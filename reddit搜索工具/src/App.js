@@ -57,24 +57,24 @@ function Reddit({ searchTerms }) {
     </ul>
   );
 }
-// 4. Pass "reactjs" as a prop:
 
 export default function App() {
-  // 2 pieces of state: one to hold the input value,
-  // another to hold the current searchTerms.
+  //输入的数值
   const [inputValue, setInputValue] = useState("");
+  //搜索词
   const [searchTerms, setSearchTerms] = useState("reactjs");
   const [history, setHistory] = useState(initialKeyWordList);
-  const [isDark, setisDark] = useState(true);
-  const [editState, setEditState] = useState(false);
+  //隐藏不重要的搜索记录
+  const [isHided, setisHided] = useState(true);
+  //是否可以删除或者置顶
+  const [delState, setEditState] = useState(false);
   const [onTop, setonTop] = useState(false);
   //coding technology software cscareerquestions
   // Update the searchTerms when the user presses enter
   useEffect(() => {
     const keyWordJson = localStorage.getItem(KEY);
     if (keyWordJson) {
-      const obj = JSON.parse(keyWordJson);
-      setHistory(obj);
+      setHistory(JSON.parse(keyWordJson));
     }
   }, []);
 
@@ -98,9 +98,9 @@ export default function App() {
   };
   const handleWord = (word, e) => {
     //删除该按钮
-    if (editState) {
+    if (delState) {
       setHistory((history) => history.filter((h) => h !== word));
-      // setEditState(() => !editState);
+      // setEditState(() => !delState);
       return;
     } else if (onTop) {
       const topItem = e.target.textContent.trim();
@@ -110,14 +110,14 @@ export default function App() {
     setSearchTerms(e.target.textContent.trim());
   };
   const handleBackground = () => {
-    setisDark(() => !isDark);
+    setisHided(() => !isHided);
   };
   console.log(history);
-  console.log(isDark);
+  console.log(isHided);
 
   return (
     <>
-      <h1>Reddit贴吧(去广告版)</h1>
+      <h1>Reddit贴吧</h1>
       <form onSubmit={handleSubmit}>
         <label for="searchTerm">🔎 </label>
         <input
@@ -125,13 +125,13 @@ export default function App() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
-        <button onClick={() => setEditState(() => !editState)}>
-          {editState ? "删除模式" : "搜索模式"}
+        <button onClick={() => setEditState(() => !delState)}>
+          {delState ? "删除模式" : "搜索模式"}
         </button>
         <button className="toTop" onClick={() => setonTop(!onTop)}>
           {onTop ? "关闭置顶" : "置顶标签"}
         </button>
-        <p className={isDark ? "lessImportantTag" : ""}>
+        <p className={isHided ? "lessImportantTag" : ""}>
           {history.map((word) => (
             <button onClick={(e) => handleWord(word, e)} title={word}>
               {word}{" "}
@@ -144,7 +144,7 @@ export default function App() {
         </button> */}
 
         <button onClick={handleBackground} className="BackgroundToggle">
-          {isDark ? "更多" : "隐藏"}
+          {isHided ? "更多" : "隐藏"}
         </button>
         <div>
           <p className="searchResultLabel">当前搜索关键词:{searchTerms}</p>
