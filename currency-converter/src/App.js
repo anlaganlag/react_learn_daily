@@ -6,15 +6,16 @@ const BASE_URL = 'https://api.exchangeratesapi.io/latest'
 
 function App() {
   const [currencyOptions, setCurrencyOptions] = useState([])//所有可選貨幣選項
-  const [fromCurrency, setFromCurrency] = useState()//初始貨幣(from)
-  const [toCurrency, setToCurrency] = useState()//兌換貨幣(to)
-  const [exchangeRate, setExchangeRate] = useState()//兌換匯率
+  const [fromCurrency, setFromCurrency] = useState("AUD")//初始貨幣(from)
+  const [toCurrency, setToCurrency] = useState("CNY")//兌換貨幣(to)
+  const [exchangeRate, setExchangeRate] = useState(1)//兌換匯率
   const [amount, setAmount] = useState(1)//金額
-  const [amountInFromCurrency, setAmountInFromCurrency] = useState(true)
   //true就是從from =>to方向, false就是 to => from方向..即是正向還是反向
+  const [amountInFromCurrency, setAmountInFromCurrency] = useState(true)
   const [updateDate, setUpdateDate] = useState('')
 
   let toAmount, fromAmount
+
   if (amountInFromCurrency) {//如設定了是從from -> to的方向...
     fromAmount = amount
     toAmount = amount * exchangeRate
@@ -28,14 +29,13 @@ function App() {
     fetch(BASE_URL)
       .then(res => res.json())
       .then(data => {
-        const exchangeCurrency = Object.keys(data.rates)[22]//兌換貨幣(to)(API中22是RMB 25USA)
-        setToCurrency(exchangeCurrency)
+        // const exchangeCurrency = Object.keys(data.rates)[22]//兌換貨幣(to)(API中22是RMB 25USA)
+        // setToCurrency(exchangeCurrency)
         console.log(data)
-        let updateDate = data.date
-        setUpdateDate (updateDate)
+        setUpdateDate ( data.date)
         setCurrencyOptions([ ...Object.keys(data.rates)]) //初始貨幣選項
-        setFromCurrency("USD")//基準貨幣寫死USD,可選CNY
-        setExchangeRate(data.rates[exchangeCurrency])
+        // setFromCurrency("USD")//基準貨幣寫死USD,可選CNY
+        // setExchangeRate(data.rates[exchangeCurrency])
       })
   }, [])
 
@@ -48,11 +48,20 @@ function App() {
   }, [fromCurrency, toCurrency])
 
   function handleFromAmountChange(e) {
+    if (e.target.value<0){
+      console.log("请输入大于0的数")
+      return
+    }
+
     setAmount(e.target.value)
     setAmountInFromCurrency(true)
   }
 
   function handleToAmountChange(e) {
+    if (e.target.value<0){
+      console.log("请输入大于0的数")
+      return
+    }
     setAmount(e.target.value)
     setAmountInFromCurrency(false)
   }
@@ -61,7 +70,7 @@ function App() {
   return (
     <>
       <h1>實時匯率</h1>
-      <a href='https://api.exchangeratesapi.io/latest'>{updateDate ? "更新日期:"+updateDate :'無法連接網絡錯誤'} </a>
+      <a href='https://api.exchangeratesapi.io/latest'>{updateDate ? "更新日期:"+updateDate :'網絡錯誤获无法取数据'} </a>
 
       <CurrencyRow
         currencyOptions={currencyOptions}
