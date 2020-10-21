@@ -6,9 +6,10 @@ const Header = () => (
   <div className="rmdb-header">
     <div className="rmdb-header-content">
       <Link to="/">
-        <img className="rmdb-logo" src="https://img3.doubanio.com/f/biz/babd31b931ca9686a21a65befb6df0b52e15c3f9/pics/biz/activity/photograph/winter-2016/logo.png" alt="rmdb-logo" />
+      <img className="rmdb-logo" src="https://s1.ax1x.com/2020/10/21/B9H59J.png" alt="rmdb-logo" />
+
       </Link>
-      <img className="rmdb-tmdb-logo" src="https://www.douyudy.com/template/skin1/asset/img/logo_golden.png" size="70%" alt="tmdb-logo" />
+      <img className="rmdb-tmdb-logo" src="1.jpg" size="70%" alt="tmdb-logo" />
     </div>
   </div>
 )
