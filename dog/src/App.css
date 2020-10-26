@@ -1,0 +1,25 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-flow: column,wrap;
+  
+
+  height: 50vh;
+  flex:0 0 20px;
+}
+
+h1{
+  display: block;
+  text-align: center;
+
+}
+
+
+
+
+button {
+  text-align: center;
+  /* margin: auto; */
+  margin-left: 50%;
+
+}

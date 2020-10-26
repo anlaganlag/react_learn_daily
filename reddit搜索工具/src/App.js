@@ -23,6 +23,8 @@ export function htmlDecode(input) {
 
 function Reddit({ searchTerms }) {
   const [posts, setPosts] = useState([]);
+  const [error, seterror] = useState(null)
+
   useEffect(() => {
     // Fetch the data when the component mounts
     fetch(`https://www.reddit.com/r/${searchTerms}.json`)
@@ -31,10 +33,16 @@ function Reddit({ searchTerms }) {
         // Save the posts into state
         setPosts(json.data.children.map((c) => c.data))
       )
-      .catch((e) => alert(e));
+      .catch((e) => {
+        console.error(e);
+        seterror(e)
+      })
   }, [searchTerms, setPosts]);
 
   return (
+    <>
+          {error&&<p>出错了{error};</p>}
+
     <ul>
       {posts.map((word) => (
         <li key={word.id}>
@@ -46,6 +54,7 @@ function Reddit({ searchTerms }) {
         </li>
       ))}
     </ul>
+    </>
   );
 }
 
