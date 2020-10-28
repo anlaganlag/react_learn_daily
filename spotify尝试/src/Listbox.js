@@ -1,23 +1,23 @@
 import React from 'react';
 
-const Listbox = props => {
+const Listbox =({items,clicked}) => {
 
-    const clicked = e => {
+    const handleClick = e => {
         e.preventDefault();
-        props.clicked(e.target.id);
+        clicked(e.target.id);
     }    
 
     return (
         <div className="col-sm-6 px-0">
             <div className="list-group">
                 {
-                    props.items.map((item, idx) => 
+                    items.map((item, idx) => 
                     <button key={idx}
-                        onClick={clicked}
+                        onClick={handleClick}
                         className="list-group-item list-group-item-action list-group-item-light"
                         id={item.track.id}>
                             
-                            {item.track.name}
+                           专辑: {item.track.name}
                     </button>)
                 }
             </div>

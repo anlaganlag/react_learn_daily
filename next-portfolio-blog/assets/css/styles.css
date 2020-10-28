@@ -1,0 +1,21 @@
+html {
+  font-family: 'Poppins', sans-serif;
+}
+
+.ReactModal__Overlay {
+  z-index: 100;
+  opacity: 0;
+  transition: all 350ms ease-in-out;
+  transform-origin: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}

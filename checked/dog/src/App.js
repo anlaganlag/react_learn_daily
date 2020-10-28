@@ -13,6 +13,8 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setData(data.message);
+        // 即获取到数据等一秒再set,即等载入图片的时间
+        // 否则文字出了图片还要等一会
         setTimeout(()=>{
           setBreed(data.message.split("/")[4])
           setLoading(false)

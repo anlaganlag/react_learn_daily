@@ -4,18 +4,12 @@ import Listbox from './Listbox';
 import Detail from './Detail';
 import { Credentials } from './Credentials';
 import axios from 'axios';
+import "./App.css";
 
 const App = () => {
+  const {ClientId,ClientSecret} = Credentials();  
+  console.log('开始渲染AppJs');
 
-  const spotify = Credentials();  
-
-  console.log('RENDERING APP.JS');
-
-  const data = [
-    {value: 1, name: 'A'},
-    {value: 2, name: 'B'},
-    {value: 3, name: 'C'},
-  ]; 
 
   const [token, setToken] = useState('');  
   const [genres, setGenres] = useState({selectedGenre: '', listOfGenresFromAPI: []});
@@ -28,12 +22,13 @@ const App = () => {
     axios('https://accounts.spotify.com/api/token', {
       headers: {
         'Content-Type' : 'application/x-www-form-urlencoded',
-        'Authorization' : 'Basic ' + btoa(spotify.ClientId + ':' + spotify.ClientSecret)      
+        'Authorization' : 'Basic ' + btoa(ClientId + ':' + ClientSecret)      
       },
       data: 'grant_type=client_credentials',
       method: 'POST'
     })
     .then(tokenResponse => {      
+      console.log("token",tokenResponse);
       setToken(tokenResponse.data.access_token);
 
       axios('https://api.spotify.com/v1/browse/categories?locale=sv_US', {
@@ -41,6 +36,7 @@ const App = () => {
         headers: { 'Authorization' : 'Bearer ' + tokenResponse.data.access_token}
       })
       .then (genreResponse => {        
+        console.log("类别",genreResponse);
         setGenres({
           selectedGenre: genres.selectedGenre,
           listOfGenresFromAPI: genreResponse.data.categories.items
@@ -49,7 +45,7 @@ const App = () => {
       
     });
 
-  }, [genres.selectedGenre, spotify.ClientId, spotify.ClientSecret]); 
+  }, [genres.selectedGenre, ClientId, ClientSecret]); 
 
   const genreChanged = val => {
     setGenres({
@@ -57,7 +53,7 @@ const App = () => {
       listOfGenresFromAPI: genres.listOfGenresFromAPI
     });
 
-    axios(`https://api.spotify.com/v1/browse/categories/${val}/playlists?limit=10`, {
+    axios(`https://api.spotify.com/v1/browse/categories/${val}/playlists?limit=30`, {
       method: 'GET',
       headers: { 'Authorization' : 'Bearer ' + token}
     })
@@ -82,7 +78,7 @@ const App = () => {
   const buttonClicked = e => {
     e.preventDefault();
 
-    axios(`https://api.spotify.com/v1/playlists/${playlist.selectedPlaylist}/tracks?limit=10`, {
+    axios(`https://api.spotify.com/v1/playlists/${playlist.selectedPlaylist}/tracks?limit=15`, {
       method: 'GET',
       headers: {
         'Authorization' : 'Bearer ' + token
@@ -113,12 +109,13 @@ const App = () => {
 
   return (
     <div className="container">
+      <h1>听歌应用</h1>
       <form onSubmit={buttonClicked}>        
-          <Dropdown label="Genre :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={genreChanged} />
-          <Dropdown label="Playlist :" options={playlist.listOfPlaylistFromAPI} selectedValue={playlist.selectedPlaylist} changed={playlistChanged} />
+          <Dropdown label="类别 :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={genreChanged} />
+          <Dropdown label="专辑列表:"  options={playlist.listOfPlaylistFromAPI} selectedValue={playlist.selectedPlaylist} changed={playlistChanged} />
           <div className="col-sm-6 row form-group px-0">
             <button type='submit' className="btn btn-success col-sm-12">
-              Search
+              搜索
             </button>
           </div>
           <div className="row">
