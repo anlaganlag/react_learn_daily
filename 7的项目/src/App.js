@@ -30,7 +30,7 @@ let sevens = [
 ];
 
 function Counter() {
-  const { input, flag } = useContext(c);
+  const { randomNum, flag } = useContext(c);
   const getBase = (n) => {
     const b = Math.floor(n / 70) * 70;
     return [b, n - b];
@@ -42,11 +42,11 @@ function Counter() {
   const getL = (n) => (n % 10) * 2;
   const getClose = (n) => [Math.floor(n / 7) * 7, Math.floor(n / 7) * 7 + 7];
   const res = (n) => Math.abs(getR(n) - getL(n));
-  const [x, y] = getBase(input);
-  const [c1, c2] = getClose(input);
+  const [x, y] = getBase(randomNum);
+  const [c1, c2] = getClose(randomNum);
 
-  console.log(input, flag);
-  console.log(res(input));
+  console.log(randomNum, flag);
+  console.log(res(randomNum));
   return (
     <>
       {/* {flag?<p>{`${input / 7}*7=${input}是7的倍数由{${input/7}}获得`}</p>:""} */}
@@ -58,15 +58,15 @@ function Counter() {
       {/* <span>个位数:{getL(input)}</span>{ */}
       {flag > 0 && (
         <p className="successMsg">
-          {res(input)}&nbsp; &nbsp;{x}+{y}
+          {res(randomNum)}&nbsp; &nbsp;{x}+{y}
         </p>
       )}
 
       {!flag && (
         <p className="errorMsg">
-          <p>{res(input)}&nbsp; </p>
-          {c1} &nbsp; {x}+{y - input + c1} &nbsp;&nbsp;{c2} &nbsp;{x}+
-          {y + c2 - input}{" "}
+          <p>{res(randomNum)}&nbsp; </p>
+          {c1} &nbsp; {x}+{y - randomNum + c1} &nbsp;&nbsp;{c2} &nbsp;{x}+
+          {y + c2 - randomNum}{" "}
         </p>
       )}
       {/* {flag&&<p>{input/7}/143</p>} */}
@@ -79,6 +79,7 @@ export default function App() {
   const [flag, setflag] = useState(true);
   const [records, setRecords] = useState(initState);
   const [isMsg, setIsMsg] = useState(false);
+  const [randomNum, setRandomNum] = useState(0);
 
   const inputRef = useRef();
 
@@ -91,22 +92,22 @@ export default function App() {
       setRecords(JSON.parse(keyWordJson1));
     }
     if (keyWordJson2) {
-      setInput(JSON.parse(keyWordJson2));
+      setRandomNum(JSON.parse(keyWordJson2));
       if (JSON.parse(keyWordJson2) % 7 === 0) setflag(true);
     }
   }, []);
 
   useEffect(() => {
     localStorage.setItem(KEY1, JSON.stringify(initState));
-    localStorage.setItem(KEY2, JSON.stringify(input));
-  }, [records, input]);
+    localStorage.setItem(KEY2, JSON.stringify(randomNum));
+  }, [records, randomNum]);
   function handleInput(e) {
     setflag(false);
     if (!e.target.value) setflag(false);
     if (isNaN(e.target.value)) return;
     console.log(e.target.value);
     if (e.target.value && e.target.value % 7 === 0) setflag(true);
-    setInput(e.target.value);
+    setRandomNum(e.target.value);
   }
   // function handleRecords(e){
   //   setRecords(e.target.value)
@@ -115,16 +116,17 @@ export default function App() {
     if (!e.target.textContent) return;
     if (e.target.textContent % 7 === 0) setflag(true);
 
-    setInput(e.target.textContent);
+    setRandomNum(e.target.textContent);
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input === "") {
+    if (randomNum === "") {
       return;
     }
-    if (!records.includes(input)) {
-      setRecords([...records, input]);
+    if (!records.includes(randomNum)) {
+      setRecords([...records, randomNum]);
     }
+    setRandomNum(Math.floor(Math.random() * 100)-1)
     inputRef.current.focus();
   };
 
@@ -148,14 +150,14 @@ export default function App() {
       <form onSubmit={handleSubmit}>
         <input
           type={Number}
-          value={input}
+          value={randomNum}
           onChange={handleInput}
           ref={inputRef}
         />
       </form>
-      <button onClick={() => setInput(-7 + parseInt(input))}>-</button>
-      <button onClick={() => setInput(7 + parseInt(input))}>+</button>
-      <c.Provider value={{ input, flag }}>
+      <button onClick={() => setRandomNum(-7 + parseInt(input))}>-</button>
+      <button onClick={() => setRandomNum(7 + parseInt(input))}>+</button>
+      <c.Provider value={{ randomNum, flag }}>
         <Counter />
       </c.Provider>
 
@@ -174,11 +176,18 @@ export default function App() {
         </button>
         <button onClick={() => setRecords(initState)}>读取</button>
       </div>
+      <button
+        onClick={() =>
+          setTimeout(setRandomNum(Math.floor(Math.random() * 100)), 3000)
+        }
+      >
+        {randomNum}
+      </button>
       <div>
         {isMsg && <p>已经保存</p>}
         {records.map((record) => (
           <button onClick={(e) => handleWord(e)} title={record}>
-            {record}
+            {record?record:0}
           </button>
         ))}
       </div>
