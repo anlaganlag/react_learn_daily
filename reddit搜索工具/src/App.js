@@ -14,6 +14,7 @@ let initialKeyWordList = [
   "usnews",
   "geopolitics",
   "longreads",
+  "MapPorn",
 ];
 const KEY = "lsRedditKey";
 export function htmlDecode(input) {
