@@ -1,47 +1,46 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { lists } from "./animal";
 
-// lists.forEach(
-//   function(item, idx) {
-//     item["name"] =idx**2
-//   },
-// );
 
-console.log(lists,"iiiiiiiiiiiiii");
+
+console.log(lists,"查看全部列表");
 
 export default function App() {
-  const [page, setPage] = useState(3)
-  const [curList, setcurList] = useState(lists.slice(0,3))
+  const [page, setPage] = useState(Math.ceil(Math.random()*1157))
+  const [curList, setcurList] = useState(lists.slice(page-1,page+2))
   // const [submitPage, setsubmitPage] = useState(3)
-  function handleAdd (){
-    setPage(page+3);
-    setcurList(lists.slice(page-3,page))
-  }
+
   function handleSubmit(e){
     e.preventDefault()
-    console.log("page",page);
-    setcurList(lists.slice(page-3,page))
-    console.log("提交");
+    setcurList(lists.slice(parseInt(page)-1,parseInt(page)+2))
+    console.log("当前列表",curList,"提交");
 
   }
   function handleInput(e) {
+    if (e.target.value==="")
+      setPage(1) 
     if (isNaN(e.target.value)) return;
     setPage(e.target.value);
   }
+  useEffect(() => {
+    console.log("cur",page);
+  }, [page])
 
-  console.log(curList);
   return (
     <>
-      <button onClick={handleAdd}>add</button>
       <form onSubmit={handleSubmit}>
         <input type={Number} value={page}   onChange={handleInput}
 placeholder="输入页码" />
+{page>0&&<p>{page}/{lists.length}</p>}
       </form>
       {curList.map((item, idx) => {
         return (
           <div>
 
-        <p> {item.title} ({item.animal})</p>
+        <span> 
+        ({item.animal})
+          {item.title} 
+        </span>
         <img src={item.cover_src} />
           </div>
           )
