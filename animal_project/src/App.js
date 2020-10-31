@@ -6,13 +6,13 @@ import Grid from "./Grid";
 console.log(lists, "查看全部列表");
 
 export default function App() {
-  const [page, setPage] = useState(Math.ceil(Math.random() * 1157));
-  const [curList, setcurList] = useState(lists.slice(page - 1, page + 2));
+  const [page, setPage] = useState(Math.ceil(Math.random() * 58));
+  const [curList, setcurList] = useState(lists.slice(20*(page - 1), page*20));
   // const [submitPage, setsubmitPage] = useState(3)
 
   function handleSubmit(e) {
     e.preventDefault();
-    setcurList(lists.slice(parseInt(page) - 1, parseInt(page) + 2));
+    setcurList(lists.slice(20*(parseInt(page) - 1), parseInt(page)*20));
     console.log("当前列表", curList, "提交");
   }
   function handleInput(e) {
@@ -35,7 +35,7 @@ export default function App() {
         />
       </form>
 
-      <Grid header={page > 0 ? `${page}/${lists.length}` : "动物世界"}>
+      <Grid header={page > 0 ? `页码${page}/${Math.ceil(lists.length/20)}` : "动物世界"}>
         {curList.map((item, idx) => (
           <div className="Thumb">
             <Text>
