@@ -52,7 +52,7 @@ export const Text = styled.div`
 h5{
   display:absolute;
 
-  font-size: var(--fontSmall);
+  font-size: .7em;
   text-align:center;
 
   margin:0;
@@ -63,11 +63,11 @@ h5{
   }
 
    small {
-    font-size: var(--fontSuperSmall);
+    font-size: 0.5em;
     text-align:center;
-    opacity:0.45;
+    opacity:0.6;
     display:block;
-    color:red;
+    color:green;
 
 
 
