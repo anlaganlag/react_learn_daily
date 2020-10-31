@@ -48,25 +48,34 @@ export default function App() {
       >
         {curList.map((item, idx) => (
           <div className="Thumb">
+            <a href={item.link} target="_blank">
             <Text>
               <small>{item.animal}</small>
             </Text>
+
             <Image src={item.cover_src} alt="动物图片" />
             <Text>
+
               <h5>{item.title}</h5>
+
             </Text>
+            </a>
           </div>
         ))}
       </Grid>
+{      page>0 &&
       <form onSubmit={handleSubmit}>
         <input
           type={Number}
           value={page}
           onChange={handleInput}
           placeholder="输入页码"
-        />
-      </form>
-      <h4>{page > 0 && `页码 ${page}/${Math.ceil(lists.length / perPage)}`}</h4>
+          />
+          <label>
+          {`页码 ${page}/${Math.ceil(lists.length / perPage)}`}
+  
+          </label>
+      </form>}
     </>
   );
 }

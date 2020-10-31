@@ -14,6 +14,14 @@ export const Wrapper = styled.div`
       font-size: var(--fontBig);
     }
   }
+
+  a {
+    text-decoration: none;
+
+    @media screen and (max-width: 768px) {
+      font-size: var(--fontBig);
+    }
+  }
 `;
 
 export const Content = styled.div`
