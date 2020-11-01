@@ -22,6 +22,9 @@ export const Wrapper = styled.div`
       font-size: var(--fontBig);
     }
   }
+  a:visited {
+      color:red
+  }
 `;
 
 export const Content = styled.div`

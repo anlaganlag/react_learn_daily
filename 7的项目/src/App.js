@@ -5,29 +5,13 @@ import React, {
   useEffect,
   useRef,
 } from "react";
+import {sevens} from './data'
 import "./App.css";
 const c = createContext();
 const KEY1 = "项目7";
 const KEY2 = "项目7Input";
 const ori = [];
 let initState = [];
-let sevens = [
-  7,
-  70,
-  140,
-  210,
-  280,
-  350,
-  420,
-  490,
-  560,
-  630,
-  700,
-  770,
-  840,
-  910,
-  980,
-];
 
 function Counter() {
   const { randomNum, flag } = useContext(c);
@@ -36,8 +20,6 @@ function Counter() {
     return [b, n - b];
   };
 
-  const getH = (n) => Math.floor(n / 100);
-  const getT = (n) => Math.floor((n % 100) / 10);
   const getR = (n) => (n - (n % 10)) / 10;
   const getL = (n) => (n % 10) * 2;
   const getClose = (n) => [Math.floor(n / 7) * 7, Math.floor(n / 7) * 7 + 7];
@@ -45,22 +27,16 @@ function Counter() {
   const [x, y] = getBase(randomNum);
   const [c1, c2] = getClose(randomNum);
 
-  console.log(randomNum, flag);
-  console.log(res(randomNum));
   return (
     <>
-      {/* {flag?<p>{`${input / 7}*7=${input}是7的倍数由{${input/7}}获得`}</p>:""} */}
-      {/* <p>百位数:{getH(input)}</p>
-      <p>十位数:{getT(input)}</p> */}
-
-      {/* <span>高位:{getR(input)}</span> */}
-
-      {/* <span>个位数:{getL(input)}</span>{ */}
+    {/* 成功的方块信息 */}
       {flag > 0 && (
         <p className="successMsg">
           {res(randomNum)}&nbsp; &nbsp;{x}+{y}
         </p>
       )}
+
+      {/* 失败的方块信息 */}
 
       {!flag && (
         <p className="errorMsg">
@@ -69,13 +45,11 @@ function Counter() {
           {y + c2 - randomNum}{" "}
         </p>
       )}
-      {/* {flag&&<p>{input/7}/143</p>} */}
     </>
   );
 }
 
 export default function App() {
-  const [input, setInput] = useState(7);
   const [flag, setflag] = useState(true);
   const [records, setRecords] = useState(initState);
   const [isMsg, setIsMsg] = useState(false);
@@ -155,8 +129,8 @@ export default function App() {
           ref={inputRef}
         />
       </form>
-      <button onClick={() => setRandomNum(-7 + parseInt(input))}>-</button>
-      <button onClick={() => setRandomNum(7 + parseInt(input))}>+</button>
+      <button onClick={() => setRandomNum(-7 + parseInt(randomNum))}>-</button>
+      <button onClick={() => setRandomNum(7 + parseInt(randomNum))}>+</button>
       <c.Provider value={{ randomNum, flag }}>
         <Counter />
       </c.Provider>
