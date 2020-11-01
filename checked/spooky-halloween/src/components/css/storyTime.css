@@ -1,0 +1,58 @@
+.StoryTime {
+    padding: 50px 20px 0px 20px;
+    display: flex;
+    color: orange;
+    line-height: 1.5;
+    overflow: hidden;
+    height: 100%;
+
+}
+.InputsHere {
+    overflow-y: overlay;
+    overflow-x: auto;
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    padding: 50PX;
+}
+.InputsHere button {
+    margin-left: auto;
+}
+.InputsHere input {
+    background-color: black;
+    color: greenyellow;
+    border: none;
+    border-bottom: solid orange 1px;
+    flex: 1;
+    font-family: 'Indie Flower';
+    font-size: x-large;
+}
+.InputsHere input:focus {
+    outline: none;
+}
+.WordRow {
+    display: flex;
+    white-space: nowrap;
+}
+.WordRow span {
+    min-width: fit-content;
+}
+.InputsHere div:first-of-type {
+    font-size: larger;
+}
+.StoryHere {
+    flex: 5 1 0;
+    padding: 5px;
+}
+.StoryHere div:first-of-type {
+    font-size: larger;
+}
+.StoryHere div:last-of-type {
+
+}
+mark {
+    background-color: inherit;
+    color: greenyellow;
+    font-size: x-large;
+    font-family: 'Indie Flower';
+}
