@@ -21,8 +21,7 @@ body {
   padding: 10px;
   max-height: 85px;
   display: flex;
-  color: red;
-  text-transform:capitalize ;
+  color: orange;
 }
 
 .App-Navigation {

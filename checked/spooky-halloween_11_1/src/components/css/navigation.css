@@ -1,0 +1,51 @@
+.Navigation {
+  display: flex;
+}
+
+.Navigation-Option {
+  border-bottom: 1px solid orange;
+  padding: 5px;
+  font-size: 26px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.Navigation-Option:hover {
+  animation:  shake 0.25s infinite; 
+}
+
+@keyframes shake{ 
+  0%{ 
+    transform: translate(0, 0);
+  } 
+  10%{ 
+    transform: translate(0, 2px);
+  } 
+  20%{ 
+    transform: translate(2px, 2px); 
+  } 
+  30%{ 
+    transform: translate(-2px, -2px); 
+  } 
+  40%{ 
+    transform: translate(0, 2px); 
+  } 
+  50%{ 
+    transform: translate(2px, -2px); 
+  } 
+  60%{ 
+    transform: translate(-2px, 2px); 
+  } 
+  70%{ 
+    transform: translate(-2px, 0); 
+  } 
+  80%{ 
+    transform: translate(0, -2px); 
+  } 
+  90%{ 
+    transform: translate(2px, 0); 
+  } 
+  100%{ 
+    transform: translate(2px, -2px); 
+  } 
+} 

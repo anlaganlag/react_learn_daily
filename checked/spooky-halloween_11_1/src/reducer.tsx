@@ -1,8 +1,7 @@
 export const initialState = {
-  currentPage: 'nofap',
+  currentPage: '来创作个故事',
 }
 
-export const keyWord = 'views'
 export type State = typeof initialState
 
 export type Action = { type: 'SET_CURRENT_PAGE'; payload: string}

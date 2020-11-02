@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
-  overflow: auto;
+  overflow: overlay;
   width: 100%;
 }
 h1 {
@@ -19,11 +19,11 @@ h1 {
 
 .Scare-Me img {
   cursor: pointer;
-  margin-bottom: 1.5em;
 
 }
 .Scare-Me span.created {
   color: green;
+  opacity: .7;
   font-size: .7em;  
 
 }
