@@ -10,7 +10,6 @@ import "./App.css";
 const c = createContext();
 const KEY1 = "项目7";
 const KEY2 = "项目7Input";
-const ori = [];
 let initState = [];
 
 function Counter() {
@@ -20,7 +19,7 @@ function Counter() {
     return [b, n - b];
   };
 
-  const getR = (n) => (n - (n % 10)) / 10;
+  const getR = (n) => Math.ceil(n  / 10)
   const getL = (n) => (n % 10) * 2;
   const getClose = (n) => [Math.floor(n / 7) * 7, Math.floor(n / 7) * 7 + 7];
   const res = (n) => Math.abs(getR(n) - getL(n));
@@ -50,15 +49,15 @@ function Counter() {
 }
 
 export default function App() {
-  const [flag, setflag] = useState(true);
+  const [flag, setFlag] = useState(true);
   const [records, setRecords] = useState(initState);
   const [isMsg, setIsMsg] = useState(false);
   const [randomNum, setRandomNum] = useState(0);
-
+//確保 submit完畢後,focus在input裏面
   const inputRef = useRef();
 
   useEffect(() => {
-    setflag(false);
+    setFlag(false);
 
     const keyWordJson1 = localStorage.getItem(KEY1);
     const keyWordJson2 = localStorage.getItem(KEY2);
@@ -67,7 +66,7 @@ export default function App() {
     }
     if (keyWordJson2) {
       setRandomNum(JSON.parse(keyWordJson2));
-      if (JSON.parse(keyWordJson2) % 7 === 0) setflag(true);
+      if (JSON.parse(keyWordJson2) % 7 === 0) setFlag(true);
     }
   }, []);
 
@@ -76,19 +75,16 @@ export default function App() {
     localStorage.setItem(KEY2, JSON.stringify(randomNum));
   }, [records, randomNum]);
   function handleInput(e) {
-    setflag(false);
-    if (!e.target.value) setflag(false);
+    setFlag(false);
+    if (!e.target.value) setFlag(false);
     if (isNaN(e.target.value)) return;
     console.log(e.target.value);
-    if (e.target.value && e.target.value % 7 === 0) setflag(true);
+    if (e.target.value && e.target.value % 7 === 0) setFlag(true);
     setRandomNum(e.target.value);
   }
-  // function handleRecords(e){
-  //   setRecords(e.target.value)
-  // }
   function handleWord(e) {
     if (!e.target.textContent) return;
-    if (e.target.textContent % 7 === 0) setflag(true);
+    if (e.target.textContent % 7 === 0) setFlag(true);
 
     setRandomNum(e.target.textContent);
   }
@@ -115,7 +111,7 @@ export default function App() {
       </button>
       <button
         onClick={() => {
-          setRecords(ori);
+          setRecords([]);
         }}
       >
         清空数据
@@ -135,7 +131,6 @@ export default function App() {
         <Counter />
       </c.Provider>
 
-      {/* <input  type={Number} value={input} onChange={e=>setInput(e.target.value)}/> */}
       <div>
         <button
           onClick={() => {
