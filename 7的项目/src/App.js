@@ -96,7 +96,7 @@ export default function App() {
     if (!records.includes(randomNum)) {
       setRecords([...records, randomNum]);
     }
-    setRandomNum(Math.floor(Math.random() * 100)-1)
+    setRandomNum(Math.floor(Math.random() * 100)+1)
     inputRef.current.focus();
   };
 

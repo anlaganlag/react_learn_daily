@@ -1,0 +1,34 @@
+.media {
+  float: left;
+  margin: 0 1.5em 1.5em 0;
+  width: calc(50% - 1.5em);
+  padding: 1.5em;
+  background-color: #eee;
+  border-radius: 0.5em;
+}
+.media:nth-child(odd) {
+  clear: left;
+}
+.media-image {
+  float: left;
+  margin-right: 1.5em;
+  max-width: 60px;
+}
+
+.media-body {
+  overflow: auto;
+  margin-top: 0;
+}
+
+.media-body h4 {
+  margin-top: 0;
+}
+
+.clearfix::before,
+.clearfix::after {
+display: table;
+content: " ";
+}
+.clearfix::after {
+clear: both;
+}
