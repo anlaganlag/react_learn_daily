@@ -1,0 +1,13 @@
+.container{
+  border: 3px solid blue;
+  /* overflow: auto; */
+  /* position: fixed; */
+  /* display: inline-block; */
+  /* float: left; */
+  display: flow-root;
+}
+
+.box{
+  background-color: #bfa;
+  float: left;
+}
