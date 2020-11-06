@@ -45,9 +45,9 @@ function Reddit({ searchTerms }) {
           {error&&<p>出错了{error};</p>}
 
     <ul>
-      {posts.map((word) => (
+      {posts.map((word,idx) => (
         <li key={word.id}>
-          <a href={word.url}>{htmlDecode(word.title)}</a>
+          <a href={word.url}>{idx+1} .&nbsp;{htmlDecode(word.title)}</a>
           <span className="time">
             {"update "}
             {moment(word.created * 1000).fromNow()}

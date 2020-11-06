@@ -70,3 +70,10 @@ button.toTop{
   opacity: 100%;
   
 }
+a:visited{
+  color: purple;
+}
+
+a:hover{
+  color: black;
+}
