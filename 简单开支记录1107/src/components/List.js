@@ -10,7 +10,7 @@ export default function List() {
       {state.expenses.map((item) => {
         return (
           <ListGroupItem key={item.id}>
-            {item.name} - $ {item.amount}
+            {item.name} -  {item.amount}元
           </ListGroupItem>
         );
       })}

@@ -6,15 +6,7 @@ let initialKeyWordList = [
   "learnjavascript",
   "reactJS",
   "javascript",
-  "programming",
-  "learnprogramming",
-  "computerscience",
-  "economy",
-  "economics",
-  "usnews",
-  "geopolitics",
-  "longreads",
-  "MapPorn",
+  "vuejs",
 ];
 const KEY = "lsRedditKey";
 export function htmlDecode(input) {

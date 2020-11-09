@@ -6,7 +6,7 @@ const initialState = {
   expenses: [
     {
       id: uuid(),
-      name: "Buy Milk",
+      name: "学习SQL",
       amount: 10,
     },
   ],
@@ -25,12 +25,12 @@ const reducer = (state, action) => {
   }
 };
 
-export const ExpenseContextProvider = (props) => {
+export const ExpenseContextProvider = ({children}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <ExpenseContext.Provider value={[state, dispatch]}>
-      {props.children}
+      {children}
     </ExpenseContext.Provider>
   );
 };

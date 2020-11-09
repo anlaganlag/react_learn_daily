@@ -38,21 +38,19 @@ export default function Form() {
       setName("");
       setAmount("");
     } else {
-      console.log("Invalid expense name or the amount");
+      console.log("消费项目和金额不合法..");
     }
   };
   return (
     <BTForm style={{ margin: 10 }} onSubmit={handleSubmitForm}>
       <FormGroup className="row">
-        <Label for="exampleEmail" sm={2}>
-          Name of Expense
-        </Label>
+        <Label for="exampleEmail" sm={2}>开支名称</Label>
         <Col sm={4}>
           <Input
             type="text"
             name="name"
             id="expenseName"
-            placeholder="Name of expense?"
+            placeholder="开支项目?"
             value={name}
             onChange={handleName}
           />
@@ -60,21 +58,21 @@ export default function Form() {
       </FormGroup>
       <FormGroup className="row">
         <Label for="exampleEmail" sm={2}>
-          Amount
+          金额
         </Label>
         <Col sm={4}>
           <Input
             type="number"
             name="amount"
             id="expenseAmount"
-            placeholder="$ 0"
+            placeholder="￥ 0"
             value={amount}
             onChange={handleAmount}
           />
         </Col>
       </FormGroup>
       <Button type="submit" color="primary">
-        Add
+        添加
       </Button>
     </BTForm>
   );
