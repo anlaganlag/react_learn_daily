@@ -11,6 +11,7 @@ function App() {
 
   function handleFetchDog() {
     console.log("从API获取一只狗的图片");
+    setData("")
     setLoading(true);
     fetch(dogURL)
       .then((res) => res.json())
@@ -70,7 +71,7 @@ function App() {
   return (
     <>
       <h1>随机一狗项目</h1>
-      {data && <img src={data} alt="狗子图片" onClick={handleFetchDog} />}
+      {!loading && <img src={data} alt="狗子图片" onClick={handleFetchDog} />}
       {loading ? (
         <h4>载入中.....</h4>
       ) : (
