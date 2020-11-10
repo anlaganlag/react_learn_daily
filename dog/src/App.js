@@ -3,6 +3,7 @@ import "./App.css";
 
 function App() {
   const [data, setData] = useState("");
+  const [wiki, setWiki] = useState("");
   const [breed, setBreed] = useState("");
   const [loading, setLoading] = useState(false);
   const dogURL = "https://dog.ceo/api/breeds/image/random";
@@ -10,6 +11,7 @@ function App() {
 
   function handleFetchDog() {
     console.log("从API获取一只狗的图片");
+    setWiki("")
     setLoading(true);
     fetch(dogURL)
       .then((res) => res.json())
@@ -17,33 +19,42 @@ function App() {
         setData(data.message);
         // 即获取到数据等一秒再set,即等载入图片的时间
         // 否则文字出了图片还要等一会
-        setTimeout(() => {
-          setBreed(data.message.split("/")[4]);
-          setLoading(false);
-        }, 1000);
-        console.log(data);
+        console.log(data,"mmmm");
+
+        const l1= data.message.split("/")[4].split("-")
+        if (l1.length ===2){
+          const [a,b]  = l1
+          setBreed(b+"_"+a)
+        } else {
+          setBreed(l1)
+        }
+        
+        // setBreed(data.message.split("/")[4].split("-").join("_"));
+        console.log(breed,"bbbbbbbbb");
+        setLoading(false);
+        setWiki("")
+
       })
-      .then( data=>{
 
-        console.log("獲取介紹狗狗的卡片")
-        fetch(wikiUrl + breed)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data,"jjjjjjjj");
-          setData(data);
-        });
-      }
-
-      )
       .catch((e) => {
         console.error("没有找到狗子", e);
         setLoading(false);
       });
   }
+  
 
-  function handleIntroDog(e) {
+  function handleIntroDog() {
+      console.log("獲取介紹狗狗的卡片");
+      fetch(wikiUrl + breed)
+        .then((res) => res.json())
+        .then((wiki) => {
+          console.log(wiki, "jjjjjjjj");
+          setWiki(wiki);
+        }
+        );
+    }
 
-  }
+
 
   // Alaskan_Malamute
 
@@ -55,8 +66,7 @@ function App() {
   return (
     <>
       <h1>随机一狗项目</h1>
-      <button onClick={handleFetchDog}> 换张狗子图片</button>
-      <button onClick={handleIntroDog}> 狗狗的介紹</button>
+      <button onClick={handleIntroDog}>狗狗信息</button>
       {data && <img src={data} alt="狗子图片" onClick={handleFetchDog} />}
       {loading ? (
         <h4>载入中.....</h4>
@@ -69,12 +79,14 @@ function App() {
           <h4>品种:{breed}</h4>
         </a>
       )}
-              <div>
-            狗狗的介紹
-        </div>
-{data.extract && <p>{data.extract}</p>}
-              <p>沒有數據</p>
+      {wiki.extract?
+      <div>狗狗的wiki簡介:
+        <p>{wiki.description}</p>
 
+
+        <p>{wiki.extract}</p>
+      </div>
+      :<p>沒有數據</p>}
     </>
   );
 }
