@@ -1,0 +1,22 @@
+
+ h1,h4,a{
+  text-align: center;
+  text-transform: capitalize;
+ }
+
+
+img,button {
+  display: block;
+  margin: auto;
+  max-width: 90vw;
+}
+img{
+
+  height: 70vh;
+}
+button{
+  margin-bottom: .5em;
+}
+img:hover,button:hover{
+  cursor: pointer;
+}
