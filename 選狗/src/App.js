@@ -1,12 +1,34 @@
 import React, { useState, useEffect } from "react";
+import "./App.css"
 
 function App() {
   const [data, setData] = useState([]);
-  const [breed, setBreed] = useState("");
+  const [breed, setBreed] = useState();
   const [image, setImage] = useState("");
+  const [wiki, setWiki] = useState("");
+
   const breedsURL = "https://dog.ceo/api/breeds/list";
   const randomURL = "https://dog.ceo/api/breeds/image/random";
   const selectBreedURL = `https://dog.ceo/api/breed/${breed}/images/random`
+  const wikiUrl = "https://en.wikipedia.org/api/rest_v1/page/summary/";
+  function fetchBreedImage () {
+    fetch(selectBreedURL)
+      .then((resp) => resp.json())
+      .then((img) => setImage(img.message));
+
+
+  }
+
+  function handleIntroDog() {
+    console.log("獲取介紹狗狗的卡片");
+    // setData("")
+    fetch(wikiUrl + breed)
+      .then((res) => res.json())
+      .then((wiki) => {
+        setWiki(wiki);
+        console.log(wiki, "jjjjjjjj");
+      });
+  }
 
   useEffect(() => {
     fetch(breedsURL)
@@ -17,16 +39,22 @@ function App() {
   useEffect(() => {
     fetch(randomURL)
       .then((resp) => resp.json())
-      .then((img) => setImage(img.message));
+      .then((img) => 
+        setImage(img.message));
   }, []);
 
-  function fetchBreedImage () {
-    fetch(selectBreedURL)
-      .then((resp) => resp.json())
-      .then((img) => setImage(img.message));
+
+  useEffect(() => {
+    console.log("breed變化了", breed);
+    // setTimeout(
+    //   ()=>handleIntroDog(),1000
+
+    // )
+    handleIntroDog();
+  }, [breed]);
 
 
-  }
+
 
   console.log(data, "數據");
   console.log(image, "圖片");
@@ -49,12 +77,13 @@ function App() {
             </option>
           ))}
         </select>
-
         {
           <div onClick={fetchBreedImage}>
-            <img src={image} alt />
+          <button>當前:{image.split("/")[4]}</button>
+            <img src={image} alt="請選擇品種" />
+      {wiki.type !== "disambiguation" && <p>{wiki.extract}</p>}
 
-            <button >查看品種:{breed}</button>
+
           </div>
         }
 

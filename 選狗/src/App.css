@@ -892,7 +892,7 @@ button {
   border-color: #bf6a91;
   color: #fff;
   transition: background 200ms ease-in-out, border-color 200ms ease-in-out, color 200ms ease-in-out;
-  margin-bottom: 0;
+  margin-bottom: .5em;
   margin-top: 20px;
   text-transform: capitalize;
   letter-spacing: 0;
@@ -929,7 +929,7 @@ header {
   transform: translateX(-50%);
   width: 200px;
   height: 92px;
-  background-image: url("../images/logo.svg");
+  background-image: url("./logo.svg");
   line-height: 0;
   background-size: 100%;
   background-repeat: no-repeat;
