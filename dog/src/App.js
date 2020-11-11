@@ -95,12 +95,14 @@ function App() {
           target={"_blank"}
         >
           {" "}
-          <h4>{breed}</h4>
+      <h1>主類 {main} </h1>
+{         main !==breed && <h6>亞類 {breed.split("_").join(" ")} 
+          
+          </h6>}
         </a>
       )}
       {/* <button onClick={handleIntroDog}>狗狗維基百科信息</button> */}
       {wiki.title !== "Not found." && <p>{wiki.extract}</p>}
-      {<p>主類:{main}</p>}
     </>
   );
 }
