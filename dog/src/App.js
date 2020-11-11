@@ -4,6 +4,9 @@ import "./App.css";
 function App() {
   const [data, setData] = useState("");
   const [wiki, setWiki] = useState("");
+  const [wiki2, setWiki2] = useState("");
+  const [main, setMain] = useState("")
+  
   const [breed, setBreed] = useState("");
   const [loading, setLoading] = useState(false);
   const dogURL = "https://dog.ceo/api/breeds/image/random";
@@ -11,7 +14,7 @@ function App() {
 
   function handleFetchDog() {
     console.log("从API获取一只狗的图片");
-    setData("")
+    setData("");
     setLoading(true);
     fetch(dogURL)
       .then((res) => res.json())
@@ -25,8 +28,10 @@ function App() {
         if (l1.length === 2) {
           const [a, b] = l1;
           setBreed(b + "_" + a);
+          setMain(a)
         } else {
           setBreed(l1);
+          setMain(l1)
         }
         setLoading(false);
       })
@@ -48,6 +53,19 @@ function App() {
       });
   }
 
+  function handleIntroDog2() {
+    console.log(breed,"獲取介紹狗狗主類");
+    if (breed[0]?.split("_").length ===1) return
+    console.log(breed);
+    // setData("")
+    fetch(wikiUrl + breed.split("_")[1])
+      .then((res) => res.json())
+      .then((wiki) => {
+        setWiki2(wiki);
+        console.log(wiki, "豬豬豬豬");
+      });
+  }
+
   // Alaskan_Malamute
 
   useEffect(() => {
@@ -55,18 +73,15 @@ function App() {
     handleFetchDog();
   }, []);
 
-
   useEffect(() => {
-    console.log("breed變化了",breed);
+    console.log("breed變化了", breed);
     // setTimeout(
     //   ()=>handleIntroDog(),1000
 
     // )
-    handleIntroDog()
+    handleIntroDog();
+    handleIntroDog2()
   }, [breed]);
-
-
-
 
   return (
     <>
@@ -85,6 +100,7 @@ function App() {
       )}
       {/* <button onClick={handleIntroDog}>狗狗維基百科信息</button> */}
       {wiki.title !== "Not found." && <p>{wiki.extract}</p>}
+      {<p>主類:{main}</p>}
     </>
   );
 }
