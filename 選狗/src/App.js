@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 
 function App() {
   const [data, setData] = useState([]);
-  const [breed, setBreed] = useState("")
+  const [breed, setBreed] = useState("");
   const [image, setImage] = useState("");
   const breedsURL = "https://dog.ceo/api/breeds/list";
   const randomURL = "https://dog.ceo/api/breeds/image/random";
+  const selectBreedURL = `https://dog.ceo/api/breed/${breed}/images/random`
 
   useEffect(() => {
     fetch(breedsURL)
@@ -19,6 +20,14 @@ function App() {
       .then((img) => setImage(img.message));
   }, []);
 
+  function fetchBreedImage () {
+    fetch(selectBreedURL)
+      .then((resp) => resp.json())
+      .then((img) => setImage(img.message));
+
+
+  }
+
   console.log(data, "數據");
   console.log(image, "圖片");
   return (
@@ -31,25 +40,23 @@ function App() {
         <select
           className="u-full-width"
           value={breed}
-          onChange={e => setBreed(e.target.value)}
+          onChange={(e) => setBreed(e.target.value)}
           id="breeds"
         >
-          {data.map((option) => 
-            <option key={option} value={option} >
-            
-              {option} 
+          {data.map((option) => (
+            <option key={option} value={option}>
+              {option}
             </option>
-        )}
+          ))}
         </select>
 
-{ 
-<>
-<img src={image} alt /> 
+        {
+          <div onClick={fetchBreedImage}>
+            <img src={image} alt />
 
-<p>Click to view images of {breed}</p>
-</>
-
-}
+            <button >查看品種:{breed}</button>
+          </div>
+        }
 
         <div className="card"></div>
       </div>
