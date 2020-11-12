@@ -67,8 +67,8 @@ function App() {
         <label htmlFor="breeds">選擇狗品種</label>
         <select
           className="u-full-width"
-          value={breed}
           onChange={(e) => setBreed(e.target.value)}
+          value = {breed}
           id="breeds"
         >
           {data.map((option) => (
@@ -81,13 +81,13 @@ function App() {
           <div onClick={fetchBreedImage}>
           <button>當前:{image.split("/")[4]}</button>
             <img src={image} alt="請選擇品種" />
-      {wiki.type !== "disambiguation" && <p>wiki:{wiki.extract}</p>}
+      {wiki.type !== "disambiguation" && <p>維基百科:{wiki.extract}</p>}
 
 
           </div>
         }
 
-        <div className="card"></div>
+        <div ></div>
       </div>
     </>
   );

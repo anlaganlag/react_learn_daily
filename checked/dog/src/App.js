@@ -5,8 +5,8 @@ function App() {
   const [data, setData] = useState("");
   const [wiki, setWiki] = useState("");
   const [wiki2, setWiki2] = useState("");
-  const [main, setMain] = useState("")
-  
+  const [main, setMain] = useState("");
+
   const [breed, setBreed] = useState("");
   const [loading, setLoading] = useState(false);
   const dogURL = "https://dog.ceo/api/breeds/image/random";
@@ -28,10 +28,10 @@ function App() {
         if (l1.length === 2) {
           const [a, b] = l1;
           setBreed(b + "_" + a);
-          setMain(a)
+          setMain(a);
         } else {
           setBreed(l1);
-          setMain(l1)
+          setMain(l1);
         }
         setLoading(false);
       })
@@ -54,8 +54,8 @@ function App() {
   }
 
   function handleIntroDog2() {
-    console.log(breed,"獲取介紹狗狗主類");
-    if (breed[0]?.split("_").length ===1) return
+    console.log(breed, "獲取介紹狗狗主類");
+    if (breed[0]?.split("_").length === 1) return;
     console.log(breed);
     // setData("")
     fetch(wikiUrl + breed.split("_")[1])
@@ -69,7 +69,7 @@ function App() {
   // Alaskan_Malamute
 
   useEffect(() => {
-    console.log("调用useEffect");
+    console.log("開始找狗了");
     handleFetchDog();
   }, []);
 
@@ -80,7 +80,8 @@ function App() {
 
     // )
     handleIntroDog();
-    handleIntroDog2()
+    handleIntroDog2();
+
   }, [breed]);
 
   return (
@@ -95,10 +96,9 @@ function App() {
           target={"_blank"}
         >
           {" "}
-      <h1>主類 {main} </h1>
-{         main !==breed && <h6>亞類 {breed.split("_").join(" ")} 
-          
-          </h6>}
+          <h1>主類 {main} </h1>
+          {main !== breed && <h6>亞類 {breed.split("_").join(" ")}</h6>}
+          {wiki2.title !== "Undefined" && <p>{wiki2.extract}</p>}
         </a>
       )}
       {/* <button onClick={handleIntroDog}>狗狗維基百科信息</button> */}

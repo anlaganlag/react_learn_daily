@@ -12,7 +12,7 @@ function App() {
   const [cur, setCur] = useState();
 
   function CreateRandomNum() {
-    return Math.ceil(Math.random() * 30 + 21);
+    return Math.ceil(Math.random() * 80 + 21);
   }
 
   function handleRecordSubmit(e) {
