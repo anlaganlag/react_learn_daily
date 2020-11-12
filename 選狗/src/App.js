@@ -81,7 +81,7 @@ function App() {
           <div onClick={fetchBreedImage}>
           <button>當前:{image.split("/")[4]}</button>
             <img src={image} alt="請選擇品種" />
-      {wiki.type !== "disambiguation" && <p>{wiki.extract}</p>}
+      {wiki.type !== "disambiguation" && <p>wiki:{wiki.extract}</p>}
 
 
           </div>

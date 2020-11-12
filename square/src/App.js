@@ -2,34 +2,33 @@ import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(Math.ceil(Math.random() * 29 + 20));
+  const [count, setCount] = useState(CreateRandomNum());
   const [res, setRes] = useState(false);
   const [input, setInput] = useState(41);
-  const pre = useRef();
+  const pre = useRef(null);
   const [history, setHistory] = useState([]);
-  const [progress, setProgress] = useState(false) 
-  const  [record, setRecord] = useState([])
-  const [cur, setCur] = useState()  
+  const [progress, setProgress] = useState(false);
+  const [record, setRecord] = useState([]);
+  const [cur, setCur] = useState();
 
+  function CreateRandomNum() {
+    return Math.ceil(Math.random() * 30 + 21);
+  }
 
-  function handleRecordSubmit (e) {
-    e.preventDefault()
-    setRecord([cur,...record]);
-
-    console.log(cur,record);
+  function handleRecordSubmit(e) {
+    e.preventDefault();
 
     if (cur === "") {
       return;
     }
-    if (!record.includes(cur)) {
-      setRecord([cur,...record]);
-    }
-    console.log(cur,record);
-
+    setRecord([cur, ...record]);
+    setCount(CreateRandomNum());
+    setCur("");
+    setRes(false);
   }
 
   useEffect(() => {
-    setHistory([[count, count ** 2], ...history].slice(0, 4));
+    setHistory([[count, count ** 2], ...history]);
   }, [count]);
 
   return (
@@ -37,8 +36,9 @@ function App() {
       <p>{`${count}*${count}=${res ? count ** 2 : "?"}`}</p>
       <button
         onClick={() => {
-          setCount(Math.floor(Math.random() * 30 + 20));
+          setCount(CreateRandomNum());
           setRes(false);
+          pre.current.focus();
         }}
       >
         更新
@@ -62,41 +62,48 @@ function App() {
         顯示
       </button> */}
       <p>
-
-
-      <button onClick={()=>setProgress(!progress)}>開啓測試</button>
+        <button onClick={() => setProgress(!progress)}>開啓測試</button>
       </p>
 
-      {progress && 
-      <div className="progress">
+      {progress && (
+        <div className="progress">
+          <input
+            value={input}
+            onChange={(e) => {
+              setInput(e.target.value);
+            }}
+          />
+          <div>
+            <button onClick={() => setInput(parseInt(input) - 1)}>-</button>
+            <button onClick={() => setInput(parseInt(input) + 1)}>+</button>
+          </div>
+          <p>{input ** 2}</p>
+        </div>
+      )}
+      <form onSubmit={handleRecordSubmit}>
         <input
-          value={input}
+          type="number"
+          ref={pre}
+          value={cur}
           onChange={(e) => {
-            setInput(e.target.value);
+            setCur(e.target.value);
           }}
         />
-        <div>
-          <button onClick={() => setInput(parseInt(input) - 1)}>-</button>
-          <button onClick={() => setInput(parseInt(input) + 1)}>+</button>
-        </div>
-        <p>{input ** 2}</p>
-      </div>}
-      <form onSubmit={handleRecordSubmit}>
-        <input type="number" value={cur}  onChange={(e) => {
-            setCur(e.target.value);
-          }}/>
+        <p>
+          {record.map((i) => (
+            <span>{i}&nbsp;</span>
+          ))}
+        </p>
       </form>
       {/* {history[0] !==undefined && <p>{`最近一次計算:${history[0]}*${history[0]} = ${history[1]}`}</p>} */}
-      {history.length > 1 && <p>最近{history.length-1}項:</p>}
+      {history.length > 1 && <p>最近{history.length - 1}項:</p>}
 
       {history.length > 1 &&
-
-        history.slice(1).map((h, idx) => 
+        history.slice(1).map((h, idx) => (
           <p>
-            {idx+1}.{" "}{h[0]} * {h[0]} = {h[1]}
+            {" "} {h[0]} * {h[0]} = {h[1]} {" "}
           </p>
-        )
-      }
+        ))}
     </div>
   );
 }

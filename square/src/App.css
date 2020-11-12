@@ -3,3 +3,8 @@
   /* display: flex; */
   /* background-color: #bfa; */
 }
+p {
+  padding-right: .5em;
+  display: inline-block
+
+}
