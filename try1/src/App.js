@@ -1,5 +1,5 @@
 import React from "react";
-import Wrapper from "./w";
+import Wrapper from "./Wrapper";
 import Content from "./Content";
 
 function App() {

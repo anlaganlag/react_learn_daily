@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
+import useKeyPress from "./usePressKeyHook";
 
 function App() {
   const [count, setCount] = useState(CreateRandomNum());
@@ -10,6 +11,10 @@ function App() {
   const [progress, setProgress] = useState(false);
   const [record, setRecord] = useState([]);
   const [cur, setCur] = useState();
+
+  const happyPress = useKeyPress("h");
+
+  const sadPress = useKeyPress("l");
 
   function CreateRandomNum() {
     return Math.ceil(Math.random() * 80 + 21);
@@ -73,6 +78,9 @@ function App() {
               setInput(e.target.value);
             }}
           />
+          {happyPress && "😊"}
+
+          {sadPress && "😢"}
           <div>
             <button onClick={() => setInput(parseInt(input) - 1)}>-</button>
             <button onClick={() => setInput(parseInt(input) + 1)}>+</button>
@@ -101,7 +109,8 @@ function App() {
       {history.length > 1 &&
         history.slice(1).map((h, idx) => (
           <p>
-            {" "} {h[0]} * {h[0]} = {h[1]} {" "}
+            {" "}
+            {h[0]} * {h[0]} = {h[1]}{" "}
           </p>
         ))}
     </div>
