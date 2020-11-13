@@ -1,7 +1,7 @@
 import React,{useState,useEffect}from 'react'
 
 
-
+//處理按鍵的hooks..
 
 
 export default function useKeyPress(targetKey) {
@@ -10,7 +10,7 @@ export default function useKeyPress(targetKey) {
     const [keyPressed, setKeyPressed] = useState(false);
   
     // If pressed key is our target key then set to true
-  
+  //處理按鍵按下的狀態 即keyPressDown
     function downHandler({ key }) {
       if (key === targetKey) {
         setKeyPressed(true);
@@ -18,7 +18,7 @@ export default function useKeyPress(targetKey) {
     }
   
     // If released key is our target key then set to false
-  
+  //按鍵擡起的狀態...
     const upHandler = ({ key }) => {
       if (key === targetKey) {
         setKeyPressed(false);

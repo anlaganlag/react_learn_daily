@@ -8,7 +8,7 @@ function App() {
   const [input, setInput] = useState(41);
   const pre = useRef(null);
   const [history, setHistory] = useState([]);
-  const [progress, setProgress] = useState(false);
+  const [progress, setProgress] = useState(true);
   const [record, setRecord] = useState([]);
   const [cur, setCur] = useState();
 
@@ -20,6 +20,18 @@ function App() {
     return Math.ceil(Math.random() * 80 + 21);
   }
 
+  function handleSub(){
+    
+    setInput(parseInt(input) - 1)
+
+  }
+
+
+  function handleAdd(){
+    
+    setInput(parseInt(input) + 1)
+
+  }
   function handleRecordSubmit(e) {
     e.preventDefault();
 
@@ -36,6 +48,7 @@ function App() {
     setHistory([[count, count ** 2], ...history]);
   }, [count]);
 
+  console.log(happyPress,sadPress);
   return (
     <div>
       <p>{`${count}*${count}=${res ? count ** 2 : "?"}`}</p>
@@ -78,9 +91,12 @@ function App() {
               setInput(e.target.value);
             }}
           />
-          {happyPress && "😊"}
+          <div className="displayNone">
+          {happyPress && setTimeout( handleSub,200)}
 
-          {sadPress && "😢"}
+          {sadPress && setTimeout( handleAdd,200)}
+          </div>
+
           <div>
             <button onClick={() => setInput(parseInt(input) - 1)}>-</button>
             <button onClick={() => setInput(parseInt(input) + 1)}>+</button>
