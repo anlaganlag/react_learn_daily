@@ -11,18 +11,31 @@ function App() {
   const [progress, setProgress] = useState(true);
   const [record, setRecord] = useState([]);
   const [cur, setCur] = useState();
+  
 
-  const happyPress = useKeyPress("h");
+  const subPress = useKeyPress("h");
 
-  const sadPress = useKeyPress("l");
+  const addPress = useKeyPress("l");
+  const subTenPress = useKeyPress("j");
+
+  const addTenPress = useKeyPress("k");
+  const togglePress = useKeyPress("w");
+  const togglePress2 = useKeyPress("s");
+  const rate = togglePress ? 5 :10
+  const rate2 = togglePress2 ? 40 :0
 
   function CreateRandomNum() {
     return Math.ceil(Math.random() * 80 + 21);
   }
 
   function handleSub(){
-    
     setInput(parseInt(input) - 1)
+
+  }
+
+  function handleTenSub(){
+    
+    setInput(parseInt(input) - rate-rate2)
 
   }
 
@@ -30,6 +43,13 @@ function App() {
   function handleAdd(){
     
     setInput(parseInt(input) + 1)
+
+  }
+
+
+  function handleTenAdd(){
+    
+    setInput(parseInt(input) + rate+rate2)
 
   }
   function handleRecordSubmit(e) {
@@ -48,7 +68,7 @@ function App() {
     setHistory([[count, count ** 2], ...history]);
   }, [count]);
 
-  console.log(happyPress,sadPress);
+  console.log(subPress,addPress,"rrrrr",rate);
   return (
     <div>
       <p>{`${count}*${count}=${res ? count ** 2 : "?"}`}</p>
@@ -90,11 +110,14 @@ function App() {
             onChange={(e) => {
               setInput(e.target.value);
             }}
-          />
+            />
+            <p>{`rate=${rate+rate2}`}</p>
           <div className="displayNone">
-          {happyPress && setTimeout( handleSub,200)}
+          {subPress && setTimeout( handleSub,220)}
 
-          {sadPress && setTimeout( handleAdd,200)}
+          {addPress && setTimeout( handleAdd,220)}
+          {addTenPress && setTimeout( handleTenAdd,220)}
+          {subTenPress && setTimeout( handleTenSub,220)}
           </div>
 
           <div>
