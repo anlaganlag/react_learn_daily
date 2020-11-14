@@ -1,0 +1,14 @@
+.progress {
+  margin-top: 1em;
+  /* display: flex; */
+  /* background-color: #bfa; */
+}
+p {
+  padding-right: .5em;
+  display: inline-block
+
+}
+
+.displayNone{
+  display: none;
+}

@@ -28,7 +28,7 @@ function Reddit({ searchTerms }) {
       )
       .catch((e) => {
         console.error(e);
-        seterror(e)
+        // seterror(e)
       })
   }, [searchTerms, setPosts]);
 

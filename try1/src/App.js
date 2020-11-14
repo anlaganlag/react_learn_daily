@@ -1,12 +1,26 @@
-import React from "react";
-import Wrapper from "./Wrapper";
-import Content from "./Content";
+import React, { useReducer } from "react";
+
+const init = { count: 0 };
+function reduce(state, action) {
+  switch (action.type) {
+    case "add":
+      return { count: state.count + 1 };
+    case "sub":
+      return { count: state.count - 1 };
+
+    default:
+      return state;
+  }
+}
 
 function App() {
+  const [state, dispatch] = useReducer(reduce,  init)
   return (
-    <Wrapper>
-      <Content />
-    </Wrapper>
+    <>
+      <p>{state.count}</p>
+      <button onClick={()=>dispatch({type:"add"})}>+</button>
+      <button onClick={()=>dispatch({type:"sub"})}>-</button>
+    </>
   );
 }
 

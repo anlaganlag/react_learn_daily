@@ -1,13 +1,9 @@
-import React from 'react'
-import {useCTX} from './Wrapper'
+import React from "react";
+import {useCTX} from "./Wrapper";
 
 function Content() {
-  const {msg} = useCTX()
-  return (
-    <div>
-      {msg}
-    </div>
-  )
+  const { name } = useCTX();
+  return <div>{name}</div>;
 }
 
-export default Content
+export default Content;
