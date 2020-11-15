@@ -12,12 +12,14 @@ function App() {
   const [progress, setProgress] = useState(true);
   const [record, setRecord] = useState([]);
   const [cur, setCur] = useState();
+
+  const [table, setTable] = useState(29)
   // const [GlobalState, setGlobalState] = useState(init)
 
   const init = {
     count: CreateRandomNum(),
     res: false,
-    input: 67,
+    input: 66,
     pre: null,
     history: [],
     progress: true,
@@ -30,15 +32,21 @@ function App() {
   const subTenPress = useKeyPress("j");
   const addTenPress = useKeyPress("k");
   const togglePress = useKeyPress("w");
-  const togglePress2 = useKeyPress("x");
+  const togglePress2 = useKeyPress("c");
   // const toggleTest1 = useKeyPress("r");
   // const toggleTest2 = useKeyPress("t");
   const rate = togglePress ? 5 : 10;
   const rate2 = togglePress2 ? 40 : 0;
-  const [state, dispatch] = useReducer(reduce, { input: 67 });
+  const [state, dispatch] = useReducer(reduce, { input: CreateRandomNum() });
 
+  //0的可能性存在但是很小..前者是表示的空间
+  //后者表示的基准,即min+
   function CreateRandomNum() {
-    return Math.ceil(Math.random() * 80 + 21);
+
+    //选择了0到29,0可能性非常小..最少60
+    //组合及60到89..极少60..
+    return Math.ceil(Math.random() * 29 + 60
+    );
   }
 
   function reduce(state, action) {
@@ -52,35 +60,17 @@ function App() {
       case "subx":
         return { input: parseInt(state.input) - rate - rate2 };
       case "set":
-        return { input: parseInt(action.payload) };
+        if (!action.payload) {
+          return { input: 0 };
+        } else {
+          return { input: parseInt(action.payload) };
+        }
 
       default:
         return state;
     }
   }
 
-  // function handleSub(){
-  //   setInput(parseInt(input) - 1)
-
-  // }
-
-  // function handleTenSub(){
-
-  //   setInput(parseInt(input) - rate-rate2)
-
-  // }
-
-  // function handleAdd(){
-
-  //   setInput(parseInt(input) + 1)
-
-  // }
-
-  // function handleTenAdd(){
-
-  //   setInput(parseInt(input) + rate+rate2)
-
-  // }
   function handleRecordSubmit(e) {
     e.preventDefault();
 
@@ -93,15 +83,16 @@ function App() {
     setRes(false);
   }
 
+  // }
   useEffect(() => {
     setHistory([[count, count ** 2], ...history]);
   }, [count]);
 
   useEffect(() => {
-    pos.current.focus();
+    setTimeout(() => pos.current.focus(), 0);
+    setTimeout(() => setRes(true), 3500);
   });
 
-  console.log(subPress, addPress, "rrrrr", rate, "pppp", progress);
   return (
     <div>
       <p>{`${count}*${count}=${res ? count ** 2 : "?"}`}</p>
@@ -110,7 +101,9 @@ function App() {
         onClick={() => {
           setCount(CreateRandomNum());
           setRes(false);
-          pos.current.focus();
+          // pos.current.focus();
+
+        
         }}
       >
         更新
@@ -142,7 +135,7 @@ function App() {
       {progress && (
         <div className="progress">
           <input
-            value={state.input}
+            value={state.input || 0}
             onChange={(e) => {
               // setInput(e.target.value);
               dispatch({ type: "set", payload: e.target.value });
@@ -156,12 +149,10 @@ function App() {
           {addTenPress && setTimeout( handleTenAdd,220)}
           {subTenPress && setTimeout( handleTenSub,220)} */}
 
-            {subPress && setTimeout(() => dispatch({ type: "sub" }), 220)}
-            {addPress && setTimeout(() => dispatch({ type: "add" }), 220)}
-            {subTenPress && setTimeout(() => dispatch({ type: "subx" }), 220)}
-            {addTenPress && setTimeout(() => dispatch({ type: "addx" }), 220)}
-
-
+            {subPress && setTimeout(() => dispatch({ type: "sub" }), 250)}
+            {addPress && setTimeout(() => dispatch({ type: "add" }), 250)}
+            {subTenPress && setTimeout(() => dispatch({ type: "subx" }), 250)}
+            {addTenPress && setTimeout(() => dispatch({ type: "addx" }), 250)}
 
             {/* {addPress && setTimeout(handleAdd, 220)}
             {addTenPress && setTimeout(handleTenAdd, 220)}
@@ -176,6 +167,10 @@ function App() {
             <button onClick={() => setInput(parseInt(input) + 1)}>+</button>
           </div> */}
           <div>{state.input ** 2}</div>
+          {[...Array(29)].map((x, i) =>(
+          (i+61)**2%5 ?
+          `${i+61}*${i+61} = ${(i+61)**2} `:"")
+  )}
         </div>
       )}
 
@@ -207,6 +202,8 @@ function App() {
             {h[0]} * {h[0]} = {h[1]}{" "}
           </div>
         ))}
+
+
     </div>
   );
 }
