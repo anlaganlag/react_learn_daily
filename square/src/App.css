@@ -12,3 +12,7 @@ p {
 .displayNone{
   display: none;
 }
+.whole {
+  width: 100vw;
+  height: 100vh;
+}

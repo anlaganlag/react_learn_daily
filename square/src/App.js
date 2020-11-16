@@ -3,17 +3,28 @@ import "./App.css";
 import useKeyPress from "./usePressKeyHook";
 
 function App() {
+  const [list, setlist] = useState([64,88,61,71,81,69,79,89])
+  const CreateRandomNum = ()=> {
+    //选择了0到29,0可能性非常小..最少60
+    //组合及60到89..极少60..
+    let randomNum = Math.ceil(Math.random() * 29 + 60);
+    while (randomNum % 5 === 0  || list.includes(randomNum))  {
+      randomNum = Math.ceil(Math.random() * 29 + 60);
+    }
+    return randomNum;
+  }
   const [count, setCount] = useState(CreateRandomNum());
   const [res, setRes] = useState(false);
   // const [input, setInput] = useState(67);
   const pre = useRef(null);
   const pos = useRef(null);
   const [history, setHistory] = useState([]);
+  const [black, setBlack] = useState([]);
   const [progress, setProgress] = useState(true);
   const [record, setRecord] = useState([]);
   const [cur, setCur] = useState();
 
-  const [table, setTable] = useState(29)
+  const [table, setTable] = useState(29);
   // const [GlobalState, setGlobalState] = useState(init)
 
   const init = {
@@ -41,13 +52,7 @@ function App() {
 
   //0的可能性存在但是很小..前者是表示的空间
   //后者表示的基准,即min+
-  function CreateRandomNum() {
 
-    //选择了0到29,0可能性非常小..最少60
-    //组合及60到89..极少60..
-    return Math.ceil(Math.random() * 29 + 60
-    );
-  }
 
   function reduce(state, action) {
     switch (action.type) {
@@ -86,15 +91,23 @@ function App() {
   // }
   useEffect(() => {
     setHistory([[count, count ** 2], ...history]);
+    setlist([...list,count])
   }, [count]);
 
   useEffect(() => {
     setTimeout(() => pos.current.focus(), 0);
-    setTimeout(() => setRes(true), 3500);
+    // setTimeout(() => setRes(!res), 1000);
   });
+  console.log(list,"list")
 
   return (
-    <div>
+    <div onClick = {()=>{
+      
+      setCount(CreateRandomNum())
+      setRes(false)
+      setTimeout(()=>setRes(true),7000)
+      
+      }} className="whole">
       <p>{`${count}*${count}=${res ? count ** 2 : "?"}`}</p>
       <button
         ref={pos}
@@ -102,8 +115,6 @@ function App() {
           setCount(CreateRandomNum());
           setRes(false);
           // pos.current.focus();
-
-        
         }}
       >
         更新
@@ -134,14 +145,14 @@ function App() {
 
       {progress && (
         <div className="progress">
-          <input
+          {/* <input
             value={state.input || 0}
             onChange={(e) => {
               // setInput(e.target.value);
               dispatch({ type: "set", payload: e.target.value });
             }}
           />
-          <p>{`rate=${rate + rate2}`}</p>
+          <p>{`rate=${rate + rate2}`}</p> */}
           <div className="displayNone">
             {/* {subPress && setTimeout( handleSub,220)}
 
@@ -167,10 +178,12 @@ function App() {
             <button onClick={() => setInput(parseInt(input) + 1)}>+</button>
           </div> */}
           <div>{state.input ** 2}</div>
-          {[...Array(29)].map((x, i) =>(
-          (i+61)**2%5 ?
-          `${i+61}*${i+61} = ${(i+61)**2} `:"")
-  )}
+          {[...Array(29)].map((x, i) =>
+            (i + 61) ** 2 % 5 && ![64, 88, 89, ...list].includes(i + 61)
+              ? ` ${i + 61}*${i + 61} = ${(i + 61) ** 2} `
+              : ""
+          )}
+          
         </div>
       )}
 
@@ -198,12 +211,10 @@ function App() {
       {history.length > 1 &&
         history.slice(1).map((h, idx) => (
           <div>
-            {" "}
+            ({history.length-idx-1})
             {h[0]} * {h[0]} = {h[1]}{" "}
           </div>
         ))}
-
-
     </div>
   );
 }
