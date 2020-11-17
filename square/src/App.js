@@ -177,9 +177,11 @@ function App() {
             <button onClick={() => setInput(parseInt(input) - 1)}>-</button>
             <button onClick={() => setInput(parseInt(input) + 1)}>+</button>
           </div> */}
-          <div>{state.input ** 2}</div>
+          <div>{state.input}&nbsp;{state.input ** 2}</div>
           {[...Array(29)].map((x, i) =>
-            (i + 61) ** 2 % 5 && ![64, 88, 89, ...list].includes(i + 61)
+            (i + 61) ** 2 % 5 
+            && 
+            ![64, 88, 89, ...list].includes(i + 61)
               ? ` ${i + 61}*${i + 61} = ${(i + 61) ** 2} `
               : ""
           )}
