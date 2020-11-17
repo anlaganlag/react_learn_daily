@@ -1,25 +1,47 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useRef } from "react";
 
-const init = { count: 0 };
-function reduce(state, action) {
+function reducer(state, action) {
   switch (action.type) {
     case "add":
-      return { count: state.count + 1 };
-    case "sub":
-      return { count: state.count - 1 };
-
+      return [
+        ...state,
+        {
+          id: state.length,
+          name: action.name,
+        },
+      ];
+    case "remove":
+      return state.filter((item, index) => action.index !== index);
     default:
       return state;
   }
 }
 
 function App() {
-  const [state, dispatch] = useReducer(reduce,  init)
+  const inputRef = useRef();
+  const [items, dispatch] = useReducer(reducer, []);
+
+  function submit(e) {
+    e.preventDefault();
+    dispatch({type: "add",name : inputRef.current.value});
+    inputRef.current.value = "";
+  }
   return (
     <>
-      <p>{state.count}</p>
-      <button onClick={()=>dispatch({type:"add"})}>+</button>
-      <button onClick={()=>dispatch({type:"sub"})}>-</button>
+      <form onSubmit={submit}>
+        <input ref={inputRef} />
+      </form>
+
+      <ul>
+        {items.map((item, index) => (
+          <li key={item.id}>
+            {item.name}
+            <button onClick={() => dispatch({ type: "remove", index })}>
+              X
+            </button>
+          </li>
+        ))}
+      </ul>
     </>
   );
 }

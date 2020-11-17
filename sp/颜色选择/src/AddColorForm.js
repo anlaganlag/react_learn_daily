@@ -34,6 +34,9 @@ export default function AddColorForm() {
       onSubmit={submit}
     >
       <input
+
+      //这个真的精髓解包出 k和v
+      //相当与 value =   onChange = 
         {...titleProps}
         type="text"
         placeholder="color title..."

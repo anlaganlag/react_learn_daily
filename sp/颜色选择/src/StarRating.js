@@ -6,6 +6,7 @@ export default function StarRating({
   className = "",
   totalStars = 5,
   selectedStars = 0,
+  //只是说明是函数..
   onRate = f => f
 }) {
   return (
@@ -15,6 +16,7 @@ export default function StarRating({
           <Star
             key={i}
             selected={selectedStars > i}
+            //相当与idx+1
             onSelect={() => onRate(i + 1)}
           />
         ))}
