@@ -96,7 +96,7 @@ const App = () => {
       objectID: 3,
     },
   ];
-  const [searchTerm,setSearchTerm] = useSemiPersistentState('search','React');
+  const [searchTerm,setSearchTerm] = useSemiPersistentState('search','Vue');
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
