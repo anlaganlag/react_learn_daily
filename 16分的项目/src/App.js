@@ -1,35 +1,50 @@
-import React, { useState  , useContext,createContext } from 'react';
+import React, { useState, useEffect, useContext, createContext } from "react";
 import useKeyPress from "./usePressKeyHook";
 
+const CountContext = createContext();
 
-
-const CountContext = createContext()
-
-function Counter(){
-
- 
-  const count = useContext(CountContext)
-  return (<h2>{count}/16={(count/16*10000).toString().split("0")[0]}</h2>)
+function Counter() {
+  const count = useContext(CountContext);
+  return (
+    <h2>
+      {count}/16={((count / 16) * 10000).toString().split("0")[0]}
+    </h2>
+  );
 }
 
-function App(){
-    const [ count , setCount ] = useState(1);
-    const subPress = useKeyPress("h");
-    const addPress = useKeyPress("l");
-    return (
-        <div>
+function App() {
+  const [count, setCount] = useState(1);
+  const subPress = useKeyPress("j");
+  const addPress = useKeyPress("k");
+  const resetPress = useKeyPress("m");
 
-            {/* {addPress && setTimeout(() => dispatch({ type: "add" }), 250)} */}
+  const addEightPress = useKeyPress("i");
+  const subEightPress = useKeyPress("u");
 
-            <div style={{display:"none"}}>
+  useEffect(() => {
+    
+     resetPress && setCount(1);
+    if ( count >15 ){
+      setCount(1);
+    }
+    if (count <=0){
+      setCount(15);
+    }
+  }, [resetPress,count]);
+  return (
+    <div>
+      {/* {addPress && setTimeout(() => dispatch({ type: "add" }), 250)} */}
 
-            {subPress && setTimeout(()  => setCount(count+1), 250)}
-            {addPress && setTimeout(()  => setCount(count-1), 250)}
-            </div>
-            <CountContext.Provider value={count}>
-              <Counter />
-            </CountContext.Provider>
-        </div>
-    )
+      <div style={{ display: "none" }}>
+        {subPress && setTimeout(() => setCount(count - 1), 260)}
+        {addPress && setTimeout(() => setCount(count + 1), 260)}
+        {addEightPress && setTimeout(() => setCount(count + 8), 260)}
+        {subEightPress && setTimeout(() => setCount(count - 8), 260)}
+      </div>
+      <CountContext.Provider value={count}>
+        <Counter />
+      </CountContext.Provider>
+    </div>
+  );
 }
 export default App;
