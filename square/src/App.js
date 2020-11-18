@@ -3,7 +3,8 @@ import "./App.css";
 import useKeyPress from "./usePressKeyHook";
 
 function App() {
-  const [list, setlist] = useState([64,88,61,71,81,69,79,89])
+  // const [list, setlist] = useState([64,88,61,71,81,69,79,89])
+  const [list, setlist] = useState([])
   const CreateRandomNum = ()=> {
     //选择了0到29,0可能性非常小..最少60
     //组合及60到89..极少60..
@@ -181,7 +182,7 @@ function App() {
           {[...Array(29)].map((x, i) =>
             (i + 61) ** 2 % 5 
             && 
-            ![64, 88, 89, ...list].includes(i + 61)
+            ![ ...list].includes(i + 61)
               ? ` ${i + 61}*${i + 61} = ${(i + 61) ** 2} `
               : ""
           )}

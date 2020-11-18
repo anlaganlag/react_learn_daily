@@ -28,7 +28,7 @@ function Reddit({ searchTerms }) {
       )
       .catch((e) => {
         console.error(e);
-        // seterror(e)
+        seterror(e)
       })
   }, [searchTerms, setPosts]);
 
@@ -112,7 +112,7 @@ export default function App() {
     <>
       <h1>Reddit贴吧</h1>
       <form onSubmit={handleSubmit}>
-        <label for="searchTerm">🔎 </label>
+        <label for="searchTerm"><span role="img" aria-label="搜索放大镜">🔎</span> </label>
         <input
           id="searchTerm"
           value={inputValue}
